@@ -1,7 +1,7 @@
 - After changing the public Protocol or Server `HttpApi`, run `bun run generate` from `packages/client`. Do not edit generated client files directly.
 - Keep runtime dependencies directed from Schema to Core and Protocol, then from Core and Protocol to Server. Client runtime code may depend on Schema and Protocol but never Core or Server; `sdk` composes Client, Core, and Server.
 - This repository does not use Changesets. Do not add `.changeset` files; follow the existing release workflow instead.
-- The default branch is `dev`. Base branches and worktrees on `origin/dev`, target PRs at `dev`, and diff against `origin/dev` unless told otherwise.
+- This fork's default branch is `gradcode`. Base branches and worktrees on `origin/gradcode`, target PRs at `gradcode`, and diff against `origin/gradcode` unless told otherwise. `origin` is `aryanbaburajan/gradcode`; `upstream` is `anomalyco/opencode`. Keep upstream history separate and do not merge upstream without an explicit upgrade decision.
 
 ## Live TUI Testing
 

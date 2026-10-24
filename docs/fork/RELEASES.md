@@ -3,6 +3,9 @@
 Gradcode preserves the upstream OpenCode v2.1.4 history recorded in `UPSTREAM.json`.
 The fork's publication branch is `gradcode`; `dev` retains the fork's original upstream history.
 Release tags point to commits on `gradcode`. Gradcode release numbering is independent of the inherited workspace package versions.
+Gradcode tags use the `gradcode-v` prefix to avoid collisions with inherited OpenCode tags.
+
+The `Gradcode release` GitHub Actions workflow builds an existing tag, smoke-tests the binary, uploads the archive and checksums to its draft release, and publishes it. Create the tag and reviewed draft release first, then dispatch `.github/workflows/gradcode-release.yml` from `gradcode` with the matching tag and version.
 
 ## v0.1.0
 
