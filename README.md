@@ -10,7 +10,7 @@ Gradcode helps students build projects, debug code, and work through programming
 
 Using an expensive model with high reasoning effort for every request can make a limited budget disappear quickly. Switching models and managing separate API keys or subscription accounts also interrupts the work. Gradcode brings those choices into the agent: select **Auto** to route requests to an available model and reasoning variant, and manage saved accounts in one place.
 
-The goal is to reduce unnecessary inference spending while keeping more capable models available when needed. The current benchmark measures estimated model cost and task success; it does not establish a reduction in token usage or equivalent answer quality.
+The goal is to reduce unnecessary inference spending while keeping more capable models available when needed. The current cost analysis estimates spending at fixed token counts; it does not establish a reduction in token usage or equivalent answer quality.
 
 ## Product demo
 
