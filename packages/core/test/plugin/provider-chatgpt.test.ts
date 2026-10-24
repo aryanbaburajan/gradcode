@@ -177,7 +177,7 @@ describe("ChatGPTPlugin", () => {
       )
       const jwksURL = new URL(`http://localhost:${server.port}/jwks`)
       const sign = (nonce: string, audience: string, expires: number, key = keys.privateKey) =>
-        new SignJWT({ nonce })
+        new SignJWT({ nonce, email: "chatgpt@example.test" })
           .setProtectedHeader({ alg: "RS256", kid: "sign-in" })
           .setIssuer("https://auth.openai.com")
           .setAudience(audience)
@@ -186,7 +186,10 @@ describe("ChatGPTPlugin", () => {
           .sign(key)
       const expires = Math.floor(Date.now() / 1000) + 60
       const valid = yield* Effect.promise(() => sign("expected", "oaiapp_issued", expires))
-      yield* verifyIDToken(valid, "oaiapp_issued", "expected", jwksURL)
+      expect(yield* verifyIDToken(valid, "oaiapp_issued", "expected", jwksURL)).toEqual({
+        sub: "user_123",
+        email: "chatgpt@example.test",
+      })
       const missingSubject = yield* Effect.promise(() =>
         new SignJWT({ nonce: "expected" })
           .setProtectedHeader({ alg: "RS256", kid: "sign-in" })

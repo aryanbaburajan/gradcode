@@ -1,168 +1,87 @@
 import { define } from "@opencode/plugin/effect/plugin"
-import { Deferred, Effect, Schema, Stream } from "effect"
-import { HttpClient, HttpClientRequest } from "effect/http"
+import { Effect, Stream } from "effect"
 import { Bus } from "../../bus.js"
+import { OAuthError } from "../../credential/oauth-error.js"
 import { Credential } from "../../credential.js"
 import { Integration } from "../../integration.js"
 import { Model } from "../../model.js"
 import { Provider } from "../../provider.js"
-import { pkce, token } from "./subscription-oauth.js"
-
-const methodID = "antigravity-google"
-const endpoint = "https://oauth2.googleapis.com/token"
-const origin = "https://daily-cloudcode-pa.googleapis.com"
-const Identity = Schema.Struct({ sub: Schema.NonEmptyString })
-const Project = Schema.Struct({
-  cloudaicompanionProject: Schema.Union([Schema.String, Schema.Struct({ id: Schema.String })]),
-})
-const Inventory = Schema.Struct({ models: Schema.Record(Schema.String, Schema.Unknown) })
+import { AntigravityCLI } from "../../credential/antigravity-cli.js"
 
 export const AntigravityPlugin = define({
   id: "gradcode.provider.antigravity",
   effect: Effect.fn(function* (ctx) {
-    const http = yield* HttpClient.HttpClient
     const bus = yield* Bus.Service
     const credentials = yield* Credential.Service
-    const request = (input: Parameters<typeof token>[0]) =>
-      token(input).pipe(Effect.provideService(HttpClient.HttpClient, http))
     yield* ctx.integration.transform((editor) => {
       editor.method.update({
         integrationID: "antigravity",
-        method: { type: "oauth", id: methodID, label: "Google login for Antigravity (unofficial)" },
-        authorize: (_answer, saved) =>
+        method: { type: "oauth", id: AntigravityCLI.methodID, label: "Google login with Antigravity CLI" },
+        authorize: () =>
           Effect.gen(function* () {
-            const clientID = saved?.metadata?.clientID ?? process.env.OPENCODE_ANTIGRAVITY_CLIENT_ID
-            const clientSecret = saved?.metadata?.clientSecret ?? process.env.OPENCODE_ANTIGRAVITY_CLIENT_SECRET
-            if (typeof clientID !== "string" || typeof clientSecret !== "string")
-              return yield* Effect.fail(
-                new Error(
-                  "Configure OPENCODE_ANTIGRAVITY_CLIENT_ID and OPENCODE_ANTIGRAVITY_CLIENT_SECRET for an authorized OAuth client; no embedded client secret is supplied",
-                ),
-              )
-            const proof = pkce()
-            const received = yield* Deferred.make<string, Error>()
-            const { createServer } = yield* Effect.promise(() => import("node:http"))
-            const server = createServer((req, res) => {
-              const url = new URL(req.url ?? "/", "http://localhost")
-              if (url.pathname !== "/oauth-callback") {
-                res.writeHead(404).end()
-                return
-              }
-              if (url.searchParams.get("state") !== proof.state) {
-                res.writeHead(400).end("Invalid OAuth state")
-                return
-              }
-              const code = url.searchParams.get("code")
-              if (!code || url.searchParams.has("error")) {
-                Effect.runFork(Deferred.fail(received, new Error("Google authorization declined")))
-                res.writeHead(400).end("Authorization declined")
-                return
-              }
-              Effect.runFork(Deferred.succeed(received, code))
-              res.writeHead(200, { "Content-Type": "text/plain" }).end("Authorization received. Return to Gradcode.")
-            })
-            yield* Effect.addFinalizer(() => Effect.sync(() => server.close()))
-            yield* Effect.callback<void, Error>((resume) => {
-              server.once("error", (error) => resume(Effect.fail(error)))
-              server.listen(51121, "127.0.0.1", () => resume(Effect.void))
-            })
-            const redirect = "http://localhost:51121/oauth-callback"
-            const url = new URL("https://accounts.google.com/o/oauth2/v2/auth")
-            url.search = new URLSearchParams({
-              client_id: clientID,
-              redirect_uri: redirect,
-              response_type: "code",
-              access_type: "offline",
-              prompt: "consent select_account",
-              scope: "openid email profile https://www.googleapis.com/auth/cloud-platform",
-              state: proof.state,
-              code_challenge: proof.challenge,
-              code_challenge_method: "S256",
-            }).toString()
+            const process = yield* Effect.acquireRelease(
+              Effect.tryPromise({
+                try: () => AntigravityCLI.start({ cwd: processCwd(), login: true }),
+                catch: () => new OAuthError(false, "antigravity-native"),
+              }),
+              (process) => Effect.promise(process.close),
+            )
             return {
-              mode: "auto" as const,
-              url: url.toString(),
-              instructions: "Complete Google login. This direct Antigravity adapter is unofficial.",
-              callback: Effect.gen(function* () {
-                const value = yield* request({
-                  endpoint,
-                  clientID,
-                  methodID,
-                  previous: saved,
-                  fields: {
-                    grant_type: "authorization_code",
-                    code: yield* Deferred.await(received),
-                    client_secret: clientSecret,
-                    redirect_uri: redirect,
-                    code_verifier: proof.verifier,
+              mode: "code" as const,
+              url: yield* Effect.tryPromise({
+                try: process.url,
+                catch: () => new OAuthError(false, "antigravity-native"),
+              }),
+              instructions:
+                "Complete Google login, then paste the code from the browser here. This account is stored separately from your desktop login.",
+              callback: (code) =>
+                Effect.tryPromise({
+                  try: async () => {
+                    await process.submitCode(code)
+                    return (await process.result).value
                   },
-                  metadata: { clientSecret },
-                })
-                const identityResponse = yield* http.execute(
-                  HttpClientRequest.get("https://openidconnect.googleapis.com/v1/userinfo").pipe(
-                    HttpClientRequest.bearerToken(value.access),
-                  ),
-                )
-                const identity = yield* identityResponse.json.pipe(Effect.flatMap(Schema.decodeUnknownEffect(Identity)))
-                const projectResponse = yield* http.execute(
-                  yield* HttpClientRequest.bodyJson(
-                    HttpClientRequest.post(`${origin}/v1internal:loadCodeAssist`).pipe(
-                      HttpClientRequest.bearerToken(value.access),
-                    ),
-                    { metadata: { ideType: "ANTIGRAVITY" } },
-                  ),
-                )
-                const project = yield* projectResponse.json.pipe(Effect.flatMap(Schema.decodeUnknownEffect(Project)))
-                const projectID =
-                  typeof project.cloudaicompanionProject === "string"
-                    ? project.cloudaicompanionProject
-                    : project.cloudaicompanionProject.id
-                const inventoryResponse = yield* http.execute(
-                  yield* HttpClientRequest.bodyJson(
-                    HttpClientRequest.post(`${origin}/v1internal:fetchAvailableModels`).pipe(
-                      HttpClientRequest.bearerToken(value.access),
-                    ),
-                    { project: projectID },
-                  ),
-                )
-                const inventory = yield* inventoryResponse.json.pipe(
-                  Effect.flatMap(Schema.decodeUnknownEffect(Inventory)),
-                )
-                return Credential.OAuth.make({
-                  ...value,
-                  metadata: {
-                    ...value.metadata,
-                    accountID: identity.sub,
-                    projectID,
-                    modelIDs: Object.keys(inventory.models),
-                  },
-                })
-              }).pipe(
-                Effect.mapError(
-                  () =>
-                    new Error(
-                      "Antigravity login or entitlement discovery failed; check OAuth client access and account eligibility",
-                    ),
-                ),
-              ),
+                  catch: () => new OAuthError(false, "antigravity-native"),
+                }),
             }
           }),
-        refresh: (previous) => {
-          const clientID = previous.metadata?.clientID
-          const clientSecret = previous.metadata?.clientSecret
-          if (typeof clientID !== "string" || typeof clientSecret !== "string")
-            return Effect.fail(new Error("Antigravity registration is incomplete; sign in again"))
-          return request({
-            endpoint,
-            clientID,
-            methodID,
-            previous,
-            fields: { grant_type: "refresh_token", refresh_token: previous.refresh, client_secret: clientSecret },
-          })
-        },
+        refresh: (saved) =>
+          AntigravityCLI.withAccount(
+            String(saved.metadata?.accountID),
+            Effect.scoped(
+              Effect.gen(function* () {
+                if (!saved.access || typeof saved.metadata?.nativeKeyring !== "string")
+                  return yield* Effect.fail(new OAuthError(true))
+                const stored = yield* credentials.list(Integration.ID.make("antigravity"))
+                const latest = stored.find(
+                  (entry) =>
+                    entry.value.type === "oauth" &&
+                    entry.value.methodID === AntigravityCLI.methodID &&
+                    entry.value.metadata?.accountID === saved.metadata?.accountID,
+                )?.value
+                if (latest?.type === "oauth") saved = latest
+                if (!saved.access || typeof saved.metadata?.nativeKeyring !== "string")
+                  return yield* Effect.fail(new OAuthError(true))
+                const process = yield* Effect.acquireRelease(
+                  Effect.tryPromise({
+                    try: () => AntigravityCLI.start({ saved, cwd: processCwd(), args: ["models"] }),
+                    catch: () => new OAuthError(false, "antigravity-native"),
+                  }),
+                  (process) => Effect.promise(process.close),
+                )
+                return yield* Effect.tryPromise({
+                  try: () =>
+                    process.result.then((result) => ({
+                      ...result.value,
+                      metadata: { ...result.value.metadata, modelIDs: AntigravityCLI.parseModels(result.output) },
+                    })),
+                  catch: (error) => (error instanceof OAuthError ? error : new OAuthError(false, "antigravity-native")),
+                })
+              }),
+            ),
+          ),
       })
       editor.update("antigravity", (integration) => {
-        integration.name = "Antigravity (unofficial)"
+        integration.name = "Antigravity"
       })
     })
     let source: Effect.Success<ReturnType<typeof ctx.integration.connection.active>>
@@ -174,7 +93,9 @@ export const AntigravityPlugin = define({
           ? yield* credentials.get(Credential.ID.make(source.id)).pipe(Effect.orElseSucceed(() => undefined))
           : undefined
       models =
-        saved?.value.type === "oauth" && Array.isArray(saved.value.metadata?.modelIDs)
+        saved?.value.type === "oauth" &&
+        saved.value.methodID === AntigravityCLI.methodID &&
+        Array.isArray(saved.value.metadata?.modelIDs)
           ? saved.value.metadata.modelIDs.filter((id): id is string => typeof id === "string")
           : []
     })
@@ -183,13 +104,14 @@ export const AntigravityPlugin = define({
       editor.add({
         info: {
           ...Provider.Info.empty(Provider.ID.make("antigravity")),
-          name: "Antigravity (unofficial)",
+          name: "Antigravity",
           integrationID: Integration.ID.make("antigravity"),
-          package: "@opencode/ai/providers/antigravity",
+          package: "@opencode/core/antigravity-cli",
         },
         models: models.map((id) => ({
           ...Model.Info.default(Provider.ID.make("antigravity"), Model.ID.make(id)),
-          package: "@opencode/ai/providers/antigravity",
+          capabilities: { tools: false, input: ["text"], output: ["text"] },
+          package: "@opencode/core/antigravity-cli",
         })),
         sourceConnection: source,
       })
@@ -200,3 +122,7 @@ export const AntigravityPlugin = define({
     )
   }),
 })
+
+function processCwd() {
+  return process.cwd()
+}

@@ -46,7 +46,6 @@ export type ProviderPackage = ProviderPackageDefinition
 
 const packages = new Map<string, Promise<unknown>>()
 const builtins = new Map<string, () => Promise<unknown>>([
-  ["@opencode/ai/providers/antigravity", () => import("@opencode/ai/providers/antigravity")],
   ["@opencode/ai/providers/alibaba", () => import("@opencode/ai/providers/alibaba")],
   ["@opencode/ai/providers/alibaba/chat", () => import("@opencode/ai/providers/alibaba/chat")],
   ["@opencode/ai/providers/alibaba/messages", () => import("@opencode/ai/providers/alibaba/messages")],

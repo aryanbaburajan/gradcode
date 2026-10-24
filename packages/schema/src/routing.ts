@@ -2,6 +2,7 @@ export * as Routing from "./routing.js"
 
 import { Schema } from "effect"
 import { Model } from "./model.js"
+import { Provider } from "./provider.js"
 import { optional, PositiveInt } from "./schema.js"
 
 export const Profile = Schema.Struct({
@@ -23,6 +24,7 @@ export const Backend = Schema.Struct({
 export interface Backend extends Schema.Schema.Type<typeof Backend> {}
 
 export const Config = Schema.Struct({
+  providerID: Provider.ID.pipe(optional),
   enabled: Schema.Boolean.pipe(optional),
   profiles: Schema.Array(Profile),
   jev: Backend.pipe(optional),
@@ -58,7 +60,7 @@ export interface InstallProgress extends Schema.Schema.Type<typeof InstallProgre
 
 export const Setup = Schema.Union([
   Schema.Struct({ type: Schema.Literal("reset"), backend: Schema.Literals(["jev", "laya", "all"]) }),
-  Schema.Struct({ type: Schema.Literal("auto") }),
+  Schema.Struct({ type: Schema.Literal("auto"), providerID: Provider.ID.pipe(optional) }),
   Schema.Struct({ type: Schema.Literal("configuration"), config: Config }),
   Schema.Struct({ type: Schema.Literal("jev"), key: Schema.NonEmptyString }),
   Schema.Struct({ type: Schema.Literal("laya") }),

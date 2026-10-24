@@ -159,6 +159,11 @@ const layer = Layer.effect(
         gate.withPermit(
           lock.withLock(
             Effect.gen(function* () {
+              if (yield* kv.get("routing:laya-managed")) {
+                yield* start()
+                yield* Ref.set(progress, { completed: 4, stage: "Laya is ready" })
+                return
+              }
               yield* Ref.set(progress, { completed: 0, stage: "Preparing…" })
               yield* run("python3", ["-m", "venv", directory])
               yield* Ref.set(progress, { completed: 1, stage: "Installing dependencies…" })

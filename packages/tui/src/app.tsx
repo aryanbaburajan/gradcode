@@ -64,6 +64,7 @@ import { LocationProvider, useLocation } from "./context/location"
 import { LocalProvider, useLocal } from "./context/local"
 import { PermissionProvider } from "./context/permission"
 import { DialogRouting } from "./component/dialog-routing"
+import { useBackendCycle } from "./component/use-backend-cycle"
 import { DialogAccounts } from "./component/dialog-accounts"
 import { DialogModel } from "./component/dialog-model"
 import { useConnected } from "./component/use-connected"
@@ -152,6 +153,7 @@ const pinnedSessionBindingCommands = [
 const appBindingCommands = [
   "command.palette.show",
   "model.list",
+  "backend.cycle",
   "model.cycle_recent",
   "model.cycle_recent_reverse",
   "model.cycle_favorite",
@@ -421,10 +423,10 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                                           <ClientMcp />
                                                           <LocalProvider>
                                                             <PromptStashProvider>
-                                                              <DialogProvider>
-                                                                <FrecencyProvider>
-                                                                  <PromptHistoryProvider>
-                                                                    <PromptRefProvider>
+                                                              <PromptRefProvider>
+                                                                <DialogProvider>
+                                                                  <FrecencyProvider>
+                                                                    <PromptHistoryProvider>
                                                                       <EditorContextProvider>
                                                                         <AttentionProvider>
                                                                           <UpdateNotificationProvider
@@ -441,10 +443,10 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                                                           </UpdateNotificationProvider>
                                                                         </AttentionProvider>
                                                                       </EditorContextProvider>
-                                                                    </PromptRefProvider>
-                                                                  </PromptHistoryProvider>
-                                                                </FrecencyProvider>
-                                                              </DialogProvider>
+                                                                    </PromptHistoryProvider>
+                                                                  </FrecencyProvider>
+                                                                </DialogProvider>
+                                                              </PromptRefProvider>
                                                             </PromptStashProvider>
                                                           </LocalProvider>
                                                         </ThemeProvider>
@@ -515,6 +517,7 @@ function App() {
   const plugins = usePlugin()
   const clipboard = useClipboard()
   const terminalEnvironment = useTuiTerminalEnvironment()
+  const cycleBackend = useBackendCycle()
   let paletteTimer: ReturnType<typeof setTimeout> | undefined
   const afterFrame = () => {
     // The native writer can still be flushing the frame when FRAME fires. Keep OSC probes behind visible app output.
@@ -1013,6 +1016,13 @@ function App() {
           if (dialog.key !== "routing.setup")
             dialog.replace(() => <DialogRouting />, undefined, { key: "routing.setup" })
         },
+        category: "Integration",
+      },
+      {
+        name: "backend.cycle",
+        title: "Cycle connected backend",
+        slash: { name: "cycle-backend" },
+        run: cycleBackend,
         category: "Integration",
       },
       {

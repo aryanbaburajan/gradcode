@@ -35,6 +35,7 @@ export const Info = Schema.Struct({
   id: Credential.ID,
   integrationID: IntegrationID,
   label: Schema.String,
+  email: Schema.String.pipe(optional),
   method: Schema.String,
   authentication: Schema.Literals(["key", "oauth", "external"]),
   active: Schema.Boolean,

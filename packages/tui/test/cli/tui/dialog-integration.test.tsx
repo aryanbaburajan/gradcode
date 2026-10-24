@@ -12,7 +12,10 @@ import { Keymap } from "../../../src/context/keymap"
 import { LocationProvider, useLocation } from "../../../src/context/location"
 import { ThemeProvider } from "../../../src/context/theme"
 import { DialogProvider, useDialog } from "../../../src/ui/dialog"
-import { ToastProvider } from "../../../src/ui/toast"
+import { PromptRefProvider, usePromptRef } from "../../../src/context/prompt"
+import { emptyPrompt } from "../../../src/prompt/history"
+import type { PromptRef } from "../../../src/component/prompt"
+import { ToastProvider, useToast } from "../../../src/ui/toast"
 import { emptyThemeSource } from "../../fixture/fixture"
 import { createApi, createEventStream, createFetch, json } from "../../fixture/tui-client"
 import { TestTuiContexts } from "../../fixture/tui-environment"
@@ -31,6 +34,10 @@ test("renders account management with an uncategorized add row and marks the act
     expect(lines.find((line) => line.includes("Personal"))).toContain("\u25cf")
     expect(lines.find((line) => line.includes("Work"))).not.toContain("\u25cf")
     expect(frame).not.toContain("OPENAI_API_KEY")
+    expect(frame).toContain("Login · personal@example.test")
+    expect(frame).toContain("API key")
+    expect(frame).not.toContain("Owner unavailable")
+    expect(frame).not.toContain("Email unavailable")
   } finally {
     fixture.app.renderer.destroy()
   }
@@ -154,7 +161,9 @@ test("requires delete confirmation and preserves the account manager when anothe
     await fixture.app.waitForFrame((frame) => frame.includes("Connected accounts") && !frame.includes("Work"))
 
     expect(fixture.requests).toEqual([{ method: "DELETE", path: "/api/credential/cred_work" }])
-    expect(fixture.accounts).toEqual([{ type: "credential", method: "key", id: "cred_personal", label: "Personal" }])
+    expect(fixture.accounts).toEqual([
+      { type: "credential", method: "oauth", id: "cred_personal", label: "Personal", email: "personal@example.test" },
+    ])
     expect(fixture.reads.model).toBe(0)
     expect(fixture.reads.provider).toBe(0)
     expect(fixture.app.captureCharFrame()).toContain("Add account")
@@ -247,14 +256,44 @@ test("uses the active location for integration data without scoping credential r
   }
 })
 
-async function renderIntegration(activeLocation?: LocationRef, form?: FormFields) {
+async function renderIntegration(activeLocation?: LocationRef, form?: FormFields, help?: { connected: boolean }) {
+  const composer: PromptRef = {
+    current: { ...emptyPrompt(), text: "Existing draft" },
+    focused: false,
+    mode: "normal",
+    setMode(mode) {
+      this.mode = mode
+    },
+    set(value) {
+      this.current = value
+    },
+    reset() {
+      this.current = emptyPrompt()
+    },
+    focus() {
+      this.focused = true
+    },
+    blur() {
+      this.focused = false
+    },
+    submit() {
+      throw new Error("Must not submit automatically")
+    },
+  }
+  const state: { toast?: ReturnType<typeof useToast> } = {}
   const events = createEventStream()
   const requests: Array<{ method: string; path: string; body?: unknown }> = []
   const locations: LocationRef[] = []
   const credentialQueries: string[] = []
   const reads = { integration: 0, model: 0, provider: 0 }
   let accounts = [
-    { type: "credential" as const, method: "key" as const, id: "cred_personal", label: "Personal" },
+    {
+      type: "credential" as const,
+      method: "oauth" as const,
+      id: "cred_personal",
+      label: "Personal",
+      email: "personal@example.test",
+    },
     { type: "credential" as const, method: "key" as const, id: "cred_work", label: "Work" },
   ]
 
@@ -277,13 +316,18 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
           {
             id: "openai",
             name: "OpenAI",
-            methods: [{ type: "key", label: "API key", form }],
-            connections: [...accounts, { type: "env", name: "OPENAI_API_KEY" }],
+            methods: help
+              ? [{ type: "oauth", id: "google", label: "Google login" }]
+              : [{ type: "key", label: "API key", form }],
+            connections: help && !help.connected ? [] : [...accounts, { type: "env", name: "OPENAI_API_KEY" }],
           },
         ],
       })
     }
 
+    if (request.method === "POST" && url.pathname === "/api/integration/openai/connect/oauth") {
+      return json({ message: "Antigravity CLI failed. Install agy and retry login." }, { status: 400 })
+    }
     if (request.method === "POST" && url.pathname === "/api/integration/openai/connect/key") {
       requests.push({ method: request.method, path: url.pathname, body: await request.json() })
       return new Response(null, { status: 204 })
@@ -291,12 +335,31 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
 
     if (url.pathname === "/api/model") {
       reads.model++
-      return json({ location, data: [] })
+      return json({
+        location,
+        data: help
+          ? [
+              {
+                id: "test-model",
+                providerID: "openai",
+                name: "Test",
+                enabled: true,
+                status: "active",
+                capabilities: { input: ["text"], output: ["text"], tools: true },
+              },
+            ]
+          : [],
+      })
     }
 
     if (url.pathname === "/api/provider") {
       reads.provider++
-      return json({ location, data: [] })
+      return json({
+        location,
+        data: help
+          ? [{ id: "openai", integrationID: "openai", activation: "auto", name: "OpenAI", package: "test" }]
+          : [],
+      })
     }
 
     if (request.method === "POST" && /^\/api\/credential\/[^/]+\/activate$/.test(url.pathname)) {
@@ -347,11 +410,15 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
     const data = useData()
     const dialog = useDialog()
     const location = useLocation()
+    const prompt = usePromptRef()
+    prompt.set(composer)
+    state.toast = useToast()
     onMount(() => {
       location.set(activeLocation)
-      void data.location.integration
-        .sync(activeLocation)
-        .then(() => dialog.replace(() => <DialogIntegration integrationID="openai" autoConnect />))
+      void Promise.all([
+        data.location.integration.sync(activeLocation),
+        ...(help ? [data.location.model.sync(activeLocation), data.location.provider.sync(activeLocation)] : []),
+      ]).then(() => dialog.replace(() => <DialogIntegration integrationID="openai" autoConnect />))
     })
     return null
   }
@@ -366,9 +433,11 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
                 <DataProvider directory={process.cwd()}>
                   <LocationProvider>
                     <ThemeProvider mode="dark" source={emptyThemeSource}>
-                      <DialogProvider>
-                        <Probe />
-                      </DialogProvider>
+                      <PromptRefProvider>
+                        <DialogProvider>
+                          <Probe />
+                        </DialogProvider>
+                      </PromptRefProvider>
                     </ThemeProvider>
                   </LocationProvider>
                 </DataProvider>
@@ -382,13 +451,17 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
   )
 
   app.renderer.start()
-  await app.waitForFrame(
-    (frame) => frame.includes("Add account") && frame.includes("Personal") && frame.includes("Work"),
+  await app.waitForFrame((frame) =>
+    help && !help.connected
+      ? frame.includes("Starting authorization") || state.toast?.currentToast !== null
+      : frame.includes("Add account") && frame.includes("Personal") && frame.includes("Work"),
   )
-  await app.waitFor(() => app.renderer.currentFocusedEditor instanceof InputRenderable)
+  if (!help || help.connected) await app.waitFor(() => app.renderer.currentFocusedEditor instanceof InputRenderable)
 
   return {
     app,
+    composer,
+    toast: () => state.toast!,
     reads,
     requests,
     locations,
@@ -397,4 +470,26 @@ async function renderIntegration(activeLocation?: LocationRef, form?: FormFields
       return accounts
     },
   }
+}
+
+for (const connected of [true, false]) {
+  test(`OAuth setup failure ${connected ? "offers a chat draft with a connected backend" : "keeps the error without a chat action when disconnected"}`, async () => {
+    const fixture = await renderIntegration(undefined, undefined, { connected })
+    try {
+      if (connected) fixture.app.mockInput.pressEnter()
+      await fixture.app.waitFor(() => fixture.toast().currentToast !== null)
+      const toast = fixture.toast().currentToast!
+      expect(toast.variant).toBe("error")
+      expect(toast.action?.label).toBe(connected ? "Ask in chat" : undefined)
+      if (connected) {
+        fixture.toast().activate()
+        expect(fixture.composer.current.text).toStartWith("Existing draft\n\n")
+        expect(fixture.composer.current.text).toContain("OpenAI connection using Google login")
+        expect(fixture.composer.current.text).toContain(toast.message)
+        expect(fixture.composer.focused).toBe(true)
+      } else expect(fixture.composer.current.text).toBe("Existing draft")
+    } finally {
+      fixture.app.renderer.destroy()
+    }
+  })
 }

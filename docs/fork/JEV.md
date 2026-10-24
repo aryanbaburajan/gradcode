@@ -81,7 +81,7 @@ starts the installed model when it needs Laya, without reinstalling it. Installa
 and startup are serialized across processes, and concurrent sessions reuse a
 healthy local server. Installation steps time out after 20 minutes each; initial
 model startup allows 60 minutes for downloads. Regular classification still has
-the configured five-second timeout. Failed/cancelled installation does not enable
+the local thirty-second default timeout (or configured `routing.laya.timeoutMs`). Failed/cancelled installation does not enable
 managed startup. Downloaded files may remain after cancellation and can be reused.
 
 If another process occupies port 8000, free that port or use your own externally

@@ -688,6 +688,7 @@ export type AccountManagementInfo = {
   id: CredentialID
   integrationID: IntegrationID
   label: string
+  email?: string
   method: string
   authentication: "key" | "oauth" | "external"
   active: boolean
@@ -710,6 +711,7 @@ export type CredentialEntry = {
   integrationID: IntegrationID
   label: string
   active: boolean
+  email?: string
   value: { type: "oauth" | "key" | "external"; methodID?: IntegrationMethodID; expires?: number }
 }
 
@@ -717,6 +719,7 @@ export type ConnectionCredentialInfo = {
   type: "credential"
   id: CredentialID
   label: string
+  email?: string
   method: "key" | "oauth" | "external"
   status?: ConnectionStatus
 }
@@ -2130,6 +2133,7 @@ export type SessionMessageCompaction =
   | SessionMessageCompactionFailed
 
 export type RoutingConfig = {
+  providerID?: ProviderID
   enabled?: boolean
   profiles: Array<RoutingProfile>
   jev?: RoutingBackend
@@ -5005,10 +5009,11 @@ export type ModelRoutingSetupInput = {
   readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
   readonly payload:
     | { readonly type: "reset"; readonly backend: "jev" | "laya" | "all" }
-    | { readonly type: "auto" }
+    | { readonly type: "auto"; readonly providerID?: string }
     | {
         readonly type: "configuration"
         readonly config: {
+          readonly providerID?: string
           readonly enabled?: boolean
           readonly profiles: ReadonlyArray<{
             readonly name: string

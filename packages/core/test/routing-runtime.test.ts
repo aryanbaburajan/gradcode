@@ -117,6 +117,9 @@ for (const failure of [false, true]) {
           expect(yield* runtime.progress()).toEqual({ completed: 4, stage: "Laya is ready" })
           expect(yield* kv.get("routing:laya-managed")).toBe(true)
           expect(commands).toHaveLength(3)
+          yield* runtime.install()
+          expect(commands).toHaveLength(3)
+          expect(spawned).toHaveLength(1)
           const global = yield* Global.Service
           const marker = path.join(global.data, "routing", `laya-${RoutingRuntime.version}`, "keep-model")
           yield* Effect.promise(async () => {

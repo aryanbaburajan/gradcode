@@ -194,6 +194,7 @@ const signIn = (app: App.Info, storage: Context["storage"]) =>
                 return yield* Effect.fail(new Error("A different account signed in; add it as a new account."))
               return credential(tokens, clientID, undefined, {
                 accountID: identity.sub,
+                ...(identity.email ? { email: identity.email } : {}),
                 idToken: tokens.id_token,
               })
             }).pipe(
@@ -509,7 +510,7 @@ export function verifyIDToken(
       })
       if (typeof payload.sub !== "string" || !payload.sub.trim()) throw new Error("ID token subject is missing")
       if (payload.nonce !== nonce) throw new Error("ID token nonce does not match this sign-in attempt")
-      return { sub: payload.sub }
+      return { sub: payload.sub, email: typeof payload.email === "string" ? payload.email : undefined }
     },
     catch: (cause) => new Error("ChatGPT sign-in returned an invalid ID token.", { cause }),
   })

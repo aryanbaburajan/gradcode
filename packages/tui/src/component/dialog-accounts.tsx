@@ -5,7 +5,7 @@ import { DialogPrompt } from "../ui/dialog-prompt"
 import { useDialog } from "../ui/dialog"
 import { useData } from "../context/data"
 import { useLocation } from "../context/location"
-import { DialogIntegration, beginOAuth } from "./dialog-integration"
+import { DialogIntegration, beginOAuth, accountDescription } from "./dialog-integration"
 import { useToast } from "../ui/toast"
 import { errorMessage } from "../util/error"
 
@@ -40,7 +40,7 @@ export function DialogAccounts() {
         ...(accounts() ?? []).map((account) => ({
           title: account.label,
           value: account.id,
-          description: `${account.integrationID} · ${account.method} · ${account.status ?? account.policy.health} · priority ${account.policy.priority}${account.pinned ? " · pinned" : ""} · quota ${account.policy.quota?.remaining ?? "unknown"}`,
+          description: `${account.integrationID} · ${accountDescription(account.authentication, account.email)} · ${account.status ?? account.policy.health} · priority ${account.policy.priority}${account.pinned ? " · pinned" : ""} · quota ${account.policy.quota?.remaining ?? "unknown"}`,
           onSelect: () =>
             dialog.replace(() => (
               <DialogSelect

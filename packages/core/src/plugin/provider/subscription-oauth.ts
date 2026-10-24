@@ -9,7 +9,7 @@ const Tokens = Schema.Struct({
   access_token: Schema.NonEmptyString,
   refresh_token: Schema.optional(Schema.NonEmptyString),
   expires_in: Schema.Int.check(Schema.isGreaterThan(0)),
-  account: Schema.optional(Schema.Struct({ uuid: Schema.String })),
+  account: Schema.optional(Schema.Struct({ uuid: Schema.String, email_address: Schema.optional(Schema.String) })),
 })
 const Failure = Schema.Struct({ error: Schema.optional(Schema.String) })
 
@@ -83,6 +83,7 @@ export const token = Effect.fn("SubscriptionOAuth.token")(function* (input: {
       ...input.metadata,
       clientID: input.clientID,
       ...(tokens.account ? { accountID: tokens.account.uuid } : {}),
+      ...(tokens.account?.email_address ? { email: tokens.account.email_address } : {}),
     },
   })
 })

@@ -1410,10 +1410,11 @@ export type ModelRoutingSetupInput = {
   readonly location?: { readonly directory?: string | undefined } | undefined
   readonly payload:
     | { readonly type: "reset"; readonly backend: "jev" | "laya" | "all" }
-    | { readonly type: "auto" }
+    | { readonly type: "auto"; readonly providerID?: Provider.ID | undefined }
     | {
         readonly type: "configuration"
         readonly config: {
+          readonly providerID?: Provider.ID | undefined
           readonly enabled?: boolean | undefined
           readonly profiles: ReadonlyArray<{
             readonly name: string
@@ -1780,6 +1781,7 @@ export type CredentialAccountsOutput = ReadonlyArray<{
   readonly id: Credential.ID
   readonly integrationID: Integration.ID
   readonly label: string
+  readonly email?: string | undefined
   readonly method: string
   readonly authentication: "key" | "oauth" | "external"
   readonly active: boolean

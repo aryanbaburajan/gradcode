@@ -20,7 +20,11 @@ and how to verify Jev is answering. Select Auto to enable routing for a session;
 selecting an explicit model disables it. Each new Auto prompt reports the decision
 in a TUI notice and server info log.
 
-Auto generates routing candidates from available models. For advanced backend settings,
+Auto generates routing candidates only from the provider of the model selected
+before enabling Auto, including its supported reasoning variants. To change the
+provider, select one of its models and then select Auto again. The provider scope
+is saved as `routing.providerID`; it is reused when Auto is already selected.
+Without a prior selection, setup uses the first eligible provider. For advanced backend settings,
 `routing` can still be edited in an OpenCode-compatible configuration document.
 The following is an internal configuration example; Auto refreshes `profiles` automatically:
 
@@ -66,19 +70,25 @@ usual Location query and a Routing.Request payload. Select **Auto** in the TUI
 model picker to route each newly active user message. Explicit models override
 routing. The reserved model reference `auto/auto` represents this selection.
 
-Auto enables routing and generates eligible candidates automatically. Missing
+Auto enables routing and generates eligible candidates within its selected provider. Missing
 `TYPESAFE_API_KEY` skips Jev. Each backend gets one attempt; error, timeout, malformed
 output, or an unrecognized Choice advances Jev → Laya. If neither backend returns
 an eligible configured profile, routing reports an unavailable error and does not
 execute inference. Select a model explicitly to proceed without a classifier.
-There is no deterministic or default-model fallback.
+There is no deterministic or default-model fallback. Laya compares catalogs larger
+than 64 eligible profiles in groups of 64, then compares group winners; each
+question stays within its 100-choice limit. The timeout covers all rounds.
 
-When both classifiers fail, the TUI opens routing setup. You can also run
+Jev defaults to a five-second request timeout and local Laya to thirty seconds;
+set `routing.jev.timeoutMs` or `routing.laya.timeoutMs` to override them. Request
+failures report backend status or timeout without reopening installation. Selecting
+Auto without a configured backend opens setup. You can also run
 `/routing` to save a Jev key in the credential vault or install and start local
 Laya. See [local hosting and key setup](JEV.md#managed-local-laya).
 OpenCode installs the upstream `laya[serve]==0.4.14` package in a private virtual
 environment, starts it on `127.0.0.1:8000`, and stops its child process on shutdown.
 After successful setup, the preference is saved and local Laya starts when needed.
+Repeating setup reuses the managed installation instead of reinstalling packages.
 Custom external Laya endpoints remain supported; installation requires the default
 loopback endpoint. Inference still uses the System One Choice protocol.
 

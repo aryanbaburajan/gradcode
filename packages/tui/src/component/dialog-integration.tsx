@@ -11,6 +11,8 @@ import type {
   FormFields,
   FormValue,
   LocationRef,
+  ModelInfo,
+  ProviderInfo,
 } from "@opencode/client"
 import { openUrl } from "@opencode/util/open"
 import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show } from "solid-js"
@@ -20,6 +22,7 @@ import { useClipboard } from "../context/clipboard"
 import { useData } from "../context/data"
 import { useClient } from "../context/client"
 import { Keymap } from "../context/keymap"
+import { usePromptRef } from "../context/prompt"
 import { useLocation } from "../context/location"
 import { useTheme } from "../context/theme"
 import {
@@ -53,6 +56,7 @@ const INTEGRATION_PRIORITY: Record<string, number> = {
   "github-copilot": 3,
   anthropic: 4,
   google: 5,
+  antigravity: 6,
 }
 
 type ConnectMethod = Exclude<IntegrationInfo["methods"][number], { type: "env" }>
@@ -86,6 +90,11 @@ export function credentialConnections(integration: IntegrationInfo) {
   return integration.connections.filter(
     (connection): connection is Extract<ConnectionInfo, { type: "credential" }> => connection.type === "credential",
   )
+}
+
+export function accountDescription(method: "key" | "oauth" | "external", email?: string) {
+  const type = method === "key" ? "API key" : method === "oauth" ? "Login" : "External credential"
+  return email ? `${type} · ${email}` : type
 }
 
 // A count keeps several long labels from squeezing the integration name off the row.
@@ -218,6 +227,7 @@ function manageConnections(
                   ? `Press ${shortcuts.get("dialog.integration.delete")} again to confirm`
                   : connection.label,
                 value: connection.id,
+                description: accountDescription(connection.method, connection.email),
                 footer: connection.status ? "Sign in required →" : undefined,
                 footerColor: connection.status ? theme.text.feedback.warning.base : undefined,
                 category: "Connected accounts",
@@ -609,6 +619,57 @@ export async function beginOAuth(
   ))
 }
 
+export function canAskConnectionHelp(integrations: IntegrationInfo[], providers: ProviderInfo[], models: ModelInfo[]) {
+  return models.some((model) => {
+    if (!model.enabled || model.status === "deprecated" || !model.capabilities.input.includes("text")) return false
+    const provider = providers.find((provider) => provider.id === model.providerID)
+    if (!provider || provider.activation === "disabled") return false
+    return integrations.some(
+      (integration) =>
+        integration.id === (provider.integrationID ?? provider.id) &&
+        integration.connections.some((connection) => !connection.status),
+    )
+  })
+}
+
+function useConnectionHelp(integration: IntegrationInfo, method: string, location: LocationRef) {
+  const data = useData()
+  const prompt = usePromptRef()
+  const toast = useToast()
+  const dialog = useDialog()
+  return (message: string) => {
+    const available = canAskConnectionHelp(
+      data.location.integration.list(location) ?? [],
+      data.location.provider.list(location) ?? [],
+      data.location.model.list(location) ?? [],
+    )
+    dialog.clear()
+    toast.show({
+      variant: "error",
+      message,
+      duration: available ? 15000 : 5000,
+      action:
+        available && prompt.current
+          ? {
+              label: "Ask in chat",
+              run: () => {
+                const current = prompt.current
+                if (!current) return
+                const text = `Help me set up the ${integration.name} connection using ${method}. The connection failed with this message:\n\n${message}\n\nExplain the required setup and help me configure it. Keep secret values out of chat.`
+                current.setMode("normal")
+                current.set({
+                  ...current.current,
+                  mode: "normal",
+                  text: current.current.text ? `${current.current.text}\n\n${text}` : text,
+                })
+                current.focus()
+              },
+            }
+          : undefined,
+    })
+  }
+}
+
 function OAuthStarting(props: {
   integration: IntegrationInfo
   method: IntegrationOAuthMethod
@@ -619,7 +680,7 @@ function OAuthStarting(props: {
 }) {
   const dialog = useDialog()
   const client = useClient()
-  const toast = useToast()
+  const failure = useConnectionHelp(props.integration, props.method.label, props.location)
 
   onMount(() => {
     void client.api.integration.oauth
@@ -654,8 +715,7 @@ function OAuthStarting(props: {
         ))
       })
       .catch((cause) => {
-        toast.show({ variant: "error", message: errorMessage(cause) })
-        dialog.clear()
+        failure(errorMessage(cause))
       })
   })
 
@@ -673,6 +733,7 @@ function OAuthAuto(props: {
   const dialog = useDialog()
   const client = useClient()
   const toast = useToast()
+  const failure = useConnectionHelp(props.integration, props.title, props.location)
   const clipboard = useClipboard()
   const newDesigns = useNewDesigns()
   let timer: ReturnType<typeof setTimeout> | undefined
@@ -721,13 +782,11 @@ function OAuthAuto(props: {
           void connected(props.integration, props.location, data, dialog, toast, props.onConnected)
           return
         }
-        toast.show({ variant: "error", message: status.status === "failed" ? status.message : "Authorization expired" })
-        dialog.clear()
+        failure(status.status === "failed" ? status.message : "Authorization expired")
       })
       .catch((cause) => {
         settled = true
-        toast.show({ variant: "error", message: errorMessage(cause) })
-        dialog.clear()
+        failure(errorMessage(cause))
       })
   }
 

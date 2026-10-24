@@ -62,7 +62,7 @@ it.effect("OAuth refresh preserves an omitted refresh token and rejects missing 
       access: "old-access",
       refresh: "retained-refresh",
       expires: 0,
-      metadata: { accountID: "identity" },
+      metadata: { accountID: "identity", email: "claude@example.test" },
     })
     const input = {
       endpoint: "https://example.com/token",
@@ -75,12 +75,37 @@ it.effect("OAuth refresh preserves an omitted refresh token and rejects missing 
     expect(value).toMatchObject({
       access: "new-access",
       refresh: "retained-refresh",
-      metadata: { accountID: "identity" },
+      metadata: { accountID: "identity", email: "claude@example.test" },
     })
     const failure = yield* token({ ...input, requireIdentity: true }).pipe(
       Effect.provideService(HttpClient.HttpClient, http),
       Effect.flip,
     )
     expect(failure.message).not.toContain("retained-refresh")
+  }),
+)
+
+it.effect("OAuth login records an optional email returned by the token endpoint", () =>
+  Effect.gen(function* () {
+    const http = HttpClient.make((request) =>
+      Effect.succeed(
+        HttpClientResponse.fromWeb(
+          request,
+          Response.json({
+            access_token: "access",
+            refresh_token: "refresh",
+            expires_in: 3600,
+            account: { uuid: "account-id", email_address: "claude@example.test" },
+          }),
+        ),
+      ),
+    )
+    const value = yield* token({
+      endpoint: "https://example.com/token",
+      clientID: "public",
+      methodID: "test",
+      fields: {},
+    }).pipe(Effect.provideService(HttpClient.HttpClient, http))
+    expect(Credential.email(value)).toBe("claude@example.test")
   }),
 )

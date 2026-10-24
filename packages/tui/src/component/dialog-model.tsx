@@ -32,14 +32,19 @@ export function DialogModel(props: { providerID?: string }) {
   async function select(providerID: string, modelID: string) {
     if (activating()) return
     if (providerID === "auto") {
+      const currentProvider = local.model.current()?.providerID
+      const routingProvider = currentProvider === "auto" ? undefined : currentProvider
       setActivating(true)
       try {
-        await client.api.model.routingSetup({ location: location.ref, payload: { type: "auto" } })
+        await client.api.model.routingSetup({
+          location: location.ref,
+          payload: { type: "auto", providerID: routingProvider },
+        })
       } catch (error) {
         setActivating(false)
         const message = errorMessage(error)
         if (message.includes("Set up Jev or local Laya"))
-          dialog.replace(() => <DialogRouting />, undefined, { key: "routing.setup" })
+          dialog.replace(() => <DialogRouting providerID={routingProvider} />, undefined, { key: "routing.setup" })
         else toast.show({ variant: "error", message, duration: 8000 })
         return
       }

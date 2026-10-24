@@ -29,6 +29,17 @@ export type External = Credential.External
 export const Value = Credential.Value
 export type Value = Credential.Value
 
+/** Only explicitly stored login email is projected; arbitrary OAuth metadata stays encrypted. */
+export function email(value: Value): string | undefined {
+  if (value.type !== "oauth") return undefined
+  const candidate =
+    value.metadata?.email ?? (value.methodID === "antigravity-cli" ? value.metadata?.accountID : undefined)
+  if (typeof candidate !== "string" || candidate.length > 320) return undefined
+  return /^[^\s\u0000-\u001f\u007f@]+@[^\s\u0000-\u001f\u007f@]+\.[^\s\u0000-\u001f\u007f@]+$/.test(candidate)
+    ? candidate
+    : undefined
+}
+
 export const Event = Credential.Event
 
 export class Info extends Schema.Class<Info>("Credential.Info")({

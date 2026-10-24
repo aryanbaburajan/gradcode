@@ -40,6 +40,11 @@ it.live("Jev setup saves and replaces the encrypted key without returning secret
         path.join(directory.path, "opencode.json"),
         JSON.stringify({
           providers: {
+            other: {
+              package: "aisdk:@ai-sdk/openai-compatible",
+              settings: { apiKey: "fixture-other-key" },
+              models: { chat: {} },
+            },
             custom: {
               package: "aisdk:@ai-sdk/openai-compatible",
               settings: { apiKey: "fixture-provider-key" },
@@ -109,12 +114,34 @@ it.live("Jev setup saves and replaces the encrypted key without returning secret
       fetch(url, {
         method: "POST",
         headers: { ...server.headers, "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "auto" }),
+        body: JSON.stringify({ type: "auto", providerID: "custom" }),
       }),
     )
     expect(automatic.status, yield* Effect.promise(() => automatic.text())).toBe(204)
     const saved = yield* Effect.promise(() => fs.readFile(path.join(directory.path, "opencode.json"), "utf8"))
     expect(saved).toContain('"enabled": true')
+    const routing = JSON.parse(saved).routing
+    expect(routing.providerID).toBe("custom")
+    expect(
+      routing.profiles.every((profile: { model: { providerID: string } }) => profile.model.providerID === "custom"),
+    ).toBe(true)
+    const again = yield* Effect.promise(() =>
+      fetch(url, {
+        method: "POST",
+        headers: { ...server.headers, "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "auto" }),
+      }),
+    )
+    expect(again.status).toBe(204)
+    const repeated = JSON.parse(
+      yield* Effect.promise(() => fs.readFile(path.join(directory.path, "opencode.json"), "utf8")),
+    )
+    expect(repeated.routing.providerID).toBe("custom")
+    expect(
+      repeated.routing.profiles.every(
+        (profile: { model: { providerID: string } }) => profile.model.providerID === "custom",
+      ),
+    ).toBe(true)
     expect(saved).toContain('"name": "custom/chat/default"')
     expect(saved).toContain('"name": "custom/chat/high"')
     expect(saved).toContain('"reasoningEffort": "high"')
@@ -231,7 +258,7 @@ it.live("Auto detects local Laya and needs no manually configured profiles", () 
           fetch(url, {
             method: "POST",
             headers: { ...server.headers, "Content-Type": "application/json" },
-            body: JSON.stringify({ type: "auto" }),
+            body: JSON.stringify({ type: "auto", providerID: "custom" }),
           }),
         )
       const unavailable = yield* activate()

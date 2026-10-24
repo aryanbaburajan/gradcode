@@ -1,5 +1,5 @@
 import { describe, expect } from "bun:test"
-import { Effect, Exit } from "effect"
+import { Effect, Exit, Schema } from "effect"
 import { Router } from "../src/routing"
 import { Model } from "@opencode/schema/model"
 import { Provider } from "@opencode/schema/provider"
@@ -117,8 +117,9 @@ describe("model routing", () => {
         config: { ...input.config, jev: { endpoint: jev.endpoint }, laya: { endpoint: laya.endpoint } },
       }).pipe(Effect.flip, (effect) => withEnv({ TYPESAFE_API_KEY: "fixture-jev" }, () => effect))
       expect(error).toBeInstanceOf(Router.Unavailable)
-      expect(error.message).toContain("neither Jev nor Laya")
-      expect(error.setupRequired).toBe(true)
+      expect(error.message).toContain("jev: HTTP 500")
+      expect(error.message).toContain("laya: HTTP 503")
+      expect(error.setupRequired).toBeUndefined()
       expect(jev.requests.length).toBe(1)
       expect(laya.requests.length).toBe(1)
     }),
@@ -127,6 +128,9 @@ describe("model routing", () => {
   it.effect("filters unavailable models, modalities, context and unsupported effort", () =>
     Effect.gen(function* () {
       expect(Router.eligible({ ...input, available: [] })).toEqual([])
+      expect(Router.eligible({ ...input, config: { ...input.config, providerID: Provider.ID.make("other") } })).toEqual(
+        [],
+      )
       expect(Router.eligible({ ...input, request: { ...input.request, modalities: ["audio"] } })).toEqual([])
       expect(Router.eligible({ ...input, request: { ...input.request, contextTokens: 999_999 } })).toEqual([])
       expect(Router.eligible({ ...input, config: { profiles: [{ ...profile, reasoningEffort: "high" }] } })).toEqual([])
@@ -154,6 +158,8 @@ it.live("bounds backend timeout without retrying", () =>
     }).pipe(Effect.flip, (effect) => withEnv({ TYPESAFE_API_KEY: undefined }, () => effect))
     expect(result).toBeInstanceOf(Router.Unavailable)
     expect(requests.length).toBe(1)
+    expect(result.message).toContain("laya: timed out after 50 ms")
+    expect(result.setupRequired).toBeUndefined()
   }),
 )
 
@@ -170,5 +176,38 @@ it.effect("formats routing notices with model, effort, source, and selection cha
       "Switched to test/model · reasoning: high · profile: complex · jev matched the task to this profile",
     )
     expect(Router.notice(decision)).not.toContain(decision.rationale)
+  }),
+)
+
+it.live("large Laya catalogs compare bounded groups and select only a group winner", () =>
+  Effect.gen(function* () {
+    const batches: string[][] = []
+    const http = Bun.serve({
+      hostname: "127.0.0.1",
+      port: 0,
+      async fetch(request) {
+        const body = Schema.decodeUnknownSync(
+          Schema.Struct({
+            questions: Schema.Struct({
+              route: Schema.Struct({ criteria: Schema.Record(Schema.String, Schema.Unknown) }),
+            }),
+          }),
+        )(await request.json())
+        const names = Object.keys(body.questions.route.criteria)
+        batches.push(names)
+        if (names.length > 100) return Response.json({}, { status: 413 })
+        return Response.json({ answers: { route: { type: "choice", choice: names.at(-1) } } })
+      },
+    })
+    yield* Effect.addFinalizer(() => Effect.sync(() => http.stop(true)))
+    const profiles = Array.from({ length: 130 }, (_, i) => ({ ...profile, name: "profile-" + i }))
+    const result = yield* Router.preview({
+      ...input,
+      config: { profiles, laya: { endpoint: new URL("/v1/systemone", http.url).toString() } },
+    }).pipe((effect) => withEnv({ TYPESAFE_API_KEY: undefined }, () => effect))
+    expect(result.profile).toBe("profile-129")
+    expect(batches.map((batch) => batch.length)).toEqual([64, 64, 2, 3])
+    expect(batches.slice(0, 3).flat()).toEqual(profiles.map((profile) => profile.name))
+    expect(batches[3]).toEqual(["profile-63", "profile-127", "profile-129"])
   }),
 )

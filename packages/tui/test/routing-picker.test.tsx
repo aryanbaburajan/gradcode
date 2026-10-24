@@ -7,9 +7,11 @@ import { json } from "./fixture/tui-client"
 
 for (const enabled of [false, true]) {
   test(`Auto is searchable and ${enabled ? "selectable with an existing backend" : "requires routing setup"}`, async () => {
+    const requests: unknown[] = []
     await using setup = await renderLocal({
-      fetch: (url) =>
-        url.pathname === "/api/model/routing/setup"
+      fetch: async (url, request) => {
+        if (url.pathname === "/api/model/routing/setup") requests.push(await request.json())
+        return url.pathname === "/api/model/routing/setup"
           ? enabled
             ? new Response(null, { status: 204 })
             : json(
@@ -20,7 +22,8 @@ for (const enabled of [false, true]) {
                 },
                 { status: 503 },
               )
-          : undefined,
+          : undefined
+      },
     })
     for (const width of [44, 100]) {
       setup.resize(width, 30)
@@ -35,6 +38,7 @@ for (const enabled of [false, true]) {
     await setup.waitForFrame((frame) =>
       enabled ? setup.local.model.current()?.providerID === "auto" : frame.includes("Set up automatic routing"),
     )
+    expect(requests).toEqual([{ type: "auto", providerID: "provider" }])
     expect(setup.local.model.current()?.providerID === "auto").toBe(enabled)
     if (!enabled) expect(setup.captureCharFrame()).toContain("Set up automatic routing")
     if (enabled) {

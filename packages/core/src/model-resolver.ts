@@ -13,6 +13,8 @@ import { Capabilities, ID, Info, Model, Ref, VariantID } from "./model.js"
 import type { RuntimeInfo } from "./model.js"
 import { Npm } from "@opencode/util/npm"
 import { Provider } from "./provider.js"
+import { Location } from "./location.js"
+import { AntigravityModel } from "./credential/antigravity-model.js"
 
 export class VariantUnavailableError extends Schema.TaggedError<VariantUnavailableError>()(
   "SessionRunnerModel.VariantUnavailableError",
@@ -380,6 +382,8 @@ export const layer = Layer.effect(
     const accountService = yield* Effect.serviceOption(AccountManagement.Service)
     const accounts = Option.getOrUndefined(accountService)
     const configuration = Option.getOrUndefined(yield* Effect.serviceOption(Config.Service))
+    const nativeCredentials = Option.getOrUndefined(yield* Effect.serviceOption(Credential.Service))
+    const nativeLocation = Option.getOrUndefined(yield* Effect.serviceOption(Location.Service))
     const npm = yield* Npm.Service
     const aisdk = yield* AISDK.Service
     const load = Effect.fn("ModelResolver.resolveModel")(function* (selected: Info, variant?: VariantID) {
@@ -443,10 +447,34 @@ export const layer = Layer.effect(
               }
             : selectedVariant.headers,
       }
-      const model = yield* fromCatalogModel(runtimeInfo, credential, {
-        loadPackage: (specifier) => Provider.loadPackage(specifier, npm),
-        loadAISDK: (model) => aisdk.model(model),
-      })
+      const model = yield* runtimeInfo.package === "@opencode/core/antigravity-cli" &&
+      credential?.type === "oauth" &&
+      account &&
+      nativeCredentials
+        ? Effect.succeed(
+            AntigravityModel.model(
+              runtimeInfo.modelID ?? runtimeInfo.id,
+              credential,
+              nativeLocation?.directory ?? process.cwd(),
+              (value) =>
+                Effect.gen(function* () {
+                  const latest = yield* nativeCredentials.get(account.id)
+                  if (
+                    latest?.value.type === "oauth" &&
+                    latest.value.access &&
+                    latest.value.metadata?.accountID === value.metadata?.accountID
+                  )
+                    yield* nativeCredentials.update(account.id, { value })
+                }),
+              nativeCredentials
+                .get(account.id)
+                .pipe(Effect.map((entry) => (entry?.value.type === "oauth" ? entry.value : undefined))),
+            ),
+          )
+        : fromCatalogModel(runtimeInfo, credential, {
+            loadPackage: (specifier) => Provider.loadPackage(specifier, npm),
+            loadAISDK: (model) => aisdk.model(model),
+          })
       const runtime =
         provider?.activation === "enabled" &&
         credential === undefined &&
@@ -542,5 +570,14 @@ function usesAPIKeyAuth(packageName: string | undefined) {
 export const node = makeLocationNode({
   service: Service,
   layer,
-  deps: [Provider.node, Model.node, Integration.node, Npm.node, AISDK.node, AccountManagement.node, Config.node],
+  deps: [
+    Credential.node,
+    Provider.node,
+    Model.node,
+    Integration.node,
+    Npm.node,
+    AISDK.node,
+    AccountManagement.node,
+    Config.node,
+  ],
 })

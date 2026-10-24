@@ -811,7 +811,12 @@ it.effect("logout clears local session tokens when remote revocation cannot be c
         access: "private-access",
         refresh: "private-refresh",
         expires: 123,
-        metadata: { idToken: "private-id", clientID: "public-client" },
+        metadata: {
+          idToken: "private-id",
+          clientID: "public-client",
+          nativeKeyring: "private-native-session",
+          nativeProfile: { installation_id: "private-profile" },
+        },
       }),
     })
     const failure = yield* integrations.oauth.logout({ integrationID, credentialID: saved.id }).pipe(Effect.flip)
@@ -824,5 +829,33 @@ it.effect("logout clears local session tokens when remote revocation cannot be c
       expires: 0,
       metadata: { clientID: "public-client" },
     })
+  }),
+)
+
+it.effect("OAuth attempt status preserves only explicitly safe setup and discovery errors", () =>
+  Effect.gen(function* () {
+    const integrations = yield* Integration.Service
+    const integrationID = Integration.ID.make("diagnostics-fixture")
+    const methodID = Integration.MethodID.make("browser")
+    yield* integrations.transform((editor) =>
+      editor.method.update({
+        integrationID,
+        method: { type: "oauth", id: methodID, label: "Browser" },
+        authorize: () =>
+          Effect.succeed({
+            mode: "code" as const,
+            url: "https://example.com",
+            instructions: "code",
+            callback: () => Effect.fail(new OAuthError(false, "antigravity-native")),
+          }),
+      }),
+    )
+    const attempt = yield* integrations.oauth.connect({ integrationID, methodID })
+    yield* integrations.oauth
+      .complete({ integrationID, attemptID: attempt.attemptID, code: "test-code" })
+      .pipe(Effect.exit)
+    const status = yield* integrations.oauth.status({ integrationID, attemptID: attempt.attemptID })
+    expect(status.status).toBe("failed")
+    if (status.status === "failed") expect(status.message).toContain("Antigravity CLI failed")
   }),
 )

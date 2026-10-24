@@ -93,10 +93,13 @@ const layer = Layer.effect(
           Effect.gen(function* () {
             const current = yield* policy(row.id)
             const pin = yield* kv.get(`account-pin:${integrationID}`)
+            const saved = credentials.locked ? undefined : yield* credentials.get(row.id)
+            const email = saved ? Credential.email(saved.value) : undefined
             return {
               id: row.id,
               integrationID,
               label: row.label,
+              ...(email ? { email } : {}),
               authentication: metadata.type,
               active: selected.get(integrationID) === row.id,
               method: metadata.type === "key" ? "key" : (metadata.methodID ?? "unknown"),

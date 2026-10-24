@@ -20,6 +20,8 @@ export const CredentialInfo = Schema.Struct({
   type: Schema.Literal("credential"),
   id: Credential.ID,
   label: Schema.String,
+  /** Display identity returned by the login provider; never a token or account secret. */
+  email: optional(Schema.String),
   /** Whether the connection stores a key, an OAuth grant, or an external credential-source reference. */
   method: Schema.Literals(["key", "oauth", "external"]),
   status: optional(Status),

@@ -32,7 +32,10 @@ for (const width of [44, 100]) {
     expect(setup.captureCharFrame()).not.toContain("fixture-private-key")
     setup.mockInput.pressEnter()
     await setup.waitForFrame(() => setup.local.model.current()?.providerID === "auto")
-    expect(requests).toEqual([{ type: "jev", key: "fixture-private-key" }, { type: "auto" }])
+    expect(requests).toEqual([
+      { type: "jev", key: "fixture-private-key" },
+      { type: "auto", providerID: "provider" },
+    ])
   })
 }
 
@@ -63,7 +66,7 @@ test("Laya installation requires explicit confirmation and cancellation makes no
   await setup.renderOnce()
   setup.mockInput.pressEnter()
   await setup.waitForFrame(() => setup.local.model.current()?.providerID === "auto")
-  expect(requests).toEqual([{ type: "laya" }, { type: "auto" }])
+  expect(requests).toEqual([{ type: "laya" }, { type: "auto", providerID: "provider" }])
   await setup.waitForFrame((frame) => frame.includes("4/4") && frame.includes("Laya is ready"))
   setup.mockInput.pressEnter()
   await setup.waitForFrame((frame) => !frame.includes("Install and run Laya locally"))

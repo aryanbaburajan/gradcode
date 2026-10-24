@@ -36,6 +36,7 @@ export const CredentialHandler = HttpApiBuilder.group(Api, "server.credential", 
             integrationID: account.integrationID,
             label: account.label,
             active: account.active,
+            ...(account.email ? { email: account.email } : {}),
             value: {
               type: account.authentication,
               ...(account.authentication !== "key"
@@ -95,6 +96,7 @@ function entries(credentials: Credential.Info[]) {
     integrationID: item.integrationID,
     label: item.label,
     active: selected.get(item.integrationID) === item.id,
+    ...(Credential.email(item.value) ? { email: Credential.email(item.value) } : {}),
     value: {
       type: item.value.type,
       ...(item.value.type !== "key" ? { methodID: item.value.methodID } : {}),

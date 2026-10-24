@@ -84,3 +84,36 @@ it.effect("selection honors discovered per-account model eligibility", () =>
     ).toBe(true)
   }),
 )
+
+it.effect("account listings expose only the safe login email and authentication kind", () =>
+  Effect.gen(function* () {
+    const accounts = yield* AccountManagement.Service
+    const credentials = yield* Credential.Service
+    const saved = yield* credentials.create({
+      integrationID: Integration.ID.make("identity-fixture"),
+      value: Credential.OAuth.make({
+        type: "oauth",
+        methodID: Integration.MethodID.make("browser"),
+        access: "secret-access",
+        refresh: "secret-refresh",
+        expires: Number.MAX_SAFE_INTEGER,
+        metadata: {
+          email: "owner@example.test",
+          idToken: "secret-id-token",
+          nativeKeyring: "secret-native-snapshot",
+          clientSecret: "secret-client",
+        },
+      }),
+    })
+    const view = (yield* accounts.list()).find((account) => account.id === saved.id)
+    expect(view).toMatchObject({ authentication: "oauth", email: "owner@example.test" })
+    for (const secret of [
+      "secret-access",
+      "secret-refresh",
+      "secret-id-token",
+      "secret-native-snapshot",
+      "secret-client",
+    ])
+      expect(JSON.stringify(view)).not.toContain(secret)
+  }),
+)

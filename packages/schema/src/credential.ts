@@ -64,6 +64,7 @@ export const Entry = Schema.Struct({
   integrationID: IntegrationID,
   label: Schema.String,
   active: Schema.Boolean,
+  email: optional(Schema.String),
   value: Schema.Struct({
     type: Schema.Literals(["oauth", "key", "external"]),
     methodID: optional(IntegrationMethodID),

@@ -407,12 +407,16 @@ const layer = Layer.effect(
 
     const resolveConnections = (entry: Entry | undefined, saved: readonly Credential.Info[]) => {
       const credentials = saved
-        .map((credential) => ({
-          type: "credential" as const,
-          id: credential.id,
-          label: credential.label,
-          method: credential.value.type,
-        }))
+        .map((credential) => {
+          const email = Credential.email(credential.value)
+          return {
+            type: "credential" as const,
+            id: credential.id,
+            label: credential.label,
+            method: credential.value.type,
+            ...(email ? { email } : {}),
+          }
+        })
         .toReversed()
       const env = (entry?.methods ?? [])
         .filter((method) => method.type === "env")
@@ -438,7 +442,7 @@ const layer = Layer.effect(
         Effect.mapError(
           (error) =>
             new AuthorizationError({
-              cause: new Error("Authentication failed; retry or reauthenticate"),
+              cause: error instanceof OAuthError ? error : new Error("Authentication failed; retry or reauthenticate"),
               terminal: error instanceof OAuthError && error.terminal,
             }),
         ),
@@ -447,7 +451,12 @@ const layer = Layer.effect(
     const close = (attemptScope: Scope.Closeable) =>
       Scope.close(attemptScope, Exit.void).pipe(Effect.forkIn(scope, { startImmediately: true }), Effect.asVoid)
 
-    const message = (_cause: Cause.Cause<unknown>) => "Authentication failed; retry or reauthenticate"
+    const message = (cause: Cause.Cause<unknown>) => {
+      const failure = cause.reasons.find(Cause.isFailReason)?.error
+      if (failure instanceof OAuthError) return failure.message
+      if (failure instanceof AuthorizationError && failure.cause instanceof OAuthError) return failure.cause.message
+      return "Authentication failed; retry or reauthenticate"
+    }
 
     const settle = Effect.fnUntraced(function* (attemptID: AttemptID, exit: Exit.Exit<Credential.OAuth, unknown>) {
       const now = yield* Clock.currentTimeMillis
@@ -895,7 +904,12 @@ const layer = Layer.effect(
                 const revoked = implementation?.revoke
                   ? yield* implementation.revoke(credential.value).pipe(Effect.result)
                   : undefined
-                const { idToken: _, ...metadata } = credential.value.metadata ?? {}
+                const {
+                  idToken: _,
+                  nativeKeyring: _nativeKeyring,
+                  nativeProfile: _nativeProfile,
+                  ...metadata
+                } = credential.value.metadata ?? {}
                 yield* credentials.update(credential.id, {
                   value: { ...credential.value, access: "", refresh: "", expires: 0, metadata },
                 })

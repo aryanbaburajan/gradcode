@@ -10,13 +10,15 @@ import { DialogSelect } from "../ui/dialog-select"
 import { useToast } from "../ui/toast"
 import { errorMessage } from "../util/error"
 
-export function DialogRouting() {
+export function DialogRouting(props: { providerID?: string } = {}) {
   const client = useClient()
   const location = useLocation()
   const dialog = useDialog()
   const toast = useToast()
   const theme = useTheme().surface("dialog")
   const local = useLocal()
+  const currentProvider = props.providerID ?? local.model.current()?.providerID
+  const providerID = currentProvider === "auto" ? undefined : currentProvider
   const [mode, setMode] = createSignal<"choice" | "key" | "install">("choice")
   const [secret, setSecret] = createSignal("")
   const [busy, setBusy] = createSignal(false)
@@ -60,7 +62,7 @@ export function DialogRouting() {
       )
       setSecret("")
       await client.api.model.routingSetup(
-        { location: location.ref, payload: { type: "auto" } },
+        { location: location.ref, payload: { type: "auto", providerID } },
         { signal: controller.signal },
       )
       local.model.set({ providerID: "auto", modelID: "auto" })
