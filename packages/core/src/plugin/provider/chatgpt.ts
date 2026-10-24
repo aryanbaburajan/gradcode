@@ -7,6 +7,7 @@ import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/http"
 import type { Server, ServerResponse } from "node:http"
 import { App } from "../../app.js"
 import { Credential } from "../../credential.js"
+import { OAuthError } from "../../credential/oauth-error.js"
 import { Bus } from "../../bus.js"
 import { Integration } from "../../integration.js"
 // import { IntegrationConnection } from "../../integration/connection.js"
@@ -60,13 +61,13 @@ type Pkce = {
   challenge: string
 }
 
-type TokenResponse = {
-  access_token: string
-  refresh_token: string
-  id_token?: string
-  expires_in?: number
-  scope?: string
-}
+const TokenResponseSchema = Schema.Struct({
+  access_token: Schema.NonEmptyString,
+  refresh_token: Schema.NonEmptyString,
+  id_token: Schema.optional(Schema.NonEmptyString),
+  expires_in: Schema.optional(Schema.Int.check(Schema.isGreaterThan(0))),
+  scope: Schema.optional(Schema.String),
+})
 
 const RemoteModel = Schema.Struct({
   slug: Schema.String,
@@ -90,7 +91,7 @@ const decodeMetadata = Schema.decodeUnknownOption(
   }),
 )
 
-const signIn = (app: App.Info, savedClientID: () => string | undefined, storage: Context["storage"]) =>
+const signIn = (app: App.Info, storage: Context["storage"]) =>
   ({
     integrationID,
     method: {
@@ -98,7 +99,7 @@ const signIn = (app: App.Info, savedClientID: () => string | undefined, storage:
       type: "oauth",
       label: "Sign in with ChatGPT",
     },
-    authorize: () =>
+    authorize: (_answer, saved) =>
       Effect.gen(function* () {
         const storedHostID = yield* storage.get("chatgpt-agent-host-id")
         const hostID = typeof storedHostID === "string" ? storedHostID : `urn:uuid:${crypto.randomUUID()}`
@@ -106,7 +107,7 @@ const signIn = (app: App.Info, savedClientID: () => string | undefined, storage:
         const pkce = yield* Effect.promise(generatePKCE)
         const state = randomValue()
         const nonce = randomValue()
-        const savedID = savedClientID()
+        const savedID = typeof saved?.metadata?.clientID === "string" ? saved.metadata.clientID : undefined
         const received = yield* Deferred.make<{ code: string; clientID?: string; response: ServerResponse }, Error>()
         // Lazy so runtimes without a loopback listener (workerd) never evaluate node:http.
         const { createServer } = yield* Effect.promise(() => import("node:http"))
@@ -149,7 +150,15 @@ const signIn = (app: App.Info, savedClientID: () => string | undefined, storage:
         const redirect = `http://127.0.0.1:${port}/auth/callback`
         return {
           mode: "auto" as const,
-          url: authorizeURL(redirect, pkce, state, nonce, savedID, hostID),
+          url: authorizeURL(
+            redirect,
+            pkce,
+            state,
+            nonce,
+            savedID,
+            hostID,
+            typeof saved?.metadata?.idToken === "string" ? saved.metadata.idToken : undefined,
+          ),
           instructions: "Complete authorization in your browser. This window will close automatically.",
           callback: Effect.gen(function* () {
             const result = yield* Deferred.await(received)
@@ -180,8 +189,13 @@ const signIn = (app: App.Info, savedClientID: () => string | undefined, storage:
                   ),
                 )
               if (!tokens.id_token) return yield* Effect.fail(new Error("ChatGPT sign-in did not return an ID token."))
-              yield* verifyIDToken(tokens.id_token, clientID, nonce)
-              return credential(tokens, clientID)
+              const identity = yield* verifyIDToken(tokens.id_token, clientID, nonce)
+              if (saved?.metadata?.accountID && saved.metadata.accountID !== identity.sub)
+                return yield* Effect.fail(new Error("A different account signed in; add it as a new account."))
+              return credential(tokens, clientID, undefined, {
+                accountID: identity.sub,
+                idToken: tokens.id_token,
+              })
             }).pipe(
               Effect.tap(() => respond()),
               Effect.tapError((error) => respond(error instanceof Error ? error.message : "ChatGPT sign-in failed")),
@@ -191,6 +205,28 @@ const signIn = (app: App.Info, savedClientID: () => string | undefined, storage:
         }
       }),
     refresh: (value) => refresh(value, app),
+    revoke: (value) =>
+      Effect.tryPromise({
+        try: async (signal) => {
+          const discovery = await fetch(`${issuer}/.well-known/openid-configuration`, { signal, redirect: "error" })
+          const metadata = Schema.decodeUnknownSync(Schema.Struct({ revocation_endpoint: Schema.String }))(
+            await discovery.json(),
+          )
+          const url = new URL(metadata.revocation_endpoint)
+          if (url.origin !== issuer) throw new Error("Invalid revocation endpoint")
+          const clientID = value.metadata?.clientID
+          if (typeof clientID !== "string") throw new Error("Missing client registration")
+          const result = await fetch(url, {
+            method: "POST",
+            signal,
+            redirect: "error",
+            headers: headers(app),
+            body: new URLSearchParams({ token: value.refresh, token_type_hint: "refresh_token", client_id: clientID }),
+          })
+          if (!result.ok) throw new Error("Remote revocation not confirmed")
+        },
+        catch: () => new Error("Remote revocation not confirmed"),
+      }),
   }) satisfies IntegrationOAuthMethodRegistration
 
 function listen(server: Server) {
@@ -232,9 +268,7 @@ export const ChatGPTPlugin = define({
     })
 
     yield* ctx.integration.transform((editor) => {
-      editor.method.update(
-        signIn(ctx.app, () => Option.getOrUndefined(decodeMetadata(chatgpt?.metadata))?.clientID, ctx.storage),
-      )
+      editor.method.update(signIn(ctx.app, ctx.storage))
     })
     yield* Effect.forEach(
       yield* credentials.list(Integration.ID.make("openai")),
@@ -373,7 +407,7 @@ function headers(app: App.Info) {
 }
 
 function exchange(code: string, clientID: string, redirect: string, pkce: Pkce, app: App.Info) {
-  return request<TokenResponse>(tokenURL, {
+  return request(tokenURL, {
     method: "POST",
     headers: headers(app),
     body: new URLSearchParams({
@@ -392,7 +426,7 @@ function refresh(value: Credential.OAuth, app: App.Info) {
     const metadata = Option.getOrUndefined(decodeMetadata(value.metadata))
     if (!metadata)
       return yield* Effect.fail(new Error("This ChatGPT connection has no registered client ID. Connect again."))
-    const tokens = yield* request<TokenResponse>(tokenURL, {
+    const tokens = yield* request(tokenURL, {
       method: "POST",
       headers: headers(app),
       body: new URLSearchParams({
@@ -402,7 +436,7 @@ function refresh(value: Credential.OAuth, app: App.Info) {
         resource,
       }).toString(),
     })
-    return credential(tokens, metadata.clientID, metadata.scopes)
+    return credential(tokens, metadata.clientID, metadata.scopes, value.metadata)
   })
 }
 
@@ -475,30 +509,45 @@ export function verifyIDToken(
       })
       if (typeof payload.sub !== "string" || !payload.sub.trim()) throw new Error("ID token subject is missing")
       if (payload.nonce !== nonce) throw new Error("ID token nonce does not match this sign-in attempt")
+      return { sub: payload.sub }
     },
     catch: (cause) => new Error("ChatGPT sign-in returned an invalid ID token.", { cause }),
   })
 }
 
-function request<A>(url: string, init: RequestInit) {
+function request(url: string, init: RequestInit) {
   return Effect.tryPromise({
     try: async (signal) => {
-      const response = await fetch(url, { ...init, signal })
-      if (!response.ok) throw new Error(`Request failed: ${response.status}`)
-      return response.json() as Promise<A>
+      const response = await fetch(url, { ...init, signal, redirect: "error" })
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}))
+        const code = Schema.decodeUnknownOption(Schema.Struct({ error: Schema.optional(Schema.String) }))(body)
+        throw new OAuthError(
+          Option.isSome(code) &&
+            ["invalid_grant", "invalid_refresh_token", "refresh_token_expired", "refresh_token_reused"].includes(
+              code.value.error ?? "",
+            ),
+        )
+      }
+      return Schema.decodeUnknownSync(TokenResponseSchema)(await response.json())
     },
-    catch: (cause) => cause,
+    catch: (cause) => (cause instanceof OAuthError ? cause : new OAuthError(false)),
   })
 }
 
-function credential(tokens: TokenResponse, clientID: string, scopes?: ReadonlyArray<string>) {
+function credential(
+  tokens: typeof TokenResponseSchema.Type,
+  clientID: string,
+  scopes?: ReadonlyArray<string>,
+  identity?: Record<string, unknown>,
+) {
   return Credential.OAuth.make({
     type: "oauth",
     methodID,
     refresh: tokens.refresh_token,
     access: tokens.access_token,
     expires: Date.now() + (tokens.expires_in ?? 3600) * 1000,
-    metadata: { clientID, scopes: tokens.scope?.split(" ").filter(Boolean) ?? scopes ?? [] },
+    metadata: { ...identity, clientID, scopes: tokens.scope?.split(" ").filter(Boolean) ?? scopes ?? [] },
   })
 }
 
@@ -524,11 +573,13 @@ function authorizeURL(
   nonce: string,
   savedID: string | undefined,
   hostID: string,
+  idToken?: string,
 ) {
   return `${issuer}/api/accounts/authorize?${new URLSearchParams({
     client_id: savedID ?? registrationClientID,
     ...(savedID ? {} : { agent_name_hint: agentName }),
     ext_agent_host_id: hostID,
+    ...(idToken ? { id_token_hint: idToken } : {}),
     // Enable only for user-requested consent retries after OpenAI confirms deployment;
     // ordinary sign-ins must not force reconsent.
     // force_reconsent: "true",

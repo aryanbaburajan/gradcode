@@ -23,7 +23,10 @@ function fixture(
   failCleanup = false,
   releasePackage = name,
   formula?: string,
-  executableOverride?: (root: string, home: string) => Effect.Effect<string, PlatformError.PlatformError, FileSystem.FileSystem>,
+  executableOverride?: (
+    root: string,
+    home: string,
+  ) => Effect.Effect<string, PlatformError.PlatformError, FileSystem.FileSystem>,
 ) {
   return Effect.gen(function* () {
     const fs = yield* FileSystem.FileSystem
@@ -356,14 +359,14 @@ const winget = (search: Partial<AppProcess.RunResult>) =>
           "Microsoft",
           "WinGet",
           "Packages",
-          "Anomaly.OpenCode_Microsoft.Winget.Source_8wekyb3d8bbwe",
+          "Anomaly.Gradcode_Microsoft.Winget.Source_8wekyb3d8bbwe",
           "opencode.exe",
         ),
       ),
   )
 const wingetArgs = [
   "--id",
-  "Anomaly.OpenCode",
+  "Anomaly.Gradcode",
   "--exact",
   "--source",
   "winget",
@@ -375,7 +378,7 @@ it.live("WinGet installs check, upgrade, and remove the version in the WinGet in
   Effect.gen(function* () {
     const test = yield* winget({
       stdout: Buffer.from(
-        "Name     Id               Version\r\n------------------------------\r\nOpenCode Anomaly.OpenCode 2.0.28\r\n",
+        "Name     Id               Version\r\n------------------------------\r\nGradcode Anomaly.Gradcode 2.0.28\r\n",
       ),
     })
     expect(yield* test.updater.method()).toBe("winget")

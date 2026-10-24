@@ -1,6 +1,7 @@
 import { createStore, unwrap } from "solid-js/store"
 import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show } from "solid-js"
-import { usePaste, useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { usePaste, useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import {
   decodePasteBytes,
   stripAnsiSequences,

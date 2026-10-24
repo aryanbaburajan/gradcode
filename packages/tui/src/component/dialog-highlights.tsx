@@ -1,5 +1,5 @@
 import { TextAttributes, type ScrollBoxRenderable } from "@opentui/core"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { createMemo, For } from "solid-js"
 import { useConfig } from "../config"
 import { Keymap } from "../context/keymap"

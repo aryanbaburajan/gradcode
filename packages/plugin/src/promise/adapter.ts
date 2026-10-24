@@ -347,8 +347,11 @@ export function fromPromise(plugin: Plugin) {
             text: adaptApiMethod(GenerateEndpoints["generate.text"], host.generate.text),
           },
           model: {
+            routingProgress: adaptApiMethod(ModelEndpoints["model.routingProgress"], host.model.routingProgress),
             list: adaptApiMethod(ModelEndpoints["model.list"], host.model.list),
             default: adaptApiMethod(ModelEndpoints["model.default"], host.model.default),
+            routingSetup: adaptApiMethod(ModelEndpoints["model.routingSetup"], host.model.routingSetup),
+            preview: adaptApiMethod(ModelEndpoints["model.preview"], host.model.preview),
             transform: transform(host.model),
             reload: () => run(host.model.reload()),
           },
@@ -369,6 +372,7 @@ export function fromPromise(plugin: Plugin) {
               ),
             },
             oauth: {
+              logout: adaptApiMethod(IntegrationEndpoints["integration.oauth.logout"], host.integration.oauth.logout),
               connect: adaptApiMethod(
                 IntegrationEndpoints["integration.oauth.connect"],
                 host.integration.oauth.connect,
@@ -407,10 +411,11 @@ export function fromPromise(plugin: Plugin) {
                       update: (input) => {
                         if (!("authorize" in input)) return editor.method.update(input)
                         const refresh = input.refresh
+                        const revoke = input.revoke
                         editor.method.update({
                           ...input,
-                          authorize: (answer) =>
-                            Effect.promise(() => input.authorize(answer)).pipe(
+                          authorize: (answer, credential) =>
+                            Effect.promise(() => input.authorize(answer, credential)).pipe(
                               Effect.map((authorization) =>
                                 authorization.mode === "auto"
                                   ? {
@@ -423,6 +428,8 @@ export function fromPromise(plugin: Plugin) {
                                     },
                               ),
                             ),
+                          revoke:
+                            revoke === undefined ? undefined : (credential) => Effect.promise(() => revoke(credential)),
                           refresh:
                             refresh === undefined
                               ? undefined

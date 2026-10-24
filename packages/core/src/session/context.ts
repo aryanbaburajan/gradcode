@@ -1,5 +1,10 @@
 export * as SessionContext from "./context.js"
 
+import { Bus } from "../bus.js"
+import { TuiEvent } from "@opencode/schema/tui-event"
+import { KV } from "../kv.js"
+import { Option, Schema } from "effect"
+import { Router } from "../routing.js"
 import { Model } from "../model.js"
 import { Permission } from "../permission.js"
 import { Context, Effect, Layer } from "effect"
@@ -51,7 +56,10 @@ export interface Interface {
   /** Selects the Session, agent, instructions, and tools used by subsequent work. */
   readonly select: (sessionID: SessionSchema.ID) => Effect.Effect<Selection, AgentNotFoundError>
   /** Resolves the model and active history for that selection. */
-  readonly load: (selection: Selection) => Effect.Effect<Loaded, SessionRunnerModel.Error>
+  readonly load: (
+    selection: Selection,
+    override?: SessionRunnerModel.Resolved,
+  ) => Effect.Effect<Loaded, SessionRunnerModel.Error>
   readonly resolveModel: (
     session: SessionSchema.Info,
   ) => Effect.Effect<SessionRunnerModel.Resolved, SessionRunnerModel.Error>
@@ -83,6 +91,9 @@ const layer = Layer.effect(
     const mcpInstructions = yield* McpInstructions.Service
     const mcpTools = yield* McpTool.Service
     const models = yield* SessionRunnerModel.Service
+    const router = yield* Router.Service
+    const routingCache = yield* KV.Service
+    const bus = yield* Bus.Service
     const request = yield* SessionModelRequest.Service
     const referenceInstructions = yield* ReferenceInstructions.Service
     const skillInstructions = yield* SkillInstructions.Service
@@ -165,18 +176,104 @@ const layer = Layer.effect(
       }
     })
 
-    const load = Effect.fn("SessionContext.load")(function* (selection: Selection) {
-      const model = yield* resolveModel(selection.session)
+    const load = Effect.fn("SessionContext.load")(function* (
+      selection: Selection,
+      override?: SessionRunnerModel.Resolved,
+    ) {
+      const routing = yield* router.configuration()
+      const automatic = selection.session.model?.providerID === "auto" && selection.session.model.id === "auto"
+      if (automatic && (!routing?.enabled || !routing.profiles.length))
+        return yield* new SessionRunnerModel.ModelNotSelectedError({
+          sessionID: selection.session.id,
+          reason: "Automatic routing requires enabled, configured profiles",
+        })
+      const messages =
+        automatic && routing?.enabled && routing.profiles.length
+          ? yield* store.context(selection.session.id).pipe(Effect.orDie)
+          : []
+      const user = messages.findLast((message) => message.type === "user")
+      const cached = Schema.decodeUnknownOption(Schema.Struct({ requestID: SessionMessage.ID, model: Model.Ref }))(
+        yield* routingCache.get(`routing:${selection.session.id}`),
+      ).pipe(Option.getOrUndefined)
+      const ref =
+        user && routing
+          ? cached?.requestID === user.id
+            ? cached.model
+            : (yield* router
+                .preview({
+                  config: routing,
+                  request: {
+                    request: user.text,
+                    modalities: [
+                      "text",
+                      ...new Set(
+                        (user.files ?? []).map((file) =>
+                          file.mime.startsWith("image/")
+                            ? "image"
+                            : file.mime === "application/pdf"
+                              ? "pdf"
+                              : file.mime.split("/")[0],
+                        ),
+                      ),
+                    ],
+                    tools: selection.tools.definitions.length > 0,
+                    // Conservative admission bound includes attachment bytes, without disclosing them to the router.
+                    contextTokens: Math.max(1, JSON.stringify(messages).length),
+                  },
+                  available: yield* model.available(),
+                })
+                .pipe(
+                  Effect.tapError((error) =>
+                    error.setupRequired
+                      ? bus.publish(TuiEvent.CommandExecute, { command: "routing.setup" })
+                      : Effect.void,
+                  ),
+                  Effect.mapError(
+                    (error) =>
+                      new SessionRunnerModel.ModelNotSelectedError({
+                        sessionID: selection.session.id,
+                        reason: error.message,
+                      }),
+                  ),
+                  Effect.tap(
+                    Effect.fn(function* (decision) {
+                      const previous = cached?.model
+                      const changed =
+                        previous &&
+                        (previous.providerID !== decision.selectedModel.providerID ||
+                          previous.id !== decision.selectedModel.id ||
+                          previous.variant !== decision.selectedModel.variant)
+                      const message = Router.notice(
+                        decision,
+                        changed ? "Switched to" : previous ? "Keeping" : "Selected",
+                      )
+                      // Log the validated selection only, never prompt text or backend responses.
+                      yield* Effect.logInfo(message).pipe(
+                        Effect.annotateLogs({ sessionID: selection.session.id, requestID: user.id }),
+                      )
+                      yield* bus.publish(TuiEvent.ToastShow, {
+                        title: `Auto routing · ${selection.session.id}`,
+                        message,
+                        variant: "info",
+                        duration: 8000,
+                      })
+                    }),
+                  ),
+                )).selectedModel
+          : undefined
+      if (ref && user)
+        yield* routingCache.set(`routing:${selection.session.id}`, { requestID: user.id, model: { ...ref } })
+      const selected = override ?? (yield* resolveModel(ref ? { ...selection.session, model: ref } : selection.session))
       const history = yield* SessionHistory.entriesForRunner(
         db,
         selection.session.id,
         selection.instructions,
-        model.ref,
+        selected.ref,
       )
       return {
         session: selection.session,
         agent: selection.agent,
-        model,
+        model: selected,
         initial: history.initial,
         messages: history.entries.map((entry) => entry.message),
         tools: selection.tools,
@@ -217,6 +314,9 @@ export const node = makeLocationNode({
     McpTool.node,
     ReferenceInstructions.node,
     SessionRunnerModel.node,
+    Router.node,
+    Bus.node,
+    KV.node,
     SessionModelRequest.node,
     SessionStore.node,
     SkillInstructions.node,

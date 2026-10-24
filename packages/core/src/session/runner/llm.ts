@@ -2,7 +2,7 @@ export * as SessionRunnerLLM from "./llm.js"
 
 import { Message } from "@opencode/ai"
 import { and, desc, eq, inArray, sql } from "drizzle-orm"
-import { Cause, Effect, Exit, FiberMap, Layer } from "effect"
+import { Cause, Effect, Exit, FiberMap, Layer, Option } from "effect"
 import { Database } from "../../database/database.js"
 import { Bus } from "../../bus.js"
 import { LocationLifecycle } from "../../location-lifecycle.js"
@@ -28,6 +28,9 @@ import { StepFailedError } from "../error.js"
 import { SessionRunnerRetry } from "./retry.js"
 import { SessionStep } from "./step.js"
 import { ToolOutput } from "../../tool-output.js"
+import { AccountManagement } from "../../account-management.js"
+import { Config } from "../../config.js"
+import { ModelResolver } from "../../model-resolver.js"
 import { Plugin } from "../../plugin.js"
 import { MAX_STEPS_PROMPT } from "./max-steps.js"
 
@@ -50,6 +53,9 @@ const layer = Layer.effect(
     const plugins = yield* Plugin.Service
     const title = yield* SessionTitle.Service
     const steps = yield* SessionStep.make
+    const accounts = Option.getOrUndefined(yield* Effect.serviceOption(AccountManagement.Service))
+    const config = Option.getOrUndefined(yield* Effect.serviceOption(Config.Service))
+    const resolver = Option.getOrUndefined(yield* Effect.serviceOption(ModelResolver.Service))
     // Title generation starts once input is visible and must not delay model execution.
     const titles = yield* FiberMap.make<SessionSchema.ID, void, never>()
 
@@ -205,12 +211,18 @@ const layer = Layer.effect(
       let assistantMessageID = SessionMessage.ID.create()
       const retry = yield* SessionRunnerRetry.make(bus, sessionID)
       let initial: SessionContext.Loaded | undefined = first
+      let overrideModel: ModelResolver.Resolved | undefined
+      const attempted = new Set<string>()
+      const settings = config ? Config.latest(yield* config.entries(), "accounts") : undefined
       let recoverOverflow = true
       let recoverContinuation = true
       while (true) {
         // Reuse boundary preparation once; retries refresh context without delivering more input.
-        const loaded = initial ?? (yield* prepareContext(sessionID).pipe(Effect.flatMap(context.load)))
+        const loaded =
+          initial ??
+          (yield* prepareContext(sessionID).pipe(Effect.flatMap((selection) => context.load(selection, overrideModel))))
         initial = undefined
+        attempted.add(`${loaded.model.ref.providerID}/${loaded.model.ref.id}/${loaded.model.accountID ?? "ambient"}`)
         const compacted = yield* compaction.compact({ reason: "auto", context: loaded })
         if (compacted.status === "failed") return yield* new StepFailedError({ error: compacted.error })
         if (compacted.status === "completed") {
@@ -247,14 +259,84 @@ const layer = Layer.effect(
           agent: loaded.agent.id,
           model: loaded.model,
           prepared,
-          retry: (cause, error, proposed) =>
-            retry.decide({
-              cause,
-              error,
-              agent: loaded.agent.id,
-              model: loaded.model.ref,
-              hook: prepared.retry,
-              retry: proposed,
+          retry: (cause, error, proposed, outputStarted) =>
+            Effect.gen(function* () {
+              const alternate =
+                loaded.model.accountID && accounts ? yield* accounts.failure(loaded.model.accountID, cause) : false
+              if (outputStarted) overrideModel = loaded.model
+              const allowed = !outputStarted && settings?.failover !== false
+              const nextAccount =
+                allowed && alternate && resolver
+                  ? yield* resolver.resolve(loaded.model.ref).pipe(Effect.orElseSucceed(() => undefined))
+                  : undefined
+              const switchAccount = nextAccount !== undefined
+              const fallbacks = [...(settings?.fallbacks ?? [])].sort((a, b) => {
+                const preference = settings?.providerPreference ?? []
+                const rank = (id: string) => {
+                  const index = preference.findIndex((provider) => provider === id)
+                  return index < 0 ? preference.length : index
+                }
+                return rank(a.providerID) - rank(b.providerID)
+              })
+              const fallback =
+                allowed &&
+                !switchAccount &&
+                resolver &&
+                ["Authentication", "RateLimit", "QuotaExceeded", "ProviderInternal"].includes(cause.reason._tag) &&
+                !(cause.reason._tag === "Authentication" && cause.reason.http?.status !== 401)
+                  ? yield* Effect.gen(function* () {
+                      for (const ref of fallbacks) {
+                        if (ref.providerID === loaded.model.ref.providerID) continue
+                        const candidate = yield* resolver.resolve(ref).pipe(Effect.orElseSucceed(() => undefined))
+                        if (
+                          !candidate ||
+                          attempted.has(`${ref.providerID}/${ref.id}/${candidate.accountID ?? "ambient"}`)
+                        )
+                          continue
+                        if (loaded.tools.definitions.length && !candidate.capabilities.tools) continue
+                        if (
+                          !loaded.model.capabilities.input.every((type) => candidate.capabilities.input.includes(type))
+                        )
+                          continue
+                        const estimate = SessionCompaction.estimatePrompt(loaded)
+                        if (estimate.measured + estimate.estimated >= candidate.limit.context) continue
+                        return candidate
+                      }
+                      return undefined
+                    })
+                  : undefined
+              const decision = yield* retry.decide({
+                cause,
+                error,
+                agent: loaded.agent.id,
+                model: loaded.model.ref,
+                hook: prepared.retry,
+                retry: proposed || switchAccount || fallback !== undefined,
+              })
+              if (decision.retry && switchAccount) overrideModel = nextAccount
+              if (decision.retry && fallback) {
+                overrideModel = fallback
+                yield* Effect.logInfo("configured provider fallback selected", {
+                  sessionID,
+                  from: loaded.model.ref.providerID,
+                  to: fallback.ref.providerID,
+                })
+              }
+              const switched = decision.retry ? (fallback ?? nextAccount) : undefined
+              if (switched) {
+                const destination = `${switched.ref.providerID}/${switched.ref.id}`
+                yield* bus.publish(SessionEvent.Synthetic, {
+                  sessionID,
+                  text: "",
+                  description: fallback
+                    ? `Switched backend to ${destination} · reasoning: ${switched.ref.variant ?? "default"}`
+                    : `Switched account for ${destination}`,
+                  metadata: { source: "backend-switch" },
+                })
+              }
+              // Disabling failover pins subsequent retry attempts to this runtime credential.
+              if (!allowed && !outputStarted) overrideModel = loaded.model
+              return decision
             }),
           recoverContinuation,
           recoverOverflow: Effect.suspend(() =>
@@ -395,6 +477,9 @@ export const node = makeLocationNode({
   layer,
   deps: [
     Bus.node,
+    AccountManagement.node,
+    Config.node,
+    ModelResolver.node,
     LocationLifecycle.node,
     llmClient,
     SessionContext.node,

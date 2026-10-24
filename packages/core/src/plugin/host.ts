@@ -6,7 +6,7 @@ import { EventManifest } from "@opencode/schema/event-manifest"
 import type { Event } from "@opencode/schema/event"
 import { ServerConfig } from "@opencode/schema/mcp"
 import { App } from "../app.js"
-import { Effect, Schema, Stream } from "effect"
+import { Effect, Option, Schema, Stream } from "effect"
 import { Agent } from "../agent.js"
 import { AISDK } from "../aisdk.js"
 import { Command } from "../command.js"
@@ -16,6 +16,7 @@ import { Integration } from "../integration.js"
 import { KV } from "../kv.js"
 import { Location } from "../location.js"
 import { LocationServiceMap } from "../location-service-map.js"
+import { Router } from "../routing.js"
 import { Model } from "../model.js"
 import { Mcp } from "../mcp/index.js"
 import { Session } from "../session.js"
@@ -53,6 +54,7 @@ export const make = Effect.fn("PluginHost.make")(function* (
   const aisdk = yield* AISDK.Service
   const providers = yield* Provider.Service
   const models = yield* Model.Service
+  const routing = yield* Effect.serviceOption(Router.Service)
   const commands = yield* Command.Service
   const bus = yield* Bus.Service
   const integration = yield* Integration.Service
@@ -225,8 +227,32 @@ export const make = Effect.fn("PluginHost.make")(function* (
         }),
     },
     model: {
+      routingProgress: () =>
+        Effect.gen(function* () {
+          const router = Option.getOrUndefined(routing)
+          if (!router) return yield* Effect.fail(new Error("Routing is unavailable in this host"))
+          return yield* response(router.progress())
+        }),
+      routingSetup: (input) =>
+        Effect.gen(function* () {
+          const router = Option.getOrUndefined(routing)
+          if (!router) return yield* Effect.fail(new Error("Routing is unavailable in this host"))
+          yield* router.setup(input.payload).pipe(Effect.mapError((error) => new Error(error.message)))
+        }),
       list: () => response(models.available()),
       default: () => response(models.default()),
+      preview: (input) =>
+        Effect.gen(function* () {
+          const router = Option.getOrUndefined(routing)
+          if (!router) return yield* Effect.fail(new Error("Routing is unavailable in this host"))
+          const config = yield* router.configuration()
+          if (!config) return yield* Effect.fail(new Error("Routing is not configured"))
+          return yield* response(
+            router
+              .preview({ config, request: input, available: yield* models.available() })
+              .pipe(Effect.mapError((error) => new Error(error.message))),
+          )
+        }),
       reload: models.reload,
       transform: (callback) =>
         models.transform((editor) =>
@@ -298,11 +324,17 @@ export const make = Effect.fn("PluginHost.make")(function* (
           }),
       },
       oauth: {
+        logout: (input) =>
+          integration.oauth.logout({
+            integrationID: Integration.ID.make(input.integrationID),
+            credentialID: Credential.ID.make(input.credentialID),
+          }),
         connect: (input) =>
           response(
             integration.oauth.connect({
               integrationID: Integration.ID.make(input.integrationID),
               methodID: Integration.MethodID.make(input.methodID),
+              credentialID: input.credentialID ? Credential.ID.make(input.credentialID) : undefined,
               answer: input.answer,
               label: input.label,
             }),
@@ -598,6 +630,7 @@ export const requirements = LayerNode.group([
   AISDK.node,
   Provider.node,
   Model.node,
+  Router.node,
   Command.node,
   Bus.node,
   Integration.node,
@@ -655,8 +688,8 @@ function methodImplementation(input: IntegrationMethodRegistration): Integration
     return {
       integrationID: Integration.ID.make(input.integrationID),
       method: { ...input.method, id: Integration.MethodID.make(input.method.id) },
-      authorize: (answer) =>
-        input.authorize(answer).pipe(
+      authorize: (answer, saved) =>
+        input.authorize(answer, saved).pipe(
           Effect.map((authorization) => {
             if (authorization.mode === "auto") {
               return {
@@ -671,6 +704,7 @@ function methodImplementation(input: IntegrationMethodRegistration): Integration
           }),
         ),
       ...(refresh ? { refresh: (value: Credential.OAuth) => refresh(value).pipe(Effect.map(credential)) } : {}),
+      ...(input.revoke ? { revoke: input.revoke } : {}),
       ...(input.label ? { label: input.label } : {}),
     }
   }

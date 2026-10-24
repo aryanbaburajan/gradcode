@@ -28,9 +28,9 @@ import type { Shell } from "@opencode/schema/shell"
 import type { Form } from "@opencode/schema/form"
 import type { Provider } from "@opencode/schema/provider"
 import type { Integration } from "@opencode/schema/integration"
+import type { Credential } from "@opencode/schema/credential"
 import type { Mcp } from "@opencode/schema/mcp"
 import type { PtyTicket } from "@opencode/schema/pty-ticket"
-import type { Credential } from "@opencode/schema/credential"
 import type { PermissionSaved } from "@opencode/schema/permission-saved"
 import type { FileSystem } from "@opencode/schema/filesystem"
 import type { Command } from "@opencode/schema/command"
@@ -1397,6 +1397,80 @@ export interface MessageApi<E = never> {
   readonly list: MessageListOperation<E>
 }
 
+export type ModelRoutingProgressInput = { readonly location?: { readonly directory?: string | undefined } | undefined }
+export type ModelRoutingProgressOutput = {
+  readonly location: Location.PublicRef
+  readonly data: { readonly completed: number; readonly stage: string }
+}
+export type ModelRoutingProgressOperation<E = never> = (
+  input?: ModelRoutingProgressInput,
+) => Effect.Effect<ModelRoutingProgressOutput, E>
+
+export type ModelRoutingSetupInput = {
+  readonly location?: { readonly directory?: string | undefined } | undefined
+  readonly payload:
+    | { readonly type: "reset"; readonly backend: "jev" | "laya" | "all" }
+    | { readonly type: "auto" }
+    | {
+        readonly type: "configuration"
+        readonly config: {
+          readonly enabled?: boolean | undefined
+          readonly profiles: ReadonlyArray<{
+            readonly name: string
+            readonly model: Model.Ref
+            readonly reasoningEffort?: string | undefined
+            readonly description: string
+            readonly capabilities: ReadonlyArray<string>
+            readonly costPreference: "economy" | "balanced" | "quality"
+          }>
+          readonly jev?:
+            | {
+                readonly endpoint?: string | undefined
+                readonly model?: string | undefined
+                readonly timeoutMs?: number | undefined
+                readonly keyEnvironment?: string | undefined
+              }
+            | undefined
+          readonly laya?:
+            | {
+                readonly endpoint?: string | undefined
+                readonly model?: string | undefined
+                readonly timeoutMs?: number | undefined
+                readonly keyEnvironment?: string | undefined
+              }
+            | undefined
+          readonly requestCharacters?: number | undefined
+          readonly contextCharacters?: number | undefined
+        }
+      }
+    | { readonly type: "jev"; readonly key: string }
+    | { readonly type: "laya" }
+}
+export type ModelRoutingSetupOutput = void
+export type ModelRoutingSetupOperation<E = never> = (
+  input: ModelRoutingSetupInput,
+) => Effect.Effect<ModelRoutingSetupOutput, E>
+
+export type ModelPreviewInput = {
+  readonly location?: { readonly directory?: string | undefined } | undefined
+  readonly request: string
+  readonly context?: string | undefined
+  readonly modalities: ReadonlyArray<string>
+  readonly tools: boolean
+  readonly contextTokens: number
+}
+export type ModelPreviewOutput = {
+  readonly location: Location.PublicRef
+  readonly data: {
+    readonly selectedModel: Model.Ref
+    readonly reasoningEffort?: string | undefined
+    readonly rationale: string
+    readonly profile: string
+    readonly backend: "jev" | "laya"
+  }
+}
+export type ModelPreviewOperation<E = never> = (input: ModelPreviewInput) => Effect.Effect<ModelPreviewOutput, E>
+
 export type ModelListInput = { readonly location?: { readonly directory?: string | undefined } | undefined }
 export type ModelListOutput = { readonly location: Location.PublicRef; readonly data: ReadonlyArray<Model.Info> }
 export type ModelListOperation<E = never> = (input?: ModelListInput) => Effect.Effect<ModelListOutput, E>
@@ -1406,6 +1480,9 @@ export type ModelDefaultOutput = { readonly location: Location.PublicRef; readon
 export type ModelDefaultOperation<E = never> = (input?: ModelDefaultInput) => Effect.Effect<ModelDefaultOutput, E>
 
 export interface ModelApi<E = never> {
+  readonly routingProgress: ModelRoutingProgressOperation<E>
+  readonly routingSetup: ModelRoutingSetupOperation<E>
+  readonly preview: ModelPreviewOperation<E>
   readonly list: ModelListOperation<E>
   readonly default: ModelDefaultOperation<E>
 }
@@ -1474,6 +1551,16 @@ export interface ProviderApi<E = never> {
   readonly get: ProviderGetOperation<E>
 }
 
+export type IntegrationOauthLogoutInput = {
+  readonly integrationID: Integration.ID
+  readonly credentialID: Credential.ID
+  readonly location?: { readonly directory?: string | undefined } | undefined
+}
+export type IntegrationOauthLogoutOutput = void
+export type IntegrationOauthLogoutOperation<E = never> = (
+  input: IntegrationOauthLogoutInput,
+) => Effect.Effect<IntegrationOauthLogoutOutput, E>
+
 export type IntegrationListInput = { readonly location?: { readonly directory?: string | undefined } | undefined }
 export type IntegrationListOutput = {
   readonly location: Location.PublicRef
@@ -1527,6 +1614,7 @@ export type IntegrationOauthConnectInput = {
   readonly integrationID: Integration.ID
   readonly location?: { readonly directory?: string | undefined } | undefined
   readonly methodID: Integration.MethodID
+  readonly credentialID?: Credential.ID | undefined
   readonly answer?: Form.Answer | undefined
   readonly label?: string | undefined
 }
@@ -1610,18 +1698,19 @@ export type IntegrationCommandCancelOperation<E = never> = (
 ) => Effect.Effect<IntegrationCommandCancelOutput, E>
 
 export interface IntegrationApi<E = never> {
+  readonly oauth: {
+    readonly logout: IntegrationOauthLogoutOperation<E>
+    readonly connect: IntegrationOauthConnectOperation<E>
+    readonly status: IntegrationOauthStatusOperation<E>
+    readonly complete: IntegrationOauthCompleteOperation<E>
+    readonly cancel: IntegrationOauthCancelOperation<E>
+  }
   readonly list: IntegrationListOperation<E>
   readonly get: IntegrationGetOperation<E>
   readonly wellknown: { readonly add: IntegrationWellknownAddOperation<E> }
   readonly connect: {
     readonly key: IntegrationConnectKeyOperation<E>
     readonly external: IntegrationConnectExternalOperation<E>
-  }
-  readonly oauth: {
-    readonly connect: IntegrationOauthConnectOperation<E>
-    readonly status: IntegrationOauthStatusOperation<E>
-    readonly complete: IntegrationOauthCompleteOperation<E>
-    readonly cancel: IntegrationOauthCancelOperation<E>
   }
   readonly command: {
     readonly connect: IntegrationCommandConnectOperation<E>
@@ -1687,6 +1776,51 @@ export interface McpApi<E = never> {
   readonly client: { readonly token: McpClientTokenOperation<E> }
 }
 
+export type CredentialAccountsOutput = ReadonlyArray<{
+  readonly id: Credential.ID
+  readonly integrationID: Integration.ID
+  readonly label: string
+  readonly method: string
+  readonly authentication: "key" | "oauth" | "external"
+  readonly active: boolean
+  readonly pinned?: boolean | undefined
+  readonly status?:
+    | "locked"
+    | "ready"
+    | "expired"
+    | "disabled"
+    | "reauthenticate"
+    | "revoked"
+    | "cooldown"
+    | "unavailable"
+    | undefined
+  readonly expires?: number | undefined
+  readonly policy: {
+    readonly enabled: boolean
+    readonly priority: number
+    readonly health: "unknown" | "healthy" | "reauthenticate" | "revoked" | "unavailable"
+    readonly cooldown?: number | undefined
+    readonly quota?:
+      | { readonly remaining: number; readonly unit: string; readonly scope: string; readonly reset: number }
+      | undefined
+    readonly observed?: number | undefined
+    readonly reason?: "authentication" | "quota" | "rate-limit" | "provider-unavailable" | undefined
+  }
+}>
+export type CredentialAccountsOperation<E = never> = () => Effect.Effect<CredentialAccountsOutput, E>
+
+export type CredentialAccountUpdateInput = {
+  readonly credentialID: Credential.ID
+  readonly selected?: boolean | undefined
+  readonly label?: string | undefined
+  readonly enabled?: boolean | undefined
+  readonly priority?: number | undefined
+}
+export type CredentialAccountUpdateOutput = void
+export type CredentialAccountUpdateOperation<E = never> = (
+  input: CredentialAccountUpdateInput,
+) => Effect.Effect<CredentialAccountUpdateOutput, E>
+
 export type CredentialListOutput = ReadonlyArray<Credential.Entry>
 export type CredentialListOperation<E = never> = () => Effect.Effect<CredentialListOutput, E>
 
@@ -1721,6 +1855,8 @@ export type CredentialRemoveOperation<E = never> = (
 ) => Effect.Effect<CredentialRemoveOutput, E>
 
 export interface CredentialApi<E = never> {
+  readonly accounts: CredentialAccountsOperation<E>
+  readonly accountUpdate: CredentialAccountUpdateOperation<E>
   readonly list: CredentialListOperation<E>
   readonly create: CredentialCreateOperation<E>
   readonly update: CredentialUpdateOperation<E>

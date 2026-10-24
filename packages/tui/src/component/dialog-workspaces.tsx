@@ -1,4 +1,4 @@
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { TextAttributes } from "@opentui/core"
 import { createEffect, createMemo, createResource, createSignal, onCleanup, onMount, Show } from "solid-js"
 import path from "path"

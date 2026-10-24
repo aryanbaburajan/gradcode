@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+project=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if command -v bun >/dev/null 2>&1; then
+  runtime=bun
+elif [ -x /tmp/package/bin/bun ]; then
+  runtime=/tmp/package/bin/bun
+else
+  echo "Gradcode requires Bun. Install Bun, then run this launcher again." >&2
+  exit 1
+fi
+exec "$runtime" run --preload "$project/packages/cli/node_modules/@opentui/solid/scripts/preload.js" "$project/packages/cli/src/index.ts" "$@"

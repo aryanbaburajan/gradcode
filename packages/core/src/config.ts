@@ -6,6 +6,7 @@ import { isDeepStrictEqual } from "node:util"
 import { applyEdits, modify, type ParseError, parse } from "jsonc-parser"
 import { Context, Effect, FiberMap, Layer, Option, PubSub, Ref, Schema, Semaphore, Stream } from "effect"
 import { Directory, Document, Info, type Patch, type Entry, Event } from "@opencode/schema/config"
+import { Routing } from "@opencode/schema/routing"
 import { Credential } from "./credential.js"
 import { Bus } from "./bus.js"
 import { Watcher } from "./filesystem/watcher.js"
@@ -41,6 +42,7 @@ export interface Interface {
    */
   readonly changes: () => Stream.Stream<Watcher.Update>
   /** Updates supported global config fields while preserving unrelated JSONC content. */
+  readonly updateRouting?: (config: Routing.Config) => Effect.Effect<void, FSUtil.Error>
   readonly update?: (patch: Patch) => Effect.Effect<void, FSUtil.Error>
 }
 
@@ -413,6 +415,32 @@ export const layer = (options?: Options) =>
           }),
         changes: () => Stream.fromPubSub(updates),
         update,
+        updateRouting: (routing) =>
+          updateLock.withPermit(
+            Effect.gen(function* () {
+              const active = configs.findLast((entry) => entry.type === "document" && entry.info.routing !== undefined)
+              const candidates = ConfigDiscovery.names.map((name) => path.join(location.directory, name))
+              const filepath =
+                (active?.type === "document" ? active.path : undefined) ??
+                (yield* Effect.filter(candidates, fs.isFile)).at(-1) ??
+                path.join(location.directory, "opencode.jsonc")
+              const text = (yield* fs.readFileStringSafe(filepath)) ?? "{}\n"
+              const updated = yield* Effect.try({
+                try: () =>
+                  applyEdits(
+                    text,
+                    modify(text, ["routing"], routing, { formattingOptions: { tabSize: 2, insertSpaces: true } }),
+                  ),
+                catch: (cause) => new FSUtil.FileSystemError({ method: "config.updateRouting", cause }),
+              })
+              yield* fs.writeWithDirs(filepath, updated.endsWith("\n") ? updated : `${updated}\n`)
+              yield* reload().pipe(
+                Effect.provideService(FSUtil.Service, fs),
+                Effect.provideService(Location.Service, location),
+                Effect.provideService(Global.Service, globalService),
+              )
+            }),
+          ),
       })
     }),
   )

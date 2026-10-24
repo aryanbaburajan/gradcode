@@ -37,3 +37,6 @@ logs/
 *.bun-build
 tsconfig.tsbuildinfo
 /artifacts/
+__pycache__/
+*.pyc
+/opencode.jsonc

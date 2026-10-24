@@ -1,6 +1,7 @@
 /** @jsxImportSource @opentui/solid */
 import { measureEditText, type BoxRenderable, type ScrollBoxRenderable, type TextareaRenderable } from "@opentui/core"
-import { useKeyboard, useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useKeyboard, useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { For, Show, createEffect, createMemo, createSignal, onCleanup } from "solid-js"
 import {
   createFormBodyState,

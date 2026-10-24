@@ -206,6 +206,8 @@ export function normalize(input: unknown): Result {
   const nativeAtomic = {
     $schema: Info.fields.$schema,
     shell: Info.fields.shell,
+    routing: Info.fields.routing,
+    accounts: Info.fields.accounts,
     default_agent: Info.fields.default_agent,
     share: Info.fields.share,
     enterprise: Info.fields.enterprise,

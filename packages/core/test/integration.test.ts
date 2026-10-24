@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test"
 import path from "path"
 import { Cause, Clock, Duration, Effect, Exit, Fiber, Layer, Scope, Stream } from "effect"
 import { TestClock } from "effect/testing"
+import { OAuthError } from "../src/credential/oauth-error"
 import { Credential } from "@opencode/core/credential"
 import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
 import { makeGlobalNode } from "@opencode/util/effect/app-node"
@@ -430,7 +431,7 @@ describe("Integration", () => {
       expect(Exit.isFailure(exit) && Cause.hasDies(exit.cause)).toBe(true)
       expect(yield* integrations.oauth.status({ integrationID, attemptID: attempt.attemptID })).toEqual({
         status: "failed",
-        message: "credential persistence failed",
+        message: "Authentication failed; retry or reauthenticate",
         time: attempt.time,
       })
     }),
@@ -482,7 +483,7 @@ describe("Integration", () => {
           expect(Exit.isFailure(exit) && Cause.squash(exit.cause)).toBe(failure)
           expect(yield* integrations.oauth.status({ integrationID, attemptID: attempt.attemptID })).toEqual({
             status: "failed",
-            message: failure.message,
+            message: "Authentication failed; retry or reauthenticate",
             time: attempt.time,
           })
           expect(closed).toBe(true)
@@ -699,3 +700,129 @@ describe("AuthorizationError", () => {
     expect(new Integration.AuthorizationError({ cause: undefined }).message).toBe("Authorization failed")
   })
 })
+
+it.effect("expired credentials without a refresh implementation require reauthentication", () =>
+  Effect.gen(function* () {
+    const integrations = yield* Integration.Service
+    const credentials = yield* Credential.Service
+    const saved = yield* credentials.create({
+      integrationID: Integration.ID.make("expired-fixture"),
+      value: Credential.OAuth.make({
+        type: "oauth",
+        methodID: Integration.MethodID.make("missing"),
+        access: "expired-secret",
+        refresh: "",
+        expires: 0,
+      }),
+    })
+    const error = yield* integrations.connection
+      .resolve({ type: "credential", id: saved.id, method: "oauth", label: saved.label })
+      .pipe(Effect.flip)
+    expect(error.terminal).toBe(true)
+    expect(error.message).not.toContain("expired-secret")
+  }),
+)
+
+it.effect("reauthentication replaces the requested account without creating another account", () =>
+  Effect.gen(function* () {
+    const integrations = yield* Integration.Service
+    const credentials = yield* Credential.Service
+    const integrationID = Integration.ID.make("reauth-fixture")
+    const methodID = Integration.MethodID.make("browser")
+    const value = Credential.OAuth.make({
+      type: "oauth",
+      methodID,
+      access: "before",
+      refresh: "refresh",
+      expires: 0,
+      metadata: { accountID: "identity" },
+    })
+    const saved = yield* credentials.create({ integrationID, value })
+    yield* integrations.transform((editor) =>
+      editor.method.update({
+        integrationID,
+        method: { id: methodID, type: "oauth", label: "Browser" },
+        authorize: (_answer, previous) => {
+          expect(previous?.metadata?.accountID).toBe("identity")
+          return Effect.succeed({
+            mode: "code" as const,
+            url: "https://example.com",
+            instructions: "code",
+            callback: () => Effect.succeed({ ...value, access: "after", expires: 9999999999999 }),
+          })
+        },
+      }),
+    )
+    const attempt = yield* integrations.oauth.connect({ integrationID, methodID, credentialID: saved.id })
+    yield* integrations.oauth.complete({ integrationID, attemptID: attempt.attemptID, code: "code" })
+    expect(yield* credentials.list(integrationID)).toHaveLength(1)
+    expect((yield* credentials.get(saved.id))?.value).toMatchObject({ access: "after" })
+  }),
+)
+
+for (const terminal of [false, true]) {
+  it.effect(`refresh failure preserves credentials and reports terminal=${terminal}`, () =>
+    Effect.gen(function* () {
+      const integrations = yield* Integration.Service
+      const credentials = yield* Credential.Service
+      const integrationID = Integration.ID.make(`refresh-failure-${terminal}`)
+      const methodID = Integration.MethodID.make("browser")
+      const saved = yield* credentials.create({
+        integrationID,
+        value: Credential.OAuth.make({
+          type: "oauth",
+          methodID,
+          access: "private-access",
+          refresh: "private-refresh",
+          expires: 0,
+        }),
+      })
+      yield* integrations.transform((editor) =>
+        editor.method.update({
+          integrationID,
+          method: { type: "oauth", id: methodID, label: "Browser" },
+          authorize: () => Effect.die("unused"),
+          refresh: () => Effect.fail(new OAuthError(terminal)),
+        }),
+      )
+      const failure = yield* integrations.connection
+        .resolve({ type: "credential", id: saved.id, method: "oauth", label: saved.label })
+        .pipe(Effect.flip)
+      expect(failure.terminal).toBe(terminal)
+      expect(JSON.stringify(failure)).not.toContain("private-refresh")
+      expect((yield* credentials.get(saved.id))?.value).toMatchObject({
+        access: "private-access",
+        refresh: "private-refresh",
+      })
+    }),
+  )
+}
+
+it.effect("logout clears local session tokens when remote revocation cannot be confirmed", () =>
+  Effect.gen(function* () {
+    const integrations = yield* Integration.Service
+    const credentials = yield* Credential.Service
+    const integrationID = Integration.ID.make("logout-fixture")
+    const saved = yield* credentials.create({
+      integrationID,
+      value: Credential.OAuth.make({
+        type: "oauth",
+        methodID: Integration.MethodID.make("browser"),
+        access: "private-access",
+        refresh: "private-refresh",
+        expires: 123,
+        metadata: { idToken: "private-id", clientID: "public-client" },
+      }),
+    })
+    const failure = yield* integrations.oauth.logout({ integrationID, credentialID: saved.id }).pipe(Effect.flip)
+    expect(failure.message).toContain("Signed out locally")
+    expect((yield* credentials.get(saved.id))?.value).toEqual({
+      type: "oauth",
+      methodID: Integration.MethodID.make("browser"),
+      access: "",
+      refresh: "",
+      expires: 0,
+      metadata: { clientID: "public-client" },
+    })
+  }),
+)

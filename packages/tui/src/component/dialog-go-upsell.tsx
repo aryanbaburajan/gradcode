@@ -1,5 +1,6 @@
 import { RGBA, TextAttributes, type Renderable } from "@opentui/core"
-import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import type { FormAnswer, IntegrationOauthConnectOutput, IntegrationOAuthMethod } from "@opencode/client"
 import * as Open from "@opencode/util/open"
 import { createEffect, createMemo, createSignal, For, onCleanup, Show } from "solid-js"

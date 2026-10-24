@@ -1,5 +1,5 @@
 import { Plugin } from "@opencode/plugin/tui"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../../context/dimensions"
 import { createSignal, For, type JSX } from "solid-js"
 import { StoryFooter } from "./footer"
 import { mermanLayoutsStory } from "./merman-layouts"

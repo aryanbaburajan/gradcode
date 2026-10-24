@@ -16,7 +16,8 @@ import {
   type PasteEvent,
   type TextareaRenderable,
 } from "@opentui/core"
-import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { normalizePromptContent } from "../prompt/content"
 import { deduplicatePromptImages, promptAttachmentLabel } from "../prompt/attachment"
 import { resolvePastedAttachments } from "../component/prompt/local-attachment"
@@ -528,7 +529,7 @@ export function createPromptState(input: PromptInput): PromptState {
         description: "compact older session context to free space",
       } satisfies SlashOption,
       ...EXIT_COMMANDS.map(
-        (name) => ({ kind: "slash", name, display: `/${name}`, description: "close OpenCode" }) satisfies SlashOption,
+        (name) => ({ kind: "slash", name, display: `/${name}`, description: "close Gradcode" }) satisfies SlashOption,
       ),
     ]
     const hidden = new Set(builtins.map((item) => item.name))

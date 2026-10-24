@@ -1,6 +1,7 @@
 /** @jsxImportSource @opentui/solid */
 import type { ScrollBoxRenderable } from "@opentui/core"
-import { useKeyboard, useTerminalDimensions } from "@opentui/solid"
+import { useKeyboard } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import "../component/spinner-renderable"
 import { Show, createMemo, createSignal, indexArray } from "solid-js"
 import { SPINNER_FRAMES } from "../component/spinner-frames"

@@ -1,5 +1,5 @@
 import { TextAttributes } from "@opentui/core"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { createMemo, createResource, createSignal, For, Show } from "solid-js"
 import { renderUnicodeCompact } from "uqr"
 import { useClient } from "../context/client"
@@ -68,7 +68,7 @@ export function DialogPair() {
           </box>
           <Show when={value.loopback}>
             <text fg={theme.text.muted} wrapMode="word">
-              Run `opencode service set hostname 0.0.0.0` to access the service remotely.
+              Run `gradcode service set hostname 0.0.0.0` to access the service remotely.
             </text>
           </Show>
         </box>

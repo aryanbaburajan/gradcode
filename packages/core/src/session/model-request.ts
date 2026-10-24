@@ -268,7 +268,7 @@ export const layer = Layer.effect(
       const entries = Object.entries(shaped.options)
       const generation = Object.fromEntries(entries.filter(([k]) => GENERATION_KEYS.has(k))) as GenerationOptionsFields
       const providerOptions = Object.fromEntries(entries.filter(([k]) => !GENERATION_KEYS.has(k)))
-      const affinity = SessionAffinity.get(session)
+      const affinity = `${SessionAffinity.get(session)}${model.accountID ? `:${model.accountID}` : ""}`
       const base = LLM.request({
         model: model.model,
         http: {
@@ -300,6 +300,11 @@ export const layer = Layer.effect(
         baseURL,
         headers: { ...base.http?.headers },
       })
+      if (model.accountID) {
+        for (const header of ["session-id", "thread-id", "x-client-request-id"]) {
+          if (modelHook.headers[header]) modelHook.headers[header] = `${modelHook.headers[header]}:${model.accountID}`
+        }
+      }
       const route =
         modelHook.baseURL !== undefined && modelHook.baseURL !== baseURL
           ? base.model.route.with({ endpoint: { baseURL: modelHook.baseURL } })

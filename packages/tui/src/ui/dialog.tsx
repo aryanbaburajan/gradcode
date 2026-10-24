@@ -1,4 +1,5 @@
-import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import {
   batch,
   children,

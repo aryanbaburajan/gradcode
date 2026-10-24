@@ -1,13 +1,7 @@
 {
   "$schema": "https://opencode.ai/theme.json",
   "base": {
-    "categorical": [
-      "blue",
-      "purple",
-      "green",
-      "orange",
-      "red"
-    ],
+    "categorical": ["brand", "purple", "green", "orange", "red"],
     "text": {
       "base": "$hue.neutral.200",
       "muted": "$hue.neutral.400",
@@ -236,17 +230,22 @@
         "800": "#e4dbfd",
         "900": "#f6f3ff"
       },
-      "accent": "$hue.orange",
-      "interactive": "$hue.blue",
-      "neutral": "$hue.gray"
+      "accent": "$hue.brand",
+      "interactive": "$hue.brand",
+      "neutral": "$hue.gray",
+      "brand": {
+        "100": "#70000f",
+        "200": "#b50d26",
+        "300": "#d61b38",
+        "400": "#e52643",
+        "500": "#f14b63",
+        "600": "#fa8091",
+        "700": "#ffafba",
+        "800": "#ffd5dc",
+        "900": "#fff0f3"
+      }
     },
-    "categorical": [
-      "purple",
-      "orange",
-      "green",
-      "blue",
-      "red"
-    ],
+    "categorical": ["purple", "orange", "green", "blue", "red"],
     "text": {
       "action": {
         "primary": {
@@ -379,9 +378,20 @@
         "800": "#271640",
         "900": "#17072b"
       },
-      "accent": "$hue.purple",
-      "interactive": "$hue.orange",
-      "neutral": "$hue.gray"
+      "accent": "$hue.brand",
+      "interactive": "$hue.brand",
+      "neutral": "$hue.gray",
+      "brand": {
+        "100": "#fff0f3",
+        "200": "#ff405c",
+        "300": "#f52d4b",
+        "400": "#ed2242",
+        "500": "#c51b36",
+        "600": "#90162a",
+        "700": "#5c1020",
+        "800": "#350b14",
+        "900": "#21070d"
+      }
     }
   }
 }

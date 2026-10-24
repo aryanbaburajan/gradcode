@@ -168,6 +168,8 @@ export type FormExternalField = { key: string; type: "external"; url: string; ti
 
 export type FormValue = string | number | "Infinity" | "-Infinity" | "NaN" | boolean | Array<string>
 
+export type RoutingInstallProgress = { completed: number; stage: string }
+
 export type ModelReasoningField = "reasoning" | "reasoning_content" | "reasoning_text" | (string & {})
 
 export type ModelMaxTokensField = "max_completion_tokens" | "max_tokens"
@@ -246,8 +248,6 @@ export type McpResourceTemplate = {
 
 export type PtyTicketConnectToken = { ticket: string; expires_in: number }
 
-export type CredentialKey = { type: "key"; key: string; metadata?: { [x: string]: JsonValue } }
-
 export type ProjectVcs = string
 
 export type ProjectIcon = { url?: string; override?: string; color?: string }
@@ -307,6 +307,8 @@ export type VcsBranchList = Array<string>
 export type WebSearchID = string
 
 export type WebSearchResult = { url: string; title?: string; content?: string; time: { published?: number } }
+
+export type RoutingBackend = { endpoint?: string; model?: string; timeoutMs?: number; keyEnvironment?: string }
 
 export type McpProtocol = "legacy" | "auto" | "2026-07-28"
 
@@ -682,19 +684,33 @@ export type IntegrationCommandMethod = {
   command: Array<string>
 }
 
-export type CredentialOAuth = {
-  type: "oauth"
-  methodID: IntegrationMethodID
-  refresh: string
-  access: string
-  expires: number
-  metadata?: { [x: string]: JsonValue }
+export type AccountManagementInfo = {
+  id: CredentialID
+  integrationID: IntegrationID
+  label: string
+  method: string
+  authentication: "key" | "oauth" | "external"
+  active: boolean
+  pinned?: boolean
+  status?: "locked" | "ready" | "expired" | "disabled" | "reauthenticate" | "revoked" | "cooldown" | "unavailable"
+  expires?: number
+  policy: {
+    enabled: boolean
+    priority: number
+    health: "unknown" | "healthy" | "reauthenticate" | "revoked" | "unavailable"
+    cooldown?: number
+    quota?: { remaining: number; unit: string; scope: string; reset: number }
+    observed?: number
+    reason?: "authentication" | "quota" | "rate-limit" | "provider-unavailable"
+  }
 }
 
-export type CredentialExternal = {
-  type: "external"
-  methodID: IntegrationMethodID
-  metadata?: { [x: string]: JsonValue }
+export type CredentialEntry = {
+  id: CredentialID
+  integrationID: IntegrationID
+  label: string
+  active: boolean
+  value: { type: "oauth" | "key" | "external"; methodID?: IntegrationMethodID; expires?: number }
 }
 
 export type ConnectionCredentialInfo = {
@@ -930,6 +946,29 @@ export type SessionMessageCompactionCompleted = {
   summary: string
   cost?: MoneyUSD
   tokens?: TokenUsageInfo
+}
+
+export type RoutingDecision = {
+  selectedModel: ModelRef
+  reasoningEffort?: string
+  rationale: string
+  profile: string
+  backend: "jev" | "laya"
+}
+
+export type RoutingProfile = {
+  name: string
+  model: ModelRef
+  reasoningEffort?: string
+  description: string
+  capabilities: Array<string>
+  costPreference: "economy" | "balanced" | "quality"
+}
+
+export type AccountManagementConfig = {
+  failover?: boolean
+  providerPreference?: Array<ProviderID>
+  fallbacks?: Array<ModelRef>
 }
 
 export type ProviderRequest = {
@@ -2000,8 +2039,6 @@ export type VoiceModelsResponse = { data: { models: Array<VoiceModel>; default?:
 
 export type VoiceSessionResponse = { data: { transport: VoiceTransport; session?: { id: string } | undefined } }
 
-export type CredentialValue = CredentialOAuth | CredentialKey | CredentialExternal
-
 export type ConnectionInfo = ConnectionCredentialInfo | ConnectionEnvInfo
 
 export type PtyCreated = {
@@ -2092,6 +2129,15 @@ export type SessionMessageCompaction =
   | SessionMessageCompactionCompleted
   | SessionMessageCompactionFailed
 
+export type RoutingConfig = {
+  enabled?: boolean
+  profiles: Array<RoutingProfile>
+  jev?: RoutingBackend
+  laya?: RoutingBackend
+  requestCharacters?: number
+  contextCharacters?: number
+}
+
 export type ModelInfo = {
   id: string
   modelID: string
@@ -2179,12 +2225,61 @@ export type SessionPermissions = {
   data: { sessionID: SessionID; permissions: PermissionRuleset }
 }
 
+export type SessionInboxUser = {
+  id: SessionMessageID
+  sessionID: SessionID
+  time: { created: number }
+  type: "user"
+  payload: SessionInboxUserPayload
+  delivery: SessionInboxDelivery
+}
+
+export type SessionMessageAssistantTool = {
+  type: "tool"
+  id: string
+  name: string
+  executed?: boolean
+  native?: SessionMessageNative
+  state:
+    | SessionMessageToolStateStreaming
+    | SessionMessageToolStateRunning
+    | SessionMessageToolStateCompleted
+    | SessionMessageToolStateError
+  time: { created: number; ran?: number; completed?: number }
+}
+
+export type SessionInboxItem =
+  | { type: "user"; payload: SessionInboxUserPayload1; delivery: SessionInboxDelivery }
+  | { type: "synthetic"; payload: SessionInboxSyntheticPayload1; delivery: SessionInboxDelivery }
+  | { type: "compaction"; payload: SessionInboxCompactionPayload; delivery: SessionInboxDelivery }
+  | { type: "move"; payload: SessionInboxMovePayload1; delivery: SessionInboxDelivery }
+
+export type SessionMessageAssistantTool1 = {
+  type: "tool"
+  id: string
+  name: string
+  executed?: boolean
+  native?: SessionMessageNative1
+  state:
+    | SessionMessageToolStateStreaming
+    | SessionMessageToolStateRunning1
+    | SessionMessageToolStateCompleted1
+    | SessionMessageToolStateError1
+  time: { created: number; ran?: number; completed?: number }
+}
+
+export type FormFields = [FormField, ...Array<FormField>]
+
+export type FormFields2 = [FormField1, ...Array<FormField1>]
+
 export type ConfigEntry =
   | {
       type: "document"
       path?: AbsolutePath
       info: {
         $schema?: string
+        routing?: RoutingConfig
+        accounts?: AccountManagementConfig
         shell?: string
         model?: string | { providerID: string; model: string; variant?: string }
         default_agent?: string
@@ -2361,61 +2456,6 @@ export type ConfigEntry =
       }
     }
   | { type: "directory"; path: AbsolutePath }
-
-export type SessionInboxUser = {
-  id: SessionMessageID
-  sessionID: SessionID
-  time: { created: number }
-  type: "user"
-  payload: SessionInboxUserPayload
-  delivery: SessionInboxDelivery
-}
-
-export type SessionMessageAssistantTool = {
-  type: "tool"
-  id: string
-  name: string
-  executed?: boolean
-  native?: SessionMessageNative
-  state:
-    | SessionMessageToolStateStreaming
-    | SessionMessageToolStateRunning
-    | SessionMessageToolStateCompleted
-    | SessionMessageToolStateError
-  time: { created: number; ran?: number; completed?: number }
-}
-
-export type SessionInboxItem =
-  | { type: "user"; payload: SessionInboxUserPayload1; delivery: SessionInboxDelivery }
-  | { type: "synthetic"; payload: SessionInboxSyntheticPayload1; delivery: SessionInboxDelivery }
-  | { type: "compaction"; payload: SessionInboxCompactionPayload; delivery: SessionInboxDelivery }
-  | { type: "move"; payload: SessionInboxMovePayload1; delivery: SessionInboxDelivery }
-
-export type SessionMessageAssistantTool1 = {
-  type: "tool"
-  id: string
-  name: string
-  executed?: boolean
-  native?: SessionMessageNative1
-  state:
-    | SessionMessageToolStateStreaming
-    | SessionMessageToolStateRunning1
-    | SessionMessageToolStateCompleted1
-    | SessionMessageToolStateError1
-  time: { created: number; ran?: number; completed?: number }
-}
-
-export type FormFields = [FormField, ...Array<FormField>]
-
-export type CredentialEntry = {
-  id: CredentialID
-  integrationID: IntegrationID
-  label: string
-  active: boolean
-  value: CredentialValue
-}
-
-export type FormFields2 = [FormField1, ...Array<FormField1>]
 
 export type SessionsResponse = {
   data: Array<SessionInfo>
@@ -4955,6 +4995,92 @@ export type MessageListInput = {
 
 export type MessageListOutput = SessionMessagesResponse
 
+export type ModelRoutingProgressInput = {
+  readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
+}
+
+export type ModelRoutingProgressOutput = { location: LocationPublicRef; data: RoutingInstallProgress }
+
+export type ModelRoutingSetupInput = {
+  readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
+  readonly payload:
+    | { readonly type: "reset"; readonly backend: "jev" | "laya" | "all" }
+    | { readonly type: "auto" }
+    | {
+        readonly type: "configuration"
+        readonly config: {
+          readonly enabled?: boolean
+          readonly profiles: ReadonlyArray<{
+            readonly name: string
+            readonly model: { readonly id: string; readonly providerID: string; readonly variant?: string }
+            readonly reasoningEffort?: string
+            readonly description: string
+            readonly capabilities: ReadonlyArray<string>
+            readonly costPreference: "economy" | "balanced" | "quality"
+          }>
+          readonly jev?: {
+            readonly endpoint?: string
+            readonly model?: string
+            readonly timeoutMs?: number
+            readonly keyEnvironment?: string
+          }
+          readonly laya?: {
+            readonly endpoint?: string
+            readonly model?: string
+            readonly timeoutMs?: number
+            readonly keyEnvironment?: string
+          }
+          readonly requestCharacters?: number
+          readonly contextCharacters?: number
+        }
+      }
+    | { readonly type: "jev"; readonly key: string }
+    | { readonly type: "laya" }
+}
+
+export type ModelRoutingSetupOutput = void
+
+export type ModelPreviewInput = {
+  readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
+  readonly request: {
+    readonly request: string
+    readonly context?: string
+    readonly modalities: ReadonlyArray<string>
+    readonly tools: boolean
+    readonly contextTokens: number
+  }["request"]
+  readonly context?: {
+    readonly request: string
+    readonly context?: string
+    readonly modalities: ReadonlyArray<string>
+    readonly tools: boolean
+    readonly contextTokens: number
+  }["context"]
+  readonly modalities: {
+    readonly request: string
+    readonly context?: string
+    readonly modalities: ReadonlyArray<string>
+    readonly tools: boolean
+    readonly contextTokens: number
+  }["modalities"]
+  readonly tools: {
+    readonly request: string
+    readonly context?: string
+    readonly modalities: ReadonlyArray<string>
+    readonly tools: boolean
+    readonly contextTokens: number
+  }["tools"]
+  readonly contextTokens: {
+    readonly request: string
+    readonly context?: string
+    readonly modalities: ReadonlyArray<string>
+    readonly tools: boolean
+    readonly contextTokens: number
+  }["contextTokens"]
+}
+
+export type ModelPreviewOutput = { location: LocationPublicRef; data: RoutingDecision }
+
 export type ModelListInput = {
   readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
 }
@@ -5028,6 +5154,14 @@ export type ProviderGetInput = {
 
 export type ProviderGetOutput = { location: LocationPublicRef; data: ProviderInfo }
 
+export type IntegrationOauthLogoutInput = {
+  readonly integrationID: { readonly integrationID: string; readonly credentialID: string }["integrationID"]
+  readonly credentialID: { readonly integrationID: string; readonly credentialID: string }["credentialID"]
+  readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
+}
+
+export type IntegrationOauthLogoutOutput = void
+
 export type IntegrationListInput = {
   readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
 }
@@ -5097,16 +5231,25 @@ export type IntegrationOauthConnectInput = {
   readonly location?: { readonly location?: { readonly directory?: string | undefined } | undefined }["location"]
   readonly methodID: {
     readonly methodID: string
+    readonly credentialID?: string | undefined
     readonly answer?: { readonly [x: string]: string | number | boolean | ReadonlyArray<string> } | undefined
     readonly label?: string | undefined
   }["methodID"]
+  readonly credentialID?: {
+    readonly methodID: string
+    readonly credentialID?: string | undefined
+    readonly answer?: { readonly [x: string]: string | number | boolean | ReadonlyArray<string> } | undefined
+    readonly label?: string | undefined
+  }["credentialID"]
   readonly answer?: {
     readonly methodID: string
+    readonly credentialID?: string | undefined
     readonly answer?: { readonly [x: string]: string | number | boolean | ReadonlyArray<string> } | undefined
     readonly label?: string | undefined
   }["answer"]
   readonly label?: {
     readonly methodID: string
+    readonly credentialID?: string | undefined
     readonly answer?: { readonly [x: string]: string | number | boolean | ReadonlyArray<string> } | undefined
     readonly label?: string | undefined
   }["label"]
@@ -5249,6 +5392,38 @@ export type McpClientTokenInput = {
 }
 
 export type McpClientTokenOutput = { location: LocationPublicRef; data: PtyTicketConnectToken }
+
+export type CredentialAccountsOutput = { data: Array<AccountManagementInfo> }["data"]
+
+export type CredentialAccountUpdateInput = {
+  readonly credentialID: { readonly credentialID: string }["credentialID"]
+  readonly selected?: {
+    readonly selected?: boolean
+    readonly label?: string
+    readonly enabled?: boolean
+    readonly priority?: number
+  }["selected"]
+  readonly label?: {
+    readonly selected?: boolean
+    readonly label?: string
+    readonly enabled?: boolean
+    readonly priority?: number
+  }["label"]
+  readonly enabled?: {
+    readonly selected?: boolean
+    readonly label?: string
+    readonly enabled?: boolean
+    readonly priority?: number
+  }["enabled"]
+  readonly priority?: {
+    readonly selected?: boolean
+    readonly label?: string
+    readonly enabled?: boolean
+    readonly priority?: number
+  }["priority"]
+}
+
+export type CredentialAccountUpdateOutput = void
 
 export type CredentialListOutput = { data: Array<CredentialEntry> }["data"]
 

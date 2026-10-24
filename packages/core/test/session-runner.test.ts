@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import {
   AIError,
+  AuthenticationError,
   CompactionPart,
   CompactionCheckpointResponse,
   HttpContext,
@@ -21,6 +22,10 @@ import { AnthropicMessages, OpenAIResponses } from "@opencode/ai/protocols"
 import { compileRequest } from "@opencode/ai/route/client"
 import { TestLLM } from "@opencode/ai/testing"
 import type { SessionHooks } from "@opencode/plugin/effect/session"
+import { AccountManagement } from "@opencode/core/account-management"
+import { Credential } from "@opencode/core/credential"
+import { Integration } from "@opencode/core/integration"
+import { ModelResolver } from "@opencode/core/model-resolver"
 import { Database } from "@opencode/core/database/database"
 import { makeLocationNode } from "@opencode/util/effect/app-node"
 import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
@@ -209,6 +214,7 @@ const makeRunnerState = (compaction?: SessionRunnerModel.Resolved["compaction"])
     }).pipe(Effect.andThen(Deferred.succeed(barrier.release, undefined)), Effect.asVoid)
   return {
     currentModel: model,
+    accountResolution: undefined as Effect.Effect<SessionRunnerModel.Resolved, ModelResolver.Error> | undefined,
     compaction,
     modelResolveHook: resolvesModel,
     systemBaseline: "Initial context",
@@ -321,6 +327,7 @@ const layer = Layer.unwrap(
     const echoNode = makeLocationNode({ name: "test/session-runner-tools", layer: echo, deps: [Tool.node] })
     const models = Layer.mock(SessionRunnerModel.Service)({
       resolve: (session) =>
+        state.accountResolution ??
         state.modelResolveHook.pipe(
           Effect.map(() => {
             const selected = session.model?.id === "replacement" ? replacementModel : state.currentModel
@@ -414,6 +421,9 @@ const layer = Layer.unwrap(
       Snapshot.node.replace(Snapshot.noopLayer),
       LayerNodePlatform.llmClient.replace(TestLLM.clientLayer.pipe(Layer.provide(testLLM))),
       SessionRunnerModel.node.replace(models),
+      ModelResolver.node.replace(
+        Layer.mock(ModelResolver.Service, { resolve: () => state.accountResolution ?? Effect.undefined }),
+      ),
       InstructionBuiltIns.node.replace(systemContext),
       InstructionDiscovery.node.replace(instructionContext),
       Location.node.replace(Location.boundNode({ directory: AbsolutePath.make("/project") })),
@@ -462,6 +472,8 @@ const layer = Layer.unwrap(
     return AppNodeBuilder.build(
       LayerNode.group([
         Database.node,
+        AccountManagement.node,
+        Credential.node,
         Bus.node,
         Form.node,
         SessionProjector.node,
@@ -6875,3 +6887,71 @@ describe("SessionRunnerLLM", () => {
     expect(defect.message).toBe("Tool input delta before start: call-1")
   })
 })
+
+for (const mode of ["automatic", "pinned", "rate-limit", "partial"] as const) {
+  scenario(`automatic account cycling: ${mode}`, function* (s) {
+    const accounts = yield* AccountManagement.Service
+    const credentials = yield* Credential.Service
+    const integrationID = Integration.ID.make("cycling-fixture")
+    const saved = yield* Effect.forEach([3, 2, 1], (priority) =>
+      Effect.gen(function* () {
+        const credential = yield* credentials.create({
+          integrationID,
+          value: Credential.Key.make({ type: "key", key: `test-account-${priority}` }),
+        })
+        yield* accounts.update(credential.id, { priority })
+        return credential
+      }),
+    )
+    if (mode === "pinned") yield* accounts.update(saved[0].id, { selected: true })
+    const chosen: Credential.ID[] = []
+    s.accountResolution = accounts.select(integrationID).pipe(
+      Effect.mapError((error) => new Integration.AuthorizationError({ cause: new Error(error.message) })),
+      Effect.map((account) => {
+        chosen.push(account.id)
+        return {
+          ...SessionRunnerModel.resolved(model, {
+            capabilities: { tools: true, input: ["text", "image"], output: ["text"] },
+            cost: [],
+            limit: defaultModelLimit,
+          }),
+          accountID: account.id,
+        }
+      }),
+    )
+    const hooks = yield* PluginHooks.Service
+    yield* hooks.register("session", "retry", (event) =>
+      Effect.sync(() => {
+        if (event.decision.retry) event.decision = { ...event.decision, delay: 0 }
+      }),
+    )
+    const rejected = new AIError({
+      reason: new AuthenticationError({
+        message: "Session rejected",
+        http: { url: "https://provider.test", status: 401, headers: {} },
+      }),
+    })
+    const failure = mode === "rate-limit" ? rateLimited() : rejected
+    const first =
+      mode === "partial"
+        ? TestLLM.failAfter(failure, ...TestLLM.text("Partial response", "partial").slice(0, -1))
+        : Stream.fail(failure)
+    yield* s.llm.push(first, Stream.fail(failure), TestLLM.text("Recovered automatically", "cycling-success"))
+    const result = yield* s.runPrompt("Continue this task").pipe(Effect.exit)
+    const recovered = mode === "automatic" || mode === "rate-limit"
+    expect(Exit.isSuccess(result)).toBe(recovered)
+    expect(chosen).toEqual(
+      mode === "automatic"
+        ? saved.map((account) => account.id)
+        : mode === "rate-limit"
+          ? [saved[0].id, saved[0].id, saved[0].id]
+          : [saved[0].id],
+    )
+    expect(s.requests).toHaveLength(recovered ? 3 : 1)
+    const notices = (yield* s.messages).filter(
+      (message) => message.type === "synthetic" && message.metadata?.source === "backend-switch",
+    )
+    expect(notices).toHaveLength(mode === "automatic" ? 2 : 0)
+    if (recovered) expect(JSON.stringify(yield* s.messages)).toContain("Recovered automatically")
+  })
+}

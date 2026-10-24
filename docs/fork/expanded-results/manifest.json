@@ -1,0 +1,162 @@
+{
+  "started_utc": "2026-10-24T00:54:52.262677+00:00",
+  "tasks": [
+    "sgf-parsing",
+    "react",
+    "zebra-puzzle",
+    "zipper",
+    "list-ops",
+    "paasio",
+    "bottle-song",
+    "grade-school",
+    "go-counting",
+    "scale-generator",
+    "simple-linked-list",
+    "beer-song",
+    "two-bucket",
+    "hangman",
+    "tree-building",
+    "wordy",
+    "book-store",
+    "connect",
+    "robot-name",
+    "pov",
+    "dominoes",
+    "pig-latin",
+    "proverb",
+    "dot-dsl",
+    "bowling",
+    "transpose",
+    "affine-cipher",
+    "grep",
+    "food-chain",
+    "forth",
+    "poker",
+    "phone-number",
+    "variable-length-quantity",
+    "rest-api"
+  ],
+  "repetitions": 2,
+  "workers": 4,
+  "config": {
+    "agents": {
+      "build": {
+        "steps": 12
+      }
+    },
+    "routing": {
+      "enabled": true,
+      "jev": {
+        "endpoint": "http://127.0.0.1:1/disabled",
+        "timeoutMs": 1,
+        "keyEnvironment": "GRADCODE_BENCHMARK_DISABLED_JEV_KEY"
+      },
+      "laya": {
+        "endpoint": "http://127.0.0.1:8000/v1/systemone",
+        "model": "laya",
+        "timeoutMs": 5000
+      },
+      "profiles": [
+        {
+          "name": "gpt-6-luna/low",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-luna",
+            "variant": "low"
+          },
+          "reasoningEffort": "low",
+          "description": "Routine, small Python implementations and straightforward algorithms.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "economy"
+        },
+        {
+          "name": "gpt-6-luna/high",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-luna",
+            "variant": "high"
+          },
+          "reasoningEffort": "high",
+          "description": "Moderately involved Python algorithms on a small budget.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "economy"
+        },
+        {
+          "name": "gpt-6-sol/medium",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-sol",
+            "variant": "medium"
+          },
+          "reasoningEffort": "medium",
+          "description": "General implementation, parsing, and stateful data structures.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "balanced"
+        },
+        {
+          "name": "gpt-6-sol/high",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-sol",
+            "variant": "high"
+          },
+          "reasoningEffort": "high",
+          "description": "Complex parsing, callbacks, dependency tracking, and subtle edge cases.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "balanced"
+        },
+        {
+          "name": "gpt-6-astra/medium",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-astra",
+            "variant": "medium"
+          },
+          "reasoningEffort": "medium",
+          "description": "Difficult implementation requiring careful multi-step reasoning.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "quality"
+        },
+        {
+          "name": "gpt-6-astra/high",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-astra",
+            "variant": "high"
+          },
+          "reasoningEffort": "high",
+          "description": "Most difficult algorithms, intricate state invariants, and broad edge cases.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "quality"
+        }
+      ]
+    }
+  },
+  "seed": "gradcode-routing-pilot-v1/",
+  "dataset_revision": "7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f",
+  "gradcode_revision": "68bc26b7da1990ce10ffecfbc1e09eb13aa5d824",
+  "laya_revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+  "work_directory": "/tmp/gradcode-routing-expanded-20261024",
+  "reference_validation": "All 34 upstream reference solutions passed original tests before inference.",
+  "harness_sha256": "100102caa17fe0228097981699b04609afaed4fa95fafbb285c98135135320c6",
+  "pilot_harness_sha256": "4861c333a8020619aef8854779588c6664fd8c487212e634e01a94f4527e1582",
+  "resumed_utc": "2026-10-24T00:58:43.136420+00:00"
+}

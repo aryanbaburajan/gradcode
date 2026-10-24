@@ -1,5 +1,5 @@
 import type { Plugin } from "@opencode/plugin/tui"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../../context/dimensions"
 import { createMemo, createSignal, Show } from "solid-js"
 import { useTheme, useThemes } from "../../../context/theme"
 import { usePlugin } from "../../../plugin/context"
@@ -11,7 +11,7 @@ const fixtures = [
     id: "deployment",
     title: "Deployment architecture",
     source: `flowchart LR
-  Client[OpenCode client]
+  Client[Gradcode client]
 
   subgraph CF[Cloudflare]
     DNS[opencode.ai]

@@ -24,7 +24,7 @@ export function DialogFreeModels(props: {
     local.model.favorite().some((item) => item.providerID === value.providerID && item.modelID === value.modelID)
 
   const options = createMemo(() => {
-    const all = (data.location.model.list(location.ref) ?? [])
+    const models = (data.location.model.list(location.ref) ?? [])
       .filter((model) => model.status !== "deprecated" && isFreeModel(model))
       .map((model) => {
         const value = { providerID: model.providerID, modelID: model.id }
@@ -36,6 +36,16 @@ export function DialogFreeModels(props: {
           onSelect: () => props.onSelect(model.providerID, model.id),
         }
       })
+    const all = [
+      {
+        value: { providerID: "auto", modelID: "auto" },
+        title: "Auto",
+        footer: undefined,
+        detail: undefined,
+        onSelect: () => props.onSelect("auto", "auto"),
+      },
+      ...models,
+    ]
     const needle = query().trim()
     if (needle)
       return prioritizeFavorites(

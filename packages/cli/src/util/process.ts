@@ -7,7 +7,12 @@ export function selfCommand() {
   if (runtime !== "bun" && runtime !== "node" && runtime !== "nodejs") return [process.execPath]
   if (!entrypoint) throw new Error("Failed to resolve CLI entrypoint")
   if (runtime === "node" || runtime === "nodejs") return [process.execPath, ...nodeFlags(), entrypoint]
-  return [process.execPath, entrypoint]
+  const flags = process.execArgv.flatMap((arg, index, args) => {
+    if (index > 0 && (args[index - 1] === "--preload" || args[index - 1] === "--conditions")) return []
+    if (arg === "--preload" || arg === "--conditions") return args[index + 1] ? [arg, args[index + 1]] : []
+    return arg.startsWith("--preload=") || arg.startsWith("--conditions=") ? [arg] : []
+  })
+  return [process.execPath, ...flags, entrypoint]
 }
 
 function nodeFlags() {

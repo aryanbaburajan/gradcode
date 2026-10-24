@@ -1,5 +1,5 @@
 import { ScrollBoxRenderable, TextareaRenderable } from "@opentui/core"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import type {
   ConnectionInfo,
   IntegrationCommandConnectOutput,
@@ -341,6 +341,7 @@ async function beginExternal(
   location: LocationRef,
   dialog: ReturnType<typeof useDialog>,
   onConnected?: OnIntegrationConnected,
+  credentialID?: string,
 ) {
   const answer = method.form ? await formAnswer(dialog, method.label, method.form) : undefined
   if (answer === null) return
@@ -350,6 +351,7 @@ async function beginExternal(
       method={method}
       location={location}
       answer={answer}
+      credentialID={credentialID}
       onConnected={onConnected}
     />
   ))
@@ -360,6 +362,7 @@ function ExternalStarting(props: {
   method: Extract<ConnectMethod, { type: "external" }>
   location: LocationRef
   answer?: FormAnswer
+  credentialID?: string
   onConnected?: OnIntegrationConnected
 }) {
   const data = useData()
@@ -390,6 +393,7 @@ async function beginKey(
   location: LocationRef,
   dialog: ReturnType<typeof useDialog>,
   onConnected?: OnIntegrationConnected,
+  credentialID?: string,
 ) {
   const answer = method.form
     ? await formAnswer(dialog, method.label ?? `Connect ${integration.name}`, method.form)
@@ -401,6 +405,7 @@ async function beginKey(
       method={method}
       location={location}
       answer={answer}
+      credentialID={credentialID}
       onConnected={onConnected}
     />
   ))
@@ -549,6 +554,7 @@ function KeyMethod(props: {
   method: Extract<ConnectMethod, { type: "key" }>
   location: LocationRef
   answer?: FormAnswer
+  credentialID?: string
   onConnected?: OnIntegrationConnected
 }) {
   const data = useData()
@@ -581,12 +587,13 @@ function KeyMethod(props: {
   )
 }
 
-async function beginOAuth(
+export async function beginOAuth(
   integration: IntegrationInfo,
   method: IntegrationOAuthMethod,
   location: LocationRef,
   dialog: ReturnType<typeof useDialog>,
   onConnected?: OnIntegrationConnected,
+  credentialID?: string,
 ) {
   const answer = method.form ? await formAnswer(dialog, method.label, method.form) : undefined
   if (answer === null) return
@@ -596,6 +603,7 @@ async function beginOAuth(
       method={method}
       location={location}
       answer={answer}
+      credentialID={credentialID}
       onConnected={onConnected}
     />
   ))
@@ -606,6 +614,7 @@ function OAuthStarting(props: {
   method: IntegrationOAuthMethod
   location: LocationRef
   answer?: FormAnswer
+  credentialID?: string
   onConnected?: OnIntegrationConnected
 }) {
   const dialog = useDialog()
@@ -618,6 +627,7 @@ function OAuthStarting(props: {
         integrationID: props.integration.id,
         location: locationQuery(props.location),
         methodID: props.method.id,
+        credentialID: props.credentialID,
         ...(props.answer ? { answer: props.answer } : {}),
       })
       .then((result) => {

@@ -3,8 +3,10 @@ export * as ModelResolver from "./model-resolver.js"
 import { makeLocationNode } from "@opencode/util/effect/app-node"
 import { HttpOptions, LanguageModel, mergeHttpOptions, ProviderConfigurationError } from "@opencode/ai"
 import { Auth } from "@opencode/ai/route"
-import { Context, Effect, Layer, Schema, Struct } from "effect"
+import { Clock, Context, Effect, Layer, Option, Schema, Struct } from "effect"
 import { AISDK } from "./aisdk.js"
+import { AccountManagement } from "./account-management.js"
+import { Config } from "./config.js"
 import { Credential } from "./credential.js"
 import { Integration } from "./integration.js"
 import { Capabilities, ID, Info, Model, Ref, VariantID } from "./model.js"
@@ -109,6 +111,7 @@ export type Error =
 
 export interface Resolved {
   /** Route-level model for provider requests; its id is the provider API model id, which may differ from the catalog id. */
+  readonly accountID?: Credential.ID
   readonly model: LanguageModel
   /** Selected catalog identity. Durable records and displays must use this, never the API model id. */
   readonly ref: Ref
@@ -199,7 +202,7 @@ const resolveCatalogModel = Effect.fn("ModelResolver.resolveCatalogModel")(funct
   dependencies?: Dependencies,
 ) {
   const resolved = prepareRuntimeModel(model)
-  const configured = { ...resolved.settings, ...credential?.metadata }
+  const configured = { ...resolved.settings, ...runtimeMetadata(credential) }
   if (Provider.isAISDK(resolved.package)) {
     const loadAISDK = dependencies?.loadAISDK
     if (!loadAISDK) return yield* unsupported(resolved)
@@ -207,7 +210,7 @@ const resolveCatalogModel = Effect.fn("ModelResolver.resolveCatalogModel")(funct
       resolved,
       Provider.mergeOverlay(resolved.settings, {
         ...nativeCredentialSettings(resolved, resolved.package ?? "", credential),
-        ...credential?.metadata,
+        ...runtimeMetadata(credential),
       }) ?? {},
     )
     return yield* loadAISDK({ ...resolved, settings }).pipe(
@@ -303,6 +306,13 @@ function unresolvedProviderVariables(model: RuntimeInfo, baseURL: string) {
   })
 }
 
+// OAuth registration metadata may contain retained ID tokens and client secrets. It is
+// never a provider-options overlay: that would serialize secrets into inference bodies.
+function runtimeMetadata(credential: Credential.Value | undefined) {
+  if (credential?.type !== "oauth") return credential?.metadata
+  return typeof credential.metadata?.projectID === "string" ? { projectID: credential.metadata.projectID } : undefined
+}
+
 const nativeCredentialSettings = (model: RuntimeInfo, specifier: string, credential: Credential.Value | undefined) => {
   if (!credential) return {}
   if (credential.type === "key") return { apiKey: credential.key }
@@ -367,6 +377,9 @@ export const layer = Layer.effect(
     const providers = yield* Provider.Service
     const models = yield* Model.Service
     const integrations = yield* Integration.Service
+    const accountService = yield* Effect.serviceOption(AccountManagement.Service)
+    const accounts = Option.getOrUndefined(accountService)
+    const configuration = Option.getOrUndefined(yield* Effect.serviceOption(Config.Service))
     const npm = yield* Npm.Service
     const aisdk = yield* AISDK.Service
     const load = Effect.fn("ModelResolver.resolveModel")(function* (selected: Info, variant?: VariantID) {
@@ -374,11 +387,61 @@ export const layer = Layer.effect(
       const connection = yield* integrations.connection.active(
         provider?.integrationID ?? Integration.ID.make(selected.providerID),
       )
-      const credential = connection ? yield* integrations.connection.resolve(connection) : undefined
+      const integrationID = provider?.integrationID ?? Integration.ID.make(selected.providerID)
+      const pool = (accounts ? yield* accounts.list() : []).filter((account) => account.integrationID === integrationID)
+      const settings = configuration ? Config.latest(yield* configuration.entries(), "accounts") : undefined
+      const selectedCredential = yield* Effect.gen(function* () {
+        for (let attempt = 0; attempt <= pool.length; attempt++) {
+          const account =
+            pool.length && accounts
+              ? yield* accounts
+                  .select(integrationID, undefined, pool.find((account) => account.active)?.method, selected.modelID)
+                  .pipe(
+                    Effect.mapError((error) => new Integration.AuthorizationError({ cause: new Error(error.message) })),
+                  )
+              : undefined
+          const binding = account
+            ? { type: "credential" as const, id: account.id, label: account.label, method: account.authentication }
+            : connection
+          const resolved = yield* (binding ? integrations.connection.resolve(binding) : Effect.undefined).pipe(
+            Effect.result,
+          )
+          if (resolved._tag === "Success") {
+            if (binding?.type === "credential" && !resolved.success)
+              return yield* new Integration.AuthorizationError({ cause: new Error("Connected account was removed") })
+            return { account, credential: resolved.success }
+          }
+          if (!accounts || !account || !resolved.failure.terminal) return yield* resolved.failure
+          yield* accounts.report(account.id, {
+            ...account.policy,
+            health: "reauthenticate",
+            reason: "authentication",
+            observed: yield* Clock.currentTimeMillis,
+          })
+          if (account.pinned || settings?.failover === false) return yield* resolved.failure
+        }
+        return yield* new Integration.AuthorizationError({
+          cause: new Error("No connected account could authenticate"),
+        })
+      })
+      const account = selectedCredential.account
+      const credential = selectedCredential.credential
       const selectedVariant = yield* withVariant(selected, variant)
       const runtimeInfo: RuntimeInfo = {
         ...selectedVariant,
         settings: Provider.mergeOverlay(provider?.settings, Provider.modelSettings(selectedVariant.settings)),
+        headers:
+          credential?.type === "oauth" && credential.methodID === "anthropic-subscription"
+            ? {
+                ...selectedVariant.headers,
+                "anthropic-beta": [
+                  ...new Set([
+                    ...(selectedVariant.headers?.["anthropic-beta"] ?? "").split(",").filter(Boolean),
+                    "oauth-2025-04-20",
+                  ]),
+                ].join(","),
+              }
+            : selectedVariant.headers,
       }
       const model = yield* fromCatalogModel(runtimeInfo, credential, {
         loadPackage: (specifier) => Provider.loadPackage(specifier, npm),
@@ -392,6 +455,7 @@ export const layer = Layer.effect(
           ? LanguageModel.update(model, { route: model.route.with({ auth: Auth.none }) })
           : model
       return {
+        accountID: account?.id,
         model: runtime,
         ref: Ref.make({
           id: selected.id,
@@ -478,5 +542,5 @@ function usesAPIKeyAuth(packageName: string | undefined) {
 export const node = makeLocationNode({
   service: Service,
   layer,
-  deps: [Provider.node, Model.node, Integration.node, Npm.node, AISDK.node],
+  deps: [Provider.node, Model.node, Integration.node, Npm.node, AISDK.node, AccountManagement.node, Config.node],
 })

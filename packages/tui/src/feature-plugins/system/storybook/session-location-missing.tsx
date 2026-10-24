@@ -1,5 +1,5 @@
 import type { Plugin } from "@opencode/plugin/tui"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../../context/dimensions"
 import { TextAttributes } from "@opentui/core"
 import { createSignal } from "solid-js"
 import { DialogWorkspaces } from "../../../component/dialog-workspaces"

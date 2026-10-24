@@ -31,6 +31,7 @@ const Handlers = Runtime.handlers(Commands, {
   uninstall: () => import("./commands/handlers/uninstall"),
   acp: () => import("./commands/handlers/acp"),
   api: () => import("./commands/handlers/api"),
+  accounts: () => import("./commands/handlers/accounts"),
   auth: {
     list: () => import("./commands/handlers/auth/list"),
     login: () => import("./commands/handlers/auth/login"),
@@ -58,6 +59,8 @@ const Handlers = Runtime.handlers(Commands, {
     update: () => import("./commands/handlers/plugin/update"),
     remove: () => import("./commands/handlers/plugin/remove"),
   },
+  route: () => import("./commands/handlers/route"),
+  routing: { reset: () => import("./commands/handlers/routing-reset") },
   models: () => import("./commands/handlers/models"),
   stats: () => import("./commands/handlers/stats"),
   mini: () => import("./commands/handlers/mini"),
@@ -104,14 +107,12 @@ Effect.gen(function* () {
     version: OPENCODE_VERSION,
     channel: OPENCODE_CHANNEL,
     local: OPENCODE_LOCAL,
-    args: process.argv.slice(2),
   })
   return yield* Runtime.run(Commands, Handlers, { version: OPENCODE_VERSION })
 }).pipe(
   Effect.catchCause((cause) =>
     Effect.logError("cli process failed", {
       cause,
-      args: process.argv.slice(2),
     }).pipe(Effect.andThen(Effect.failCause(cause))),
   ),
   Effect.annotateLogs({ role: "cli" }),

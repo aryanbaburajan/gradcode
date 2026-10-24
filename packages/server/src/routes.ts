@@ -8,6 +8,7 @@ import { AppNodeBuilder } from "@opencode/core/effect/app-node-builder"
 import { Bus } from "@opencode/core/bus"
 import { EventLogger } from "@opencode/core/event-logger"
 import { FileSystemSearch } from "@opencode/core/filesystem/search"
+import { AccountManagement } from "@opencode/core/account-management"
 import { Credential } from "@opencode/core/credential"
 import { Config } from "@opencode/core/config"
 import { PermissionSaved } from "@opencode/core/permission/saved"
@@ -69,6 +70,7 @@ const applicationServiceNodes = [
   PtyTicket.node,
   PersistentPty.node,
   Credential.node,
+  AccountManagement.node,
   WellKnown.node,
   ServerPairing.node,
   LocationServiceMap.node,
@@ -167,6 +169,7 @@ function makeRoutes<AuthError, AuthServices>(
           Context.pick(
             Database.Service,
             Credential.Service,
+            AccountManagement.Service,
             PermissionSaved.Service,
             PluginUpdate.Service,
             Project.Service,

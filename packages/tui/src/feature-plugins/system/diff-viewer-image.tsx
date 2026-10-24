@@ -1,5 +1,5 @@
 /** @jsxImportSource @opentui/solid */
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import type { MouseEvent } from "@opentui/core"
 import { createResource, createSignal, Match, onCleanup, Show, Switch } from "solid-js"
 import { DialogImagePreview } from "../../component/dialog-image-preview"

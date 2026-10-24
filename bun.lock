@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "opencode",
+      "name": "gradcode",
       "dependencies": {
         "@aws-sdk/client-s3": "3.933.0",
         "@opencode/plugin": "workspace:*",
@@ -125,6 +125,7 @@
         "@effect/platform-node": "catalog:",
         "@opencode-ai/pty": "0.3.1",
         "@opencode/client": "workspace:*",
+        "@opencode/core": "workspace:*",
         "@opencode/plugin": "workspace:*",
         "@opencode/schema": "workspace:*",
         "@opencode/server": "workspace:*",

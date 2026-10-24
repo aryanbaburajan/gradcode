@@ -103,6 +103,12 @@ import type {
   SessionViewOutput,
   MessageListInput,
   MessageListOutput,
+  ModelRoutingProgressInput,
+  ModelRoutingProgressOutput,
+  ModelRoutingSetupInput,
+  ModelRoutingSetupOutput,
+  ModelPreviewInput,
+  ModelPreviewOutput,
   ModelListInput,
   ModelListOutput,
   ModelDefaultInput,
@@ -118,6 +124,8 @@ import type {
   ProviderListOutput,
   ProviderGetInput,
   ProviderGetOutput,
+  IntegrationOauthLogoutInput,
+  IntegrationOauthLogoutOutput,
   IntegrationListInput,
   IntegrationListOutput,
   IntegrationGetInput,
@@ -156,6 +164,9 @@ import type {
   McpResourceCatalogOutput,
   McpClientTokenInput,
   McpClientTokenOutput,
+  CredentialAccountsOutput,
+  CredentialAccountUpdateInput,
+  CredentialAccountUpdateOutput,
   CredentialListOutput,
   CredentialCreateInput,
   CredentialCreateOutput,
@@ -1129,6 +1140,50 @@ export function make(options: ClientOptions) {
         ),
     },
     model: {
+      routingProgress: (input?: ModelRoutingProgressInput, requestOptions?: RequestOptions) =>
+        request<ModelRoutingProgressOutput>(
+          {
+            method: "GET",
+            path: `/api/model/routing/progress`,
+            query: { location: input?.["location"] },
+            successStatus: 200,
+            declaredStatuses: [400, 401, 404],
+            empty: false,
+          },
+          requestOptions,
+        ),
+      routingSetup: (input: ModelRoutingSetupInput, requestOptions?: RequestOptions) =>
+        request<ModelRoutingSetupOutput>(
+          {
+            method: "POST",
+            path: `/api/model/routing/setup`,
+            query: { location: input["location"] },
+            body: input["payload"],
+            successStatus: 204,
+            declaredStatuses: [400, 401, 404, 503],
+            empty: true,
+          },
+          requestOptions,
+        ),
+      preview: (input: ModelPreviewInput, requestOptions?: RequestOptions) =>
+        request<ModelPreviewOutput>(
+          {
+            method: "POST",
+            path: `/api/model/preview`,
+            query: { location: input["location"] },
+            body: {
+              request: input["request"],
+              context: input["context"],
+              modalities: input["modalities"],
+              tools: input["tools"],
+              contextTokens: input["contextTokens"],
+            },
+            successStatus: 200,
+            declaredStatuses: [400, 401, 404, 503],
+            empty: false,
+          },
+          requestOptions,
+        ),
       list: (input?: ModelListInput, requestOptions?: RequestOptions) =>
         request<ModelListOutput>(
           {
@@ -1232,6 +1287,75 @@ export function make(options: ClientOptions) {
         ),
     },
     integration: {
+      oauth: {
+        logout: (input: IntegrationOauthLogoutInput, requestOptions?: RequestOptions) =>
+          request<IntegrationOauthLogoutOutput>(
+            {
+              method: "POST",
+              path: `/api/integration/${encodeURIComponent(input.integrationID)}/logout/${encodeURIComponent(input.credentialID)}`,
+              query: { location: input["location"] },
+              successStatus: 204,
+              declaredStatuses: [400, 401, 404],
+              empty: true,
+            },
+            requestOptions,
+          ),
+        connect: (input: IntegrationOauthConnectInput, requestOptions?: RequestOptions) =>
+          request<IntegrationOauthConnectOutput>(
+            {
+              method: "POST",
+              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth`,
+              query: { location: input["location"] },
+              body: {
+                methodID: input["methodID"],
+                credentialID: input["credentialID"],
+                answer: input["answer"],
+                label: input["label"],
+              },
+              successStatus: 200,
+              declaredStatuses: [400, 401, 404],
+              empty: false,
+            },
+            requestOptions,
+          ),
+        status: (input: IntegrationOauthStatusInput, requestOptions?: RequestOptions) =>
+          request<IntegrationOauthStatusOutput>(
+            {
+              method: "GET",
+              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth/${encodeURIComponent(input.attemptID)}`,
+              query: { location: input["location"] },
+              successStatus: 200,
+              declaredStatuses: [400, 401, 404],
+              empty: false,
+            },
+            requestOptions,
+          ),
+        complete: (input: IntegrationOauthCompleteInput, requestOptions?: RequestOptions) =>
+          request<IntegrationOauthCompleteOutput>(
+            {
+              method: "POST",
+              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth/${encodeURIComponent(input.attemptID)}/complete`,
+              query: { location: input["location"] },
+              body: { code: input["code"] },
+              successStatus: 204,
+              declaredStatuses: [400, 401, 404],
+              empty: true,
+            },
+            requestOptions,
+          ),
+        cancel: (input: IntegrationOauthCancelInput, requestOptions?: RequestOptions) =>
+          request<IntegrationOauthCancelOutput>(
+            {
+              method: "DELETE",
+              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth/${encodeURIComponent(input.attemptID)}`,
+              query: { location: input["location"] },
+              successStatus: 204,
+              declaredStatuses: [400, 401, 404],
+              empty: true,
+            },
+            requestOptions,
+          ),
+      },
       list: (input?: IntegrationListInput, requestOptions?: RequestOptions) =>
         request<IntegrationListOutput>(
           {
@@ -1292,58 +1416,6 @@ export function make(options: ClientOptions) {
               path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/external`,
               query: { location: input["location"] },
               body: { methodID: input["methodID"], answer: input["answer"], label: input["label"] },
-              successStatus: 204,
-              declaredStatuses: [400, 401, 404],
-              empty: true,
-            },
-            requestOptions,
-          ),
-      },
-      oauth: {
-        connect: (input: IntegrationOauthConnectInput, requestOptions?: RequestOptions) =>
-          request<IntegrationOauthConnectOutput>(
-            {
-              method: "POST",
-              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth`,
-              query: { location: input["location"] },
-              body: { methodID: input["methodID"], answer: input["answer"], label: input["label"] },
-              successStatus: 200,
-              declaredStatuses: [400, 401, 404],
-              empty: false,
-            },
-            requestOptions,
-          ),
-        status: (input: IntegrationOauthStatusInput, requestOptions?: RequestOptions) =>
-          request<IntegrationOauthStatusOutput>(
-            {
-              method: "GET",
-              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth/${encodeURIComponent(input.attemptID)}`,
-              query: { location: input["location"] },
-              successStatus: 200,
-              declaredStatuses: [400, 401, 404],
-              empty: false,
-            },
-            requestOptions,
-          ),
-        complete: (input: IntegrationOauthCompleteInput, requestOptions?: RequestOptions) =>
-          request<IntegrationOauthCompleteOutput>(
-            {
-              method: "POST",
-              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth/${encodeURIComponent(input.attemptID)}/complete`,
-              query: { location: input["location"] },
-              body: { code: input["code"] },
-              successStatus: 204,
-              declaredStatuses: [400, 401, 404],
-              empty: true,
-            },
-            requestOptions,
-          ),
-        cancel: (input: IntegrationOauthCancelInput, requestOptions?: RequestOptions) =>
-          request<IntegrationOauthCancelOutput>(
-            {
-              method: "DELETE",
-              path: `/api/integration/${encodeURIComponent(input.integrationID)}/connect/oauth/${encodeURIComponent(input.attemptID)}`,
-              query: { location: input["location"] },
               successStatus: 204,
               declaredStatuses: [400, 401, 404],
               empty: true,
@@ -1484,6 +1556,34 @@ export function make(options: ClientOptions) {
       },
     },
     credential: {
+      accounts: (requestOptions?: RequestOptions) =>
+        request<{ readonly data: CredentialAccountsOutput }>(
+          {
+            method: "GET",
+            path: `/api/credential/accounts`,
+            successStatus: 200,
+            declaredStatuses: [400, 401],
+            empty: false,
+          },
+          requestOptions,
+        ).then((value) => value.data),
+      accountUpdate: (input: CredentialAccountUpdateInput, requestOptions?: RequestOptions) =>
+        request<CredentialAccountUpdateOutput>(
+          {
+            method: "PATCH",
+            path: `/api/credential/${encodeURIComponent(input.credentialID)}/account`,
+            body: {
+              selected: input["selected"],
+              label: input["label"],
+              enabled: input["enabled"],
+              priority: input["priority"],
+            },
+            successStatus: 204,
+            declaredStatuses: [400, 401, 503],
+            empty: true,
+          },
+          requestOptions,
+        ),
       list: (requestOptions?: RequestOptions) =>
         request<{ readonly data: CredentialListOutput }>(
           { method: "GET", path: `/api/credential`, successStatus: 200, declaredStatuses: [400, 401], empty: false },

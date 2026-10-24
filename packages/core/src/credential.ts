@@ -1,15 +1,18 @@
 export * as Credential from "./credential.js"
 
+import { AccountManagement } from "@opencode/schema/account-management"
+import { Vault } from "./credential/vault.js"
+import { supportsTuningPragmas } from "#sqlite"
 import { asc, desc, eq } from "drizzle-orm"
-import { Cause, Context, Effect, Layer, Schema } from "effect"
+import { Context, Effect, Layer, Schema } from "effect"
 import { Credential } from "@opencode/schema/credential"
 import { CredentialLegacy } from "@opencode/schema/credential-legacy"
 import { Integration } from "@opencode/schema/integration"
 import { Database } from "./database/database.js"
 import { Bus } from "./bus.js"
 import { makeGlobalNode } from "@opencode/util/effect/app-node"
+import { KVTable } from "./kv/sql.js"
 import { CredentialTable } from "./credential/sql.js"
-import { ErrorSummary } from "./util/error-summary.js"
 
 export const ID = Credential.ID
 export type ID = Credential.ID
@@ -36,6 +39,7 @@ export class Info extends Schema.Class<Info>("Credential.Info")({
 }) {}
 
 export interface Interface {
+  readonly locked?: boolean
   /** Returns every stored credential. */
   readonly all: () => Effect.Effect<Info[]>
   /** Returns stored credentials belonging to one integration. */
@@ -68,24 +72,85 @@ const layer = Layer.effect(
   Effect.gen(function* () {
     const db = (yield* Database.Service).db
     const bus = yield* Bus.Service
+    // Obtain a key before opening the migration transaction. Existing ciphertext is restart-safe.
+    const rows = yield* db.select().from(CredentialTable).all().pipe(Effect.orDie)
+    const plaintext = rows.filter((row) => !("version" in row.value))
+    const material = (() => {
+      if (!rows.length) return undefined
+      try {
+        return Vault.key()
+      } catch {
+        return undefined
+      }
+    })()
+    const encryptionKey = () => {
+      if (rows.length && !material) throw new Vault.Locked()
+      return material ?? Vault.key()
+    }
+    if (plaintext.length && material) {
+      yield* db
+        .transaction((tx) =>
+          Effect.gen(function* () {
+            const current = yield* tx.select().from(CredentialTable).all()
+            for (const row of current.filter((row) => !("version" in row.value))) {
+              yield* tx
+                .update(CredentialTable)
+                .set({
+                  value: Vault.seal(
+                    Schema.decodeUnknownSync(CredentialLegacy.Value)(row.value),
+                    encryptionKey(),
+                    row.id,
+                    row.integration_id ?? "",
+                  ),
+                })
+                .where(eq(CredentialTable.id, row.id))
+                .run()
+            }
+            yield* tx
+              .insert(KVTable)
+              .values({ key: "credential-vault-compaction", value: true })
+              .onConflictDoUpdate({ target: KVTable.key, set: { value: true } })
+              .run()
+          }),
+        )
+        .pipe(Effect.orDie)
+    }
+    const pendingCompaction = yield* db
+      .select()
+      .from(KVTable)
+      .where(eq(KVTable.key, "credential-vault-compaction"))
+      .get()
+      .pipe(Effect.orDie)
+    if (pendingCompaction && material) {
+      if (supportsTuningPragmas) {
+        yield* db.run("PRAGMA wal_checkpoint(TRUNCATE)").pipe(Effect.orDie)
+        yield* db.run("VACUUM").pipe(Effect.orDie)
+        yield* db.run("PRAGMA wal_checkpoint(TRUNCATE)").pipe(Effect.orDie)
+      }
+      yield* db.delete(KVTable).where(eq(KVTable.key, "credential-vault-compaction")).run().pipe(Effect.orDie)
+    }
     // Rows written before v2.1 may carry the old key credential shape.
     const decode = Schema.decodeUnknownSync(CredentialLegacy.Value)
     const stored = (row: typeof CredentialTable.$inferSelect) => {
       if (!row.integration_id) return
+      encryptionKey()
       return new Info({
         id: row.id,
         integrationID: row.integration_id,
         label: row.label,
-        value: decode(row.value),
+        value: decode(
+          "version" in row.value ? Vault.open(row.value, encryptionKey(), row.id, row.integration_id) : row.value,
+        ),
       })
     }
-    const storedRows = (rows: ReadonlyArray<typeof CredentialTable.$inferSelect>) =>
-      rows.flatMap((row) => {
+    const storedRows = (saved: ReadonlyArray<typeof CredentialTable.$inferSelect>) =>
+      (rows.length && !material ? [] : saved).flatMap((row) => {
         const credential = stored(row)
         return credential ? [credential] : []
       })
 
     return Service.of({
+      locked: rows.length > 0 && !material,
       all: Effect.fn("Credential.all")(() =>
         db
           .select()
@@ -139,7 +204,7 @@ const layer = Layer.effect(
                   id: credential.id,
                   integration_id: credential.integrationID,
                   label: credential.label,
-                  value: credential.value,
+                  value: Vault.seal(credential.value, encryptionKey(), credential.id, credential.integrationID),
                   active: activate,
                 })
                 .run()
@@ -147,11 +212,11 @@ const layer = Layer.effect(
             }),
           )
           .pipe(
-            Effect.onError((cause) =>
+            Effect.onError(() =>
               Effect.logError("credential create failed", {
                 credentialID: credential.id,
                 integrationID: credential.integrationID,
-                errors: ErrorSummary.from(Cause.squash(cause)),
+                errors: "Credential storage operation failed",
               }),
             ),
             Effect.orDie,
@@ -194,10 +259,10 @@ const layer = Layer.effect(
             }),
           )
           .pipe(
-            Effect.onError((cause) =>
+            Effect.onError(() =>
               Effect.logError("credential activate failed", {
                 credentialID: id,
-                errors: ErrorSummary.from(Cause.squash(cause)),
+                errors: "Credential storage operation failed",
               }),
             ),
             Effect.orDie,
@@ -215,10 +280,10 @@ const layer = Layer.effect(
           .where(eq(CredentialTable.id, id))
           .get()
           .pipe(
-            Effect.onError((cause) =>
+            Effect.onError(() =>
               Effect.logError("credential update lookup failed", {
                 credentialID: id,
-                errors: ErrorSummary.from(Cause.squash(cause)),
+                errors: "Credential storage operation failed",
               }),
             ),
             Effect.orDie,
@@ -230,20 +295,44 @@ const layer = Layer.effect(
         if (updates.label === credential.label && updates.value === undefined) return
         const updated = yield* db
           .update(CredentialTable)
-          .set({ label: updates.label, value: updates.value })
+          .set({
+            label: updates.label,
+            value:
+              updates.value === undefined
+                ? undefined
+                : Vault.seal(updates.value, encryptionKey(), id, credential.integrationID),
+          })
           .where(eq(CredentialTable.id, id))
           .returning({ id: CredentialTable.id })
           .get()
           .pipe(
-            Effect.onError((cause) =>
+            Effect.onError(() =>
               Effect.logError("credential update failed", {
                 credentialID: id,
                 integrationID: credential.integrationID,
-                errors: ErrorSummary.from(Cause.squash(cause)),
+                errors: "Credential storage operation failed",
               }),
             ),
             Effect.orDie,
           )
+        if (updated && updates.value !== undefined) {
+          const policy = yield* db
+            .select()
+            .from(KVTable)
+            .where(eq(KVTable.key, `account:${id}`))
+            .get()
+            .pipe(Effect.orDie)
+          if (policy) {
+            const current = Schema.decodeUnknownSync(AccountManagement.Policy)(policy.value)
+            if (["reauthenticate", "revoked"].includes(current.health))
+              yield* db
+                .update(KVTable)
+                .set({ value: Schema.decodeUnknownSync(Schema.Json)({ ...current, health: "unknown" }) })
+                .where(eq(KVTable.key, `account:${id}`))
+                .run()
+                .pipe(Effect.orDie)
+          }
+        }
         if (!updated) {
           yield* Effect.logWarning("credential update skipped", { credentialID: id, reason: "credential_removed" })
           return
@@ -254,7 +343,7 @@ const layer = Layer.effect(
           valueChanged: updates.value !== undefined,
           labelChanged: updates.label !== undefined && updates.label !== credential.label,
         })
-        if (updates.label !== undefined && updates.label !== credential.label)
+        if (updates.value !== undefined || (updates.label !== undefined && updates.label !== credential.label))
           yield* bus.publish(Event.Updated, {}, { global: true })
       }),
       remove: Effect.fn("Credential.remove")(function* (id) {
@@ -272,6 +361,17 @@ const layer = Layer.effect(
                     .get()
                 : undefined
               yield* tx.delete(CredentialTable).where(eq(CredentialTable.id, id)).run()
+              yield* tx
+                .delete(KVTable)
+                .where(eq(KVTable.key, `account:${id}`))
+                .run()
+              if (credential.integration_id) {
+                for (const prefix of ["account-pin", "account-limit"]) {
+                  const key = `${prefix}:${credential.integration_id}`
+                  const saved = yield* tx.select().from(KVTable).where(eq(KVTable.key, key)).get()
+                  if (saved?.value === id) yield* tx.delete(KVTable).where(eq(KVTable.key, key)).run()
+                }
+              }
               if (!credential.integration_id || active?.id !== id)
                 return { switched: false as const, integrationID: credential.integration_id }
               const replacement = yield* tx
@@ -300,10 +400,10 @@ const layer = Layer.effect(
             }),
           )
           .pipe(
-            Effect.onError((cause) =>
+            Effect.onError(() =>
               Effect.logError("credential remove failed", {
                 credentialID: id,
-                errors: ErrorSummary.from(Cause.squash(cause)),
+                errors: "Credential storage operation failed",
               }),
             ),
             Effect.orDie,

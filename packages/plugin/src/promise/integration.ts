@@ -64,7 +64,8 @@ export type IntegrationOAuthAuthorization = {
 export type IntegrationOAuthMethodRegistration = {
   readonly integrationID: string
   readonly method: IntegrationOAuthMethod
-  readonly authorize: (answer: Form.Answer) => Promise<IntegrationOAuthAuthorization>
+  readonly authorize: (answer: Form.Answer, credential?: Credential.OAuth) => Promise<IntegrationOAuthAuthorization>
+  readonly revoke?: (credential: Credential.OAuth) => Promise<void>
   readonly refresh?: (credential: Credential.OAuth) => Promise<Credential.OAuth>
   readonly label?: (credential: Credential.OAuth) => string | undefined
 }

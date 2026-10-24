@@ -1,0 +1,136 @@
+{
+  "started_utc": "2026-10-23T23:47:17.552897+00:00",
+  "tasks": [
+    "sgf-parsing",
+    "react",
+    "zebra-puzzle",
+    "zipper",
+    "list-ops",
+    "paasio",
+    "bottle-song",
+    "grade-school",
+    "go-counting",
+    "scale-generator"
+  ],
+  "seed": "gradcode-routing-pilot-v1/",
+  "config": {
+    "agents": {
+      "build": {
+        "steps": 12
+      }
+    },
+    "routing": {
+      "enabled": true,
+      "jev": {
+        "endpoint": "http://127.0.0.1:1/disabled",
+        "timeoutMs": 1,
+        "keyEnvironment": "GRADCODE_BENCHMARK_DISABLED_JEV_KEY"
+      },
+      "laya": {
+        "endpoint": "http://127.0.0.1:8000/v1/systemone",
+        "model": "laya",
+        "timeoutMs": 5000
+      },
+      "profiles": [
+        {
+          "name": "gpt-6-luna/low",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-luna",
+            "variant": "low"
+          },
+          "reasoningEffort": "low",
+          "description": "Routine, small Python implementations and straightforward algorithms.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "economy"
+        },
+        {
+          "name": "gpt-6-luna/high",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-luna",
+            "variant": "high"
+          },
+          "reasoningEffort": "high",
+          "description": "Moderately involved Python algorithms on a small budget.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "economy"
+        },
+        {
+          "name": "gpt-6-sol/medium",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-sol",
+            "variant": "medium"
+          },
+          "reasoningEffort": "medium",
+          "description": "General implementation, parsing, and stateful data structures.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "balanced"
+        },
+        {
+          "name": "gpt-6-sol/high",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-sol",
+            "variant": "high"
+          },
+          "reasoningEffort": "high",
+          "description": "Complex parsing, callbacks, dependency tracking, and subtle edge cases.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "balanced"
+        },
+        {
+          "name": "gpt-6-astra/medium",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-astra",
+            "variant": "medium"
+          },
+          "reasoningEffort": "medium",
+          "description": "Difficult implementation requiring careful multi-step reasoning.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "quality"
+        },
+        {
+          "name": "gpt-6-astra/high",
+          "model": {
+            "providerID": "openai",
+            "id": "gpt-6-astra",
+            "variant": "high"
+          },
+          "reasoningEffort": "high",
+          "description": "Most difficult algorithms, intricate state invariants, and broad edge cases.",
+          "capabilities": [
+            "text",
+            "tools"
+          ],
+          "costPreference": "quality"
+        }
+      ]
+    }
+  },
+  "dataset_revision": "7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f",
+  "gradcode_revision": "68bc26b7da1990ce10ffecfbc1e09eb13aa5d824",
+  "laya_revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+  "work_directory": "/tmp/gradcode-routing-pilot-20261024",
+  "completed_utc": "2026-10-23T23:55:59.627305+00:00",
+  "grading_reference_validation": "All ten upstream examples passed original tests before model execution.",
+  "validation": "20 unique executions, matching paired prompts, no timeouts/provider errors, stable per-request model selection, grading logs and persisted costs checked.",
+  "harness_sha256": "2de5d4137242e55af79c9935562ab6327e56bc9cff988a0a3ee3ea81eed2b039"
+}

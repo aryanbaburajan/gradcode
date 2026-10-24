@@ -58,7 +58,8 @@ import {
 } from "../../util/tool-display"
 import { DialogExecute } from "./dialog-execute"
 import { RetryProvider } from "../../component/retry-provider"
-import { useRenderer, useTerminalDimensions, type JSX } from "@opentui/solid"
+import { useRenderer, type JSX } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import { useClient } from "../../context/client"
 import { useEditorContext } from "../../context/editor"
 import { useDialog } from "../../ui/dialog"
@@ -2130,9 +2131,18 @@ function SessionNoticeMessageV2(props: { message: SessionMessageInfo }) {
     <Show
       when={completion()}
       fallback={
-        <InlineToolRow icon="◈" color={theme.text.muted} pending="Notice" complete={true}>
-          {text()}
-        </InlineToolRow>
+        <Show
+          when={source() === "backend-switch"}
+          fallback={
+            <InlineToolRow icon="◈" color={theme.text.muted} pending="Notice" complete={true}>
+              {text()}
+            </InlineToolRow>
+          }
+        >
+          <box paddingLeft={3}>
+            <text fg={theme.text.muted}>{text()}</text>
+          </box>
+        </Show>
       }
     >
       <box
@@ -2530,7 +2540,7 @@ function FreeLimitNotice(props: { message: Pick<SessionMessageAssistant, "error"
     <box paddingLeft={3} flexDirection="column">
       <text fg={theme.text.muted}>You've used today's free messages.{reset() ? ` They reset at ${reset()}.` : ""}</text>
       <text fg={theme.text.muted}>
-        Upgrade to OpenCode Go → <span style={{ fg: theme.text.base }}>/connect</span> · Switch model →{" "}
+        Upgrade to Gradcode Go → <span style={{ fg: theme.text.base }}>/connect</span> · Switch model →{" "}
         <span style={{ fg: theme.text.base }}>/models</span>
       </text>
     </box>

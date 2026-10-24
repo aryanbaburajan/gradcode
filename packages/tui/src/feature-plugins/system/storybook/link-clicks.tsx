@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode/plugin/tui"
 import type { SessionMessageAssistant, SessionMessageAssistantText } from "@opencode/client"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../../context/dimensions"
 import { createSignal } from "solid-js"
 import { useConfig } from "../../../config"
 import { createTimelineAnchors } from "../../../routes/session/anchors"

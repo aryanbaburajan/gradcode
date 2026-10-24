@@ -19,7 +19,9 @@ import {
   Types,
 } from "effect"
 import { Integration } from "@opencode/schema/integration"
+import { EffectFlock } from "@opencode/util/effect-flock"
 import { Credential } from "./credential.js"
+import { OAuthError } from "./credential/oauth-error.js"
 import { State } from "./state.js"
 import { Bus } from "./bus.js"
 import { IntegrationConnection } from "./integration/connection.js"
@@ -75,8 +77,12 @@ export type OAuthAuthorization = {
 export interface OAuthImplementation {
   readonly integrationID: ID
   readonly method: OAuthMethod
-  readonly authorize: (answer: Form.Answer) => Effect.Effect<OAuthAuthorization, unknown, Scope.Scope>
+  readonly authorize: (
+    answer: Form.Answer,
+    credential?: Credential.OAuth,
+  ) => Effect.Effect<OAuthAuthorization, unknown, Scope.Scope>
   readonly refresh?: (credential: Credential.OAuth) => Effect.Effect<Credential.OAuth, unknown>
+  readonly revoke?: (credential: Credential.OAuth) => Effect.Effect<void, unknown>
   readonly label?: (credential: Credential.OAuth) => string | undefined
 }
 
@@ -125,6 +131,7 @@ export class CodeRequiredError extends Schema.TaggedError<CodeRequiredError>()("
 
 export class AuthorizationError extends Schema.TaggedError<AuthorizationError>()("Integration.Authorization", {
   cause: Schema.Defect(),
+  terminal: Schema.optional(Schema.Boolean),
 }) {
   override get message() {
     const cause = this.cause
@@ -221,10 +228,16 @@ export interface Interface extends State.Transformable<Editor> {
     }) => Effect.Effect<void>
   }
   readonly oauth: {
+    readonly logout: (input: {
+      readonly integrationID: ID
+      readonly credentialID: Credential.ID
+    }) => Effect.Effect<void, AuthorizationError>
+
     /** Starts a stateful OAuth attempt. */
     readonly connect: (input: {
       readonly integrationID: ID
       readonly methodID: MethodID
+      readonly credentialID?: Credential.ID
       readonly answer?: Form.Answer
       readonly label?: string
     }) => Effect.Effect<Attempt, AuthorizationError>
@@ -270,6 +283,7 @@ type PendingAttempt = {
   authorization: OAuthAuthorization
   integrationID: ID
   methodID: MethodID
+  credentialID?: Credential.ID
   label?: string
   scope: Scope.Closeable
   time: AttemptTime
@@ -305,6 +319,7 @@ const layer = Layer.effect(
   Service,
   Effect.gen(function* () {
     const credentials = yield* Credential.Service
+    const refreshLock = yield* EffectFlock.Service
     const bus = yield* Bus.Service
     const processes = yield* AppProcess.Service
     const scope = yield* Scope.Scope
@@ -419,15 +434,20 @@ const layer = Layer.effect(
       })
 
     const authorize = <A, E, R>(effect: Effect.Effect<A, E, R>) =>
-      effect.pipe(Effect.mapError((cause) => new AuthorizationError({ cause })))
+      effect.pipe(
+        Effect.mapError(
+          (error) =>
+            new AuthorizationError({
+              cause: new Error("Authentication failed; retry or reauthenticate"),
+              terminal: error instanceof OAuthError && error.terminal,
+            }),
+        ),
+      )
 
     const close = (attemptScope: Scope.Closeable) =>
       Scope.close(attemptScope, Exit.void).pipe(Effect.forkIn(scope, { startImmediately: true }), Effect.asVoid)
 
-    const message = (cause: Cause.Cause<unknown>) => {
-      const error = Cause.squash(cause)
-      return error instanceof Error ? error.message : String(error)
-    }
+    const message = (_cause: Cause.Cause<unknown>) => "Authentication failed; retry or reauthenticate"
 
     const settle = Effect.fnUntraced(function* (attemptID: AttemptID, exit: Exit.Exit<Credential.OAuth, unknown>) {
       const now = yield* Clock.currentTimeMillis
@@ -452,12 +472,27 @@ const layer = Layer.effect(
       }
 
       yield* Effect.gen(function* () {
-        const persistence = yield* Effect.suspend(() => {
+        const persistence = yield* Effect.gen(function* () {
           const implementation = state
             .get()
             .integrations.get(attempt.integrationID)
             ?.implementations.get(attempt.methodID)
-          return createCredential({
+          if (attempt.credentialID) {
+            const previous = yield* credentials.get(attempt.credentialID)
+            if (
+              !previous ||
+              previous.value.type !== "oauth" ||
+              previous.value.methodID !== exit.value.methodID ||
+              !previous.value.metadata?.accountID ||
+              previous.value.metadata.accountID !== exit.value.metadata?.accountID
+            )
+              return yield* new AuthorizationError({
+                cause: new Error("Account identity changed; add it as a new account"),
+              })
+            yield* credentials.update(attempt.credentialID, { value: exit.value })
+            return
+          }
+          return yield* createCredential({
             integrationID: attempt.integrationID,
             label: attempt.label ?? implementation?.label?.(exit.value),
             value: exit.value,
@@ -582,6 +617,7 @@ const layer = Layer.effect(
     const connectOAuth = Effect.fn("Integration.oauth.connect")(function* (input: {
       readonly integrationID: ID
       readonly methodID: MethodID
+      readonly credentialID?: Credential.ID
       readonly answer?: Form.Answer
       readonly label?: string
     }) {
@@ -594,8 +630,19 @@ const layer = Layer.effect(
         const invalid = Form.validateFields(method.method.form) ?? Form.validateAnswer(method.method.form, answer)
         if (invalid) return yield* new AuthorizationError({ cause: new Error(invalid) })
       }
+      const previous = input.credentialID ? yield* credentials.get(input.credentialID) : undefined
+      if (
+        input.credentialID &&
+        (!previous ||
+          previous.integrationID !== input.integrationID ||
+          previous.value.type !== "oauth" ||
+          previous.value.methodID !== input.methodID)
+      )
+        return yield* new AuthorizationError({ cause: new Error("Account does not match this login method") })
       const attemptScope = yield* Scope.fork(scope)
-      const authorization = yield* authorize(method.authorize(answer)).pipe(
+      const authorization = yield* authorize(
+        method.authorize(answer, previous?.value.type === "oauth" ? previous.value : undefined),
+      ).pipe(
         Scope.provide(attemptScope),
         Effect.onExit((exit) => (Exit.isFailure(exit) ? Scope.close(attemptScope, exit) : Effect.void)),
       )
@@ -610,6 +657,7 @@ const layer = Layer.effect(
           authorization,
           integrationID: input.integrationID,
           methodID: input.methodID,
+          credentialID: input.credentialID,
           label: input.label,
           scope: attemptScope,
           time,
@@ -722,19 +770,49 @@ const layer = Layer.effect(
             const key = process.env[connection.name]
             return key ? Credential.Key.make({ type: "key", key }) : undefined
           }
-          const credential = yield* credentials.get(connection.id)
-          if (!credential) return undefined
-          if (credential.value.type !== "oauth") return credential.value
-          const implementation = state
-            .get()
-            .integrations.get(credential.integrationID)
-            ?.implementations.get(credential.value.methodID)
-          if (!implementation?.refresh) return credential.value
-          const now = yield* Clock.currentTimeMillis
-          if (credential.value.expires > now + Duration.toMillis(Duration.minutes(5))) return credential.value
-          const value = yield* authorize(implementation.refresh(credential.value))
-          yield* credentials.update(credential.id, { value })
-          return value
+          return yield* refreshLock
+            .withLock(
+              Effect.gen(function* () {
+                const credential = yield* credentials.get(connection.id)
+                if (!credential) return undefined
+                if (credential.value.type !== "oauth") return credential.value
+                const implementation = state
+                  .get()
+                  .integrations.get(credential.integrationID)
+                  ?.implementations.get(credential.value.methodID)
+                const now = yield* Clock.currentTimeMillis
+                if (!implementation?.refresh) {
+                  if (credential.value.expires <= now)
+                    return yield* new AuthorizationError({
+                      cause: new Error("Session expired; reauthentication required"),
+                      terminal: true,
+                    })
+                  return credential.value
+                }
+                if (credential.value.expires > now + Duration.toMillis(Duration.minutes(5))) return credential.value
+                const value = yield* authorize(implementation.refresh(credential.value))
+                if (
+                  value.type !== "oauth" ||
+                  value.methodID !== credential.value.methodID ||
+                  (credential.value.metadata?.accountID !== undefined &&
+                    value.metadata?.accountID !== credential.value.metadata.accountID)
+                )
+                  return yield* new AuthorizationError({
+                    cause: new Error("Account identity changed; reauthentication required"),
+                    terminal: true,
+                  })
+                yield* credentials.update(credential.id, { value })
+                return value
+              }),
+              `credential-refresh:${connection.id}`,
+            )
+            .pipe(
+              Effect.mapError((error) =>
+                error instanceof AuthorizationError
+                  ? error
+                  : new AuthorizationError({ cause: new Error("Account refresh failed; retry later") }),
+              ),
+            )
         }),
         key: Effect.fn("Integration.connection.key")(function* (input) {
           const method = state
@@ -799,6 +877,46 @@ const layer = Layer.effect(
         }),
       },
       oauth: {
+        logout: Effect.fn("Integration.oauth.logout")(function* (input) {
+          yield* refreshLock
+            .withLock(
+              Effect.gen(function* () {
+                const credential = yield* credentials.get(input.credentialID)
+                if (
+                  !credential ||
+                  credential.integrationID !== input.integrationID ||
+                  credential.value.type !== "oauth"
+                )
+                  return yield* new AuthorizationError({ cause: new Error("OAuth account not found") })
+                const implementation = state
+                  .get()
+                  .integrations.get(input.integrationID)
+                  ?.implementations.get(credential.value.methodID)
+                const revoked = implementation?.revoke
+                  ? yield* implementation.revoke(credential.value).pipe(Effect.result)
+                  : undefined
+                const { idToken: _, ...metadata } = credential.value.metadata ?? {}
+                yield* credentials.update(credential.id, {
+                  value: { ...credential.value, access: "", refresh: "", expires: 0, metadata },
+                })
+                if (!revoked || revoked._tag === "Failure")
+                  return yield* new AuthorizationError({
+                    cause: new Error(
+                      "Signed out locally; remote revocation was not confirmed. Disconnect this app in provider settings.",
+                    ),
+                  })
+              }),
+              `credential-refresh:${input.credentialID}`,
+            )
+            .pipe(
+              Effect.mapError((cause) =>
+                cause instanceof AuthorizationError
+                  ? cause
+                  : new AuthorizationError({ cause: new Error("Could not sign out account") }),
+              ),
+            )
+        }),
+
         connect: connectOAuth,
         status: Effect.fn("Integration.oauth.status")(function* (input) {
           const attempt = (yield* SynchronizedRef.get(attempts)).get(input.attemptID)
@@ -879,5 +997,5 @@ const layer = Layer.effect(
 export const node = makeLocationNode({
   service: Service,
   layer,
-  deps: [Credential.node, Bus.node, AppProcess.node],
+  deps: [Credential.node, Bus.node, AppProcess.node, EffectFlock.node],
 })

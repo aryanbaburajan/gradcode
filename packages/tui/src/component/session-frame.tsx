@@ -6,7 +6,8 @@ import {
   type Renderable,
   type ScrollBoxRenderable,
 } from "@opentui/core"
-import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { batch, createEffect, createMemo, createResource, createSignal, on, onCleanup, Show } from "solid-js"
 import { useConfig } from "../config"
 import { useData } from "../context/data"

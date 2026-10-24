@@ -20,6 +20,18 @@ const model = Model.Ref.make({ id: Model.ID.make("model"), providerID: Provider.
 const build = Agent.defaultID
 
 describe("toLLMMessages", () => {
+  test("backend switch notices stay in the UI and never become user instructions", () => {
+    const notice = SessionMessage.Synthetic.make({
+      id: id("backend-switch"),
+      type: "synthetic",
+      text: "",
+      description: "Switched backend to anthropic/model · reasoning: high",
+      metadata: { source: "backend-switch" },
+      time: { created },
+    })
+    expect(toLLMMessages([notice], model)).toEqual([])
+  })
+
   test("background user shells enter model context only through their completion notification", () => {
     const shell = SessionMessage.Shell.make({
       id: id("background-shell"),

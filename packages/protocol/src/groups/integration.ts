@@ -1,3 +1,4 @@
+import { Credential } from "@opencode/schema/credential"
 import { Integration } from "@opencode/schema/integration"
 import { Location } from "@opencode/schema/location"
 import { Form } from "@opencode/schema/form"
@@ -12,6 +13,22 @@ import {
 import { LocationQuery, locationQueryOpenApi } from "./location.js"
 
 export const IntegrationGroup = HttpApiGroup.make("server.integration")
+  .add(
+    HttpApiEndpoint.post("integration.oauth.logout", "/api/integration/:integrationID/logout/:credentialID", {
+      params: { integrationID: Integration.ID, credentialID: Credential.ID },
+      query: LocationQuery,
+      success: HttpApiSchema.NoContent,
+      error: InvalidRequestError,
+    })
+      .annotateMerge(locationQueryOpenApi)
+      .annotateMerge(
+        OpenApi.annotations({
+          identifier: "integration.oauth.logout",
+          summary: "Sign out an OAuth account and attempt remote revocation",
+        }),
+      ),
+  )
+
   .add(
     HttpApiEndpoint.get("integration.list", "/api/integration", {
       query: LocationQuery,
@@ -106,6 +123,7 @@ export const IntegrationGroup = HttpApiGroup.make("server.integration")
       query: LocationQuery,
       payload: Schema.Struct({
         methodID: Integration.MethodID,
+        credentialID: Schema.optional(Credential.ID),
         answer: Schema.optional(Form.Answer),
         label: Schema.optional(Schema.String),
       }),

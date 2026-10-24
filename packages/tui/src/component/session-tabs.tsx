@@ -19,7 +19,8 @@ import {
   onCleanup,
   untrack,
 } from "solid-js"
-import { Portal, useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { Portal, useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { useConfig } from "../config"
 import { useSessionTabs } from "../context/session-tabs"
 import { useData } from "../context/data"

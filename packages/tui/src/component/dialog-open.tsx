@@ -1,7 +1,7 @@
 import { batch, createEffect, createMemo, createResource, createSignal, onCleanup, Show } from "solid-js"
 import type { OpenCodeEvent, SessionInfo } from "@opencode/client"
 import path from "path"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { DIALOG_LIST_INSET, dialogWidth, useDialog } from "../ui/dialog"
 import { DialogSelect, dialogSelectContentWidth, type DialogSelectRef } from "../ui/dialog-select"
 import { DialogPrompt } from "../ui/dialog-prompt"

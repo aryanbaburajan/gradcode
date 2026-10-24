@@ -1,4 +1,5 @@
 import { Integration } from "@opencode/core/integration"
+import { Vault } from "@opencode/core/credential/vault"
 import { Plugin } from "@opencode/core/plugin"
 import { Effect } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/http-api"
@@ -14,6 +15,11 @@ import { WellKnown } from "@opencode/core/wellknown"
 
 const authorize = <A, R>(effect: Effect.Effect<A, Integration.AuthorizationError, R>) =>
   effect.pipe(
+    Effect.catchDefect((defect) =>
+      defect instanceof Vault.Locked
+        ? Effect.fail(new Integration.AuthorizationError({ cause: defect }))
+        : Effect.die(defect),
+    ),
     Effect.mapError(
       (error) =>
         new InvalidRequestError({
@@ -27,6 +33,15 @@ const authorize = <A, R>(effect: Effect.Effect<A, Integration.AuthorizationError
 export const IntegrationHandler = HttpApiBuilder.group(Api, "server.integration", (handlers) =>
   Effect.gen(function* () {
     return handlers
+      .handle(
+        "integration.oauth.logout",
+        Effect.fn(function* (ctx) {
+          yield* Plugin.awaitActivation
+          const service = yield* Integration.Service
+          yield* authorize(service.oauth.logout(ctx.params))
+          return HttpApiSchema.NoContent.make()
+        }),
+      )
       .handle(
         "integration.list",
         Effect.fn(function* () {
@@ -107,12 +122,14 @@ export const IntegrationHandler = HttpApiBuilder.group(Api, "server.integration"
       .handle(
         "integration.oauth.connect",
         Effect.fn(function* (ctx) {
+          yield* Plugin.awaitActivation
           const service = yield* Integration.Service
           return yield* response(
             authorize(
               service.oauth.connect({
                 integrationID: ctx.params.integrationID,
                 methodID: ctx.payload.methodID,
+                credentialID: ctx.payload.credentialID,
                 answer: ctx.payload.answer,
                 label: ctx.payload.label,
               }),

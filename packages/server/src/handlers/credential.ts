@@ -1,5 +1,6 @@
+import { AccountManagement } from "@opencode/core/account-management"
 import { Credential } from "@opencode/core/credential"
-import { ConflictError } from "@opencode/protocol/errors"
+import { ConflictError, ServiceUnavailableError } from "@opencode/protocol/errors"
 import { Effect } from "effect"
 import { HttpApiBuilder, HttpApiSchema } from "effect/http-api"
 import { Api } from "../api"
@@ -7,10 +8,43 @@ import { Api } from "../api"
 export const CredentialHandler = HttpApiBuilder.group(Api, "server.credential", (handlers) =>
   handlers
     .handle(
+      "credential.accounts",
+      Effect.fn(function* () {
+        const accounts = yield* AccountManagement.Service
+        return { data: yield* accounts.list() }
+      }),
+    )
+    .handle(
+      "credential.accountUpdate",
+      Effect.fn(function* (ctx) {
+        const accounts = yield* AccountManagement.Service
+        yield* accounts
+          .update(ctx.params.credentialID, ctx.payload)
+          .pipe(
+            Effect.mapError((error) => new ServiceUnavailableError({ message: error.message, service: "accounts" })),
+          )
+        return HttpApiSchema.NoContent.make()
+      }),
+    )
+    .handle(
       "credential.list",
       Effect.fn(function* () {
-        const credential = yield* Credential.Service
-        return { data: entries(yield* credential.all()) }
+        const accounts = yield* AccountManagement.Service
+        return {
+          data: (yield* accounts.list()).map((account) => ({
+            id: account.id,
+            integrationID: account.integrationID,
+            label: account.label,
+            active: account.active,
+            value: {
+              type: account.authentication,
+              ...(account.authentication !== "key"
+                ? { methodID: Credential.OAuth.fields.methodID.make(account.method) }
+                : {}),
+              ...(account.expires === undefined ? {} : { expires: account.expires }),
+            },
+          })),
+        }
       }),
     )
     .handle(
@@ -24,7 +58,7 @@ export const CredentialHandler = HttpApiBuilder.group(Api, "server.credential", 
           })
         const created = yield* credential.create(ctx.payload)
         const entry = entries(yield* credential.list(created.integrationID)).find((item) => item.id === created.id)
-        return { data: entry ?? { ...created, active: false } }
+        return { data: entry ?? entries([created])[0]! }
       }),
     )
     .handle(
@@ -61,6 +95,10 @@ function entries(credentials: Credential.Info[]) {
     integrationID: item.integrationID,
     label: item.label,
     active: selected.get(item.integrationID) === item.id,
-    value: item.value,
+    value: {
+      type: item.value.type,
+      ...(item.value.type !== "key" ? { methodID: item.value.methodID } : {}),
+      ...(item.value.type === "oauth" ? { expires: item.value.expires } : {}),
+    },
   }))
 }

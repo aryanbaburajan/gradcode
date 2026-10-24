@@ -723,3 +723,21 @@ describe("ConfigNormalize", () => {
     expect(result.encoded.share).toBeUndefined()
   })
 })
+
+test("preserves routing profiles and backend settings through configuration normalization", () => {
+  const routing = {
+    enabled: true,
+    jev: { model: "jev-latest", timeoutMs: 5000 },
+    laya: { endpoint: "http://127.0.0.1:8000/v1/systemone" },
+    profiles: [
+      {
+        name: "coding",
+        model: { providerID: "fixture", id: "chat" },
+        description: "Coding",
+        capabilities: ["text", "tools"],
+        costPreference: "balanced",
+      },
+    ],
+  }
+  expect(normalized({ routing }).encoded.routing).toEqual(routing)
+})

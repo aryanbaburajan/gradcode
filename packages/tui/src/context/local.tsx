@@ -45,6 +45,7 @@ export const { use: useLocal, provider: LocalProvider } = createSimpleContext({
     const providers = () => data.location.provider.list(location.ref)
 
     function isModelValid(model: ModelPreferenceModel) {
+      if (model.providerID === "auto" && model.modelID === "auto") return true
       return !!models()?.some((item) => item.providerID === model.providerID && item.id === model.modelID)
     }
 
@@ -404,6 +405,8 @@ export const { use: useLocal, provider: LocalProvider } = createSimpleContext({
               reasoning: false,
             }
           }
+          if (value.providerID === "auto" && value.modelID === "auto")
+            return { provider: "Automatic routing", model: "Auto", reasoning: false }
           const provider = providers()?.find((item) => item.id === value.providerID)
           const info = models()?.find((item) => item.providerID === value.providerID && item.id === value.modelID)
           return {

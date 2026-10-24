@@ -4,6 +4,8 @@ import { Schema } from "effect"
 import { ephemeral, inventory } from "./event.js"
 import { Permission } from "./permission.js"
 import { AbsolutePath, optional } from "./schema.js"
+import { AccountManagement } from "./account-management.js"
+import { Routing } from "./routing.js"
 import { ConfigAgent } from "./config/agent.js"
 import { ConfigMedia } from "./config/media.js"
 import { ConfigCompaction } from "./config/compaction.js"
@@ -27,6 +29,8 @@ export class Info extends Schema.Class<Info>("Config.Info")({
   $schema: optional(Schema.String).annotate({
     description: "JSON schema reference for configuration validation",
   }),
+  routing: Routing.Config.pipe(optional),
+  accounts: AccountManagement.Config.pipe(optional),
   shell: Schema.String.pipe(optional).annotate({
     description: "Default shell to use for terminal and shell tool execution",
   }),

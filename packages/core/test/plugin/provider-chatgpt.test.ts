@@ -63,11 +63,12 @@ function required<T>(value: T | undefined): T {
   return value
 }
 
-const authorize = Effect.fn(function* () {
+const authorize = Effect.fn(function* (credentialID?: Credential.ID) {
   const integrations = yield* Integration.Service
   const integrationID = Integration.ID.make("openai")
   const attempt = yield* integrations.oauth.connect({
     integrationID,
+    credentialID,
     methodID: Integration.MethodID.make("chatgpt-token-sharing"),
   })
   yield* integrations.oauth.cancel({ integrationID, attemptID: attempt.attemptID })
@@ -257,7 +258,11 @@ describe("ChatGPTPlugin", () => {
       yield* addPlugin()
       yield* addLegacyPlugin()
       const integrations = yield* Integration.Service
-      expect((yield* integrations.get(Integration.ID.make("openai")))?.methods.map((method) => method.type === "oauth" && method.id)).toEqual([
+      expect(
+        (yield* integrations.get(Integration.ID.make("openai")))?.methods.map(
+          (method) => method.type === "oauth" && method.id,
+        ),
+      ).toEqual([
         Integration.MethodID.make("chatgpt-token-sharing"),
         Integration.MethodID.make("chatgpt-browser"),
         Integration.MethodID.make("chatgpt-headless"),
@@ -445,7 +450,7 @@ describe("ChatGPTPlugin", () => {
       const kv = yield* KV.Service
       const hostID = "urn:uuid:00000000-0000-4000-8000-000000000000"
       yield* PluginHost.storage(kv, ChatGPTPlugin.id).set("chatgpt-agent-host-id", hostID)
-      yield* credentials.create({
+      const saved = yield* credentials.create({
         integrationID: Integration.ID.make("openai"),
         value: Credential.OAuth.make({
           type: "oauth",
@@ -457,7 +462,9 @@ describe("ChatGPTPlugin", () => {
         }),
       })
       yield* addPlugin()
-      const url = yield* authorize()
+      const added = yield* authorize()
+      expect(added.searchParams.get("client_id")).toBe("dynamic_agent_client")
+      const url = yield* authorize(saved.id)
       expect(url.searchParams.get("client_id")).toBe("oaiapp_issued")
       expect(url.searchParams.has("agent_name_hint")).toBe(false)
       expect(url.searchParams.get("ext_agent_host_id")).toBe(hostID)
@@ -468,7 +475,7 @@ describe("ChatGPTPlugin", () => {
   it.live("rejects a reauthorization callback that returns a different client ID", () =>
     Effect.gen(function* () {
       const credentials = yield* Credential.Service
-      yield* credentials.create({
+      const saved = yield* credentials.create({
         integrationID: Integration.ID.make("openai"),
         value: Credential.OAuth.make({
           type: "oauth",
@@ -482,6 +489,7 @@ describe("ChatGPTPlugin", () => {
       yield* addPlugin()
       const integrations = yield* Integration.Service
       const attempt = yield* integrations.oauth.connect({
+        credentialID: saved.id,
         integrationID: Integration.ID.make("openai"),
         methodID: Integration.MethodID.make("chatgpt-token-sharing"),
       })
@@ -809,7 +817,12 @@ describe("ChatGPTPlugin", () => {
         "gpt-4.99",
       ])
         expect(yield* models.get(Provider.ID.openai, Model.ID.make(id))).toBeUndefined()
-      expect((yield* models.available()).filter((model) => model.providerID === Provider.ID.openai).map((model) => model.id).sort()).toEqual(
+      expect(
+        (yield* models.available())
+          .filter((model) => model.providerID === Provider.ID.openai)
+          .map((model) => model.id)
+          .sort(),
+      ).toEqual(
         [
           "gpt-5.5",
           "gpt-5.5-fast",

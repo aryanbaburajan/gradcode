@@ -12,7 +12,8 @@ import {
   type ScrollBoxRenderable,
 } from "@opentui/core"
 import { filetype } from "../../util/filetype"
-import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import { createEffect, createMemo, createResource, createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
 import { DiffViewerFileTree } from "./diff-viewer-file-tree"
 import { DiffFileMenu } from "./diff-viewer-file-menu"

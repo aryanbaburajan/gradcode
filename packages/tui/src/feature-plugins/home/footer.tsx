@@ -1,6 +1,6 @@
 import { Plugin } from "@opencode/plugin/tui"
 import { createMemo, Match, Show, Switch } from "solid-js"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import { usePlugin } from "../../plugin/context"
 import { Slot } from "../../plugin/render"
 

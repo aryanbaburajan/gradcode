@@ -1,5 +1,6 @@
 import { CliRenderEvents, TextAttributes, type Renderable } from "@opentui/core"
-import { TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { TimeToFirstDraw, useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { open } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import path from "node:path"

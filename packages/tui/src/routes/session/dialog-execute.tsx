@@ -1,5 +1,5 @@
 import { TextAttributes, type CodeRenderable, type LineInfo, type ScrollBoxRenderable } from "@opentui/core"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import type { SessionMessageAssistantTool } from "@opencode/client/promise"
 import { Option, Schema } from "effect"
 import { createMemo, createSignal, onCleanup, Show } from "solid-js"

@@ -1,5 +1,5 @@
 import { TextAttributes, type ScrollBoxRenderable } from "@opentui/core"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { isShellNotFoundError, type LocationRef, type ShellInfo } from "@opencode/client"
 import { createEffect, createMemo, createSignal, onCleanup, Show, untrack } from "solid-js"
 import stripAnsi from "strip-ansi"

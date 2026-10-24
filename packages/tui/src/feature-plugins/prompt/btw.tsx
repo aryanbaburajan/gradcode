@@ -1,6 +1,7 @@
 import { Plugin } from "@opencode/plugin/tui"
 import { TextAttributes, type ScrollBoxRenderable } from "@opentui/core"
-import { useKeyboard, useTerminalDimensions } from "@opentui/solid"
+import { useKeyboard } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import { createMemo, createSignal, Show } from "solid-js"
 import { Spinner } from "../../component/spinner"
 import { useConfig } from "../../config"

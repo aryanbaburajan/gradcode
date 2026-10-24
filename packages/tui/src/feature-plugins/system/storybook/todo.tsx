@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode/plugin/tui"
 import type { SessionMessageInfo } from "@opencode/client"
-import { useTerminalDimensions } from "@opentui/solid"
+import { useTerminalDimensions } from "../../../context/dimensions"
 import { createMemo, createSignal, For } from "solid-js"
 import { SidebarTodo } from "../../sidebar/todo"
 import type { TodoStatus } from "../../../util/todo"

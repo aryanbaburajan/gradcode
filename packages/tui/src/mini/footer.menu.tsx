@@ -1,6 +1,7 @@
 /** @jsxImportSource @opentui/solid */
 import { TextAttributes, type ColorInput } from "@opentui/core"
-import { useTerminalDimensions, type JSX } from "@opentui/solid"
+import { type JSX } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { createEffect, createMemo, createSignal, type Accessor } from "solid-js"
 import { transparent, type RunFooterTheme } from "./theme"
 import { Locale } from "../util/locale"

@@ -40,6 +40,7 @@ import { SessionRunnerLLM } from "./session/runner/llm.js"
 import { SessionRunnerModel } from "./session/runner/model.js"
 import { SessionCompaction } from "./session/compaction.js"
 import { SessionTitle } from "./session/title.js"
+import { Router } from "./routing.js"
 import { SessionContext } from "./session/context.js"
 import { Skill } from "./skill.js"
 import { SkillInstructions } from "./skill/instructions.js"
@@ -70,6 +71,7 @@ const nodes = [
   Integration.node,
   Provider.node,
   Model.node,
+  Router.node,
   ModelResolver.node,
   AISDK.node,
   Plugin.node,

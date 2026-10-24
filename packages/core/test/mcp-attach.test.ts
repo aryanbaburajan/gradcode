@@ -43,7 +43,7 @@ const it = testEffect(
           remove: unused,
           status: unused,
         },
-        oauth: { connect: unused, status: unused, complete: unused, cancel: unused },
+        oauth: { logout: unused, connect: unused, status: unused, complete: unused, cancel: unused },
         command: { connect: unused, status: unused, cancel: unused },
       }),
     ),

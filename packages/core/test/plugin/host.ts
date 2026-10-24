@@ -52,6 +52,9 @@ export function host(overrides: Overrides = {}): Plugin.Context {
       reload: () => Effect.die("unused provider.reload"),
     },
     model: overrides.model ?? {
+      routingSetup: () => Effect.die("unused model.routingSetup"),
+      routingProgress: () => Effect.die("unused model.routingProgress"),
+      preview: () => Effect.die("Routing preview is not used by this fixture"),
       list: () => Effect.die("unused model.list"),
       default: () => Effect.die("unused model.default"),
       transform: () => Effect.die("unused model.transform"),
@@ -84,6 +87,7 @@ export function host(overrides: Overrides = {}): Plugin.Context {
         external: () => Effect.die("unused integration.connect.external"),
       },
       oauth: {
+        logout: () => Effect.die("unused"),
         connect: () => Effect.die("unused integration.oauth.connect"),
         status: () => Effect.die("unused integration.oauth.status"),
         complete: () => Effect.die("unused integration.oauth.complete"),
@@ -236,13 +240,15 @@ export function providerHost(providers: Provider.Interface): Plugin.Context["pro
   return {
     list: () => providers.available().pipe(Effect.map(located)),
     get: (input) =>
-      providers.get(Provider.ID.make(input.providerID)).pipe(
-        Effect.flatMap((provider) =>
-          provider === undefined
-            ? Effect.fail(new Error(`Provider not found: ${input.providerID}`))
-            : Effect.succeed(located(provider)),
+      providers
+        .get(Provider.ID.make(input.providerID))
+        .pipe(
+          Effect.flatMap((provider) =>
+            provider === undefined
+              ? Effect.fail(new Error(`Provider not found: ${input.providerID}`))
+              : Effect.succeed(located(provider)),
+          ),
         ),
-      ),
     reload: providers.reload,
     transform: (callback) =>
       providers.transform((editor) =>
@@ -273,6 +279,9 @@ export const noProviders: Plugin.Context["provider"] = {
 
 export function modelHost(models: Model.Interface): Plugin.Context["model"] {
   return {
+    routingSetup: () => Effect.die("unused model.routingSetup"),
+    routingProgress: () => Effect.die("unused model.routingProgress"),
+    preview: () => Effect.die("Routing preview is not used by this fixture"),
     list: () => models.available().pipe(Effect.map(located)),
     default: () => models.default().pipe(Effect.map(located)),
     reload: models.reload,
@@ -306,6 +315,7 @@ export function integrationHost(integration: Integration.Interface): Plugin.Cont
       external: () => Effect.die("unused integration.connect.external"),
     },
     oauth: {
+      logout: () => Effect.die("unused"),
       connect: () => Effect.die("unused integration.oauth.connect"),
       status: () => Effect.die("unused integration.oauth.status"),
       complete: () => Effect.die("unused integration.oauth.complete"),

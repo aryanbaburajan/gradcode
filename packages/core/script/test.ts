@@ -1,4 +1,5 @@
 import fs from "fs/promises"
+import { randomBytes } from "node:crypto"
 import path from "path"
 import { tmpdir } from "../test/fixture/tmpdir"
 
@@ -6,6 +7,8 @@ await using directory = await tmpdir("oc-")
 const home = directory.path
 const temporary = path.join(home, "tmp")
 await fs.mkdir(temporary)
+const vaultKey = path.join(home, "test-vault.key")
+await fs.writeFile(vaultKey, randomBytes(32), { mode: 0o600 })
 
 const environment = {
   ...Object.fromEntries(
@@ -21,6 +24,7 @@ const environment = {
       return !/(?:^|_)(?:API_KEY|AUTHORIZATION|TOKEN|SECRET|PASSWORD|CREDENTIALS?)$/i.test(name)
     }),
   ),
+  OPENCODE_VAULT_KEY_FILE: vaultKey,
   HOME: home,
   OPENCODE_TEST_HOME: home,
   XDG_CONFIG_HOME: path.join(home, ".config"),

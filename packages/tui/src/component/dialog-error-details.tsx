@@ -1,5 +1,6 @@
 import { TextAttributes, type ScrollBoxRenderable } from "@opentui/core"
-import { useKeyboard, useTerminalDimensions } from "@opentui/solid"
+import { useKeyboard } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { createSignal, Show } from "solid-js"
 import { useConfig } from "../config"
 import { useClipboard } from "../context/clipboard"

@@ -1,6 +1,7 @@
 import { existsSync } from "fs"
 import path from "path"
-import { render, useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { render, useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "./context/dimensions"
 import "./component/spinner-renderable"
 import { Effect, Latch } from "effect"
 import { Service, type Endpoint } from "@opencode/client/effect/service"
@@ -62,6 +63,8 @@ import { SessionTabsProvider, useSessionTabs } from "./context/session-tabs"
 import { LocationProvider, useLocation } from "./context/location"
 import { LocalProvider, useLocal } from "./context/local"
 import { PermissionProvider } from "./context/permission"
+import { DialogRouting } from "./component/dialog-routing"
+import { DialogAccounts } from "./component/dialog-accounts"
 import { DialogModel } from "./component/dialog-model"
 import { useConnected } from "./component/use-connected"
 import { DialogMcp } from "./component/dialog-mcp"
@@ -637,14 +640,14 @@ function App() {
     if (!terminalTitleEnabled()) return
 
     if (route.data.type === "home") {
-      setTerminalTitle(renderer, "OpenCode")
+      setTerminalTitle(renderer, "Gradcode")
       return
     }
 
     if (route.data.type === "session") {
       const title = session?.title
       if (!title || isFallbackTitle(title)) {
-        setTerminalTitle(renderer, "OpenCode")
+        setTerminalTitle(renderer, "Gradcode")
         return
       }
 
@@ -1003,6 +1006,23 @@ function App() {
         },
       },
       {
+        name: "routing.setup",
+        title: "Set up automatic routing",
+        slash: { name: "routing" },
+        run: () => {
+          if (dialog.key !== "routing.setup")
+            dialog.replace(() => <DialogRouting />, undefined, { key: "routing.setup" })
+        },
+        category: "Integration",
+      },
+      {
+        name: "accounts.manage",
+        title: "Manage provider accounts",
+        slash: { name: "accounts" },
+        run: () => dialog.replace(() => <DialogAccounts />),
+        category: "Integration",
+      },
+      {
         name: "provider.connect",
         title: "Connect an integration",
         suggested: !connected(),
@@ -1050,7 +1070,7 @@ function App() {
         ? [
             {
               name: "opencode.update",
-              title: "Update OpenCode",
+              title: "Update Gradcode",
               slash: { name: "update" },
               run: () => updater.open?.("manual"),
               category: "System",

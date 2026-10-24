@@ -379,6 +379,7 @@ describe("ModelResolver", () => {
         status: () => Effect.die("unused"),
       },
       oauth: {
+        logout: () => Effect.die("unused"),
         connect: () => Effect.die("unused"),
         status: () => Effect.die("unused"),
         complete: () => Effect.die("unused"),

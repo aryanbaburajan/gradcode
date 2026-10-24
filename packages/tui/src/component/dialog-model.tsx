@@ -1,6 +1,10 @@
 import type { ModelInfo } from "@opencode/client"
 import { createMemo, createSignal, Show } from "solid-js"
+import { useClient } from "../context/client"
+import { useToast } from "../ui/toast"
+import { errorMessage } from "../util/error"
 import { useLocal } from "../context/local"
+import { DialogRouting } from "./dialog-routing"
 import { DialogSelect } from "../ui/dialog-select"
 import { useDialog } from "../ui/dialog"
 import { DialogIntegration } from "./dialog-integration"
@@ -19,9 +23,29 @@ export function DialogModel(props: { providerID?: string }) {
   const dialog = useDialog()
   const newDesigns = useNewDesigns()
   const connected = useConnected()
+  const location = useLocation()
 
-  function select(providerID: string, modelID: string) {
-    local.model.set({ providerID, modelID }, { recent: true })
+  const client = useClient()
+  const toast = useToast()
+  const [activating, setActivating] = createSignal(false)
+
+  async function select(providerID: string, modelID: string) {
+    if (activating()) return
+    if (providerID === "auto") {
+      setActivating(true)
+      try {
+        await client.api.model.routingSetup({ location: location.ref, payload: { type: "auto" } })
+      } catch (error) {
+        setActivating(false)
+        const message = errorMessage(error)
+        if (message.includes("Set up Jev or local Laya"))
+          dialog.replace(() => <DialogRouting />, undefined, { key: "routing.setup" })
+        else toast.show({ variant: "error", message, duration: 8000 })
+        return
+      }
+      setActivating(false)
+    }
+    local.model.set({ providerID, modelID }, { recent: providerID !== "auto" })
     const list = local.model.variant.list()
     const cur = local.model.variant.current()
     if (cur && list.includes(cur)) {
@@ -164,6 +188,19 @@ function DialogConnectedModels(props: {
       connected(),
     )
 
+    const auto =
+      !props.providerID && (!needle || "auto automatic routing".includes(needle.toLowerCase()))
+        ? [
+            {
+              value: { providerID: "auto", modelID: "auto" },
+              title: "Auto",
+              description: "Match model and reasoning to each task; select a model to turn off",
+              category: "Routing",
+              onSelect: () => props.onSelect("auto", "auto"),
+            },
+          ]
+        : []
+
     if (needle) {
       const results = prioritizeFavorites(
         sortModelOptions(
@@ -174,11 +211,15 @@ function DialogConnectedModels(props: {
       )
       // Search results name the provider inline. Without a category, the trailing slot keeps the favorite marker
       // instead of falling back to the provider name.
-      if (!newDesigns()) return results
-      return results.map((option) => ({ ...option, description: option.providerName, category: undefined }))
+      if (!newDesigns()) return [...auto, ...results]
+      return [
+        ...auto,
+        ...results.map((option) => ({ ...option, description: option.providerName, category: undefined })),
+      ]
     }
 
     return [
+      ...auto,
       ...favoriteOptions,
       ...recentOptions,
       ...modelOptions.filter((option) => option.category !== "Free"),

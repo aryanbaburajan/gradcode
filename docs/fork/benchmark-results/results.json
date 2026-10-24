@@ -1,0 +1,3291 @@
+[
+  {
+    "task": "sgf-parsing",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/sgf-parsing-auto",
+    "prompt_sha256": "d24cb5e2bcb7221c25cb336bf59c36b4449a5592897a52d115987efc2be02f74",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 62.989,
+    "session_id": "ses_e94d69733ffeInXYFUc6LdEKfL",
+    "errors": [],
+    "steps": 9,
+    "models": [
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2a50e9001WkjlXRk9Ble44j",
+        "cost": 0.00016047499999999998,
+        "tokens": {
+          "input": 3,
+          "output": 61,
+          "reasoning": 0,
+          "cache": {
+            "read": 9705,
+            "write": 261
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2a4543001hFmGWoS7dwsKY7",
+        "cost": 0.00027287,
+        "tokens": {
+          "input": 3,
+          "output": 218,
+          "reasoning": 30,
+          "cache": {
+            "read": 9257,
+            "write": 448
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2a389d001vMbdSauDFElcQH",
+        "cost": 0.00023658,
+        "tokens": {
+          "input": 3,
+          "output": 221,
+          "reasoning": 8,
+          "cache": {
+            "read": 9003,
+            "write": 254
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2a2707001DuXBdaAdfsy6zt",
+        "cost": 0.00022218999999999999,
+        "tokens": {
+          "input": 3,
+          "output": 226,
+          "reasoning": 0,
+          "cache": {
+            "read": 8839,
+            "write": 164
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2a175f001E4y7caGD9qgK26",
+        "cost": 0.00019323000000000002,
+        "tokens": {
+          "input": 3,
+          "output": 125,
+          "reasoning": 16,
+          "cache": {
+            "read": 8543,
+            "write": 296
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b29fe360017GBIUmZsaEvQRs",
+        "cost": 0.000322455,
+        "tokens": {
+          "input": 3,
+          "output": 166,
+          "reasoning": 74,
+          "cache": {
+            "read": 7528,
+            "write": 1015
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b29cb4b0017LlMwbMk4l8XZg",
+        "cost": 0.00060424,
+        "tokens": {
+          "input": 3,
+          "output": 812,
+          "reasoning": 180,
+          "cache": {
+            "read": 7244,
+            "write": 284
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b29c425001KtZasKKEIhg31g",
+        "cost": 0.000101295,
+        "tokens": {
+          "input": 3,
+          "output": 21,
+          "reasoning": 0,
+          "cache": {
+            "read": 7087,
+            "write": 157
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b297879001LBPEz69BwMlWIg",
+        "cost": 0.000895175,
+        "tokens": {
+          "input": 3,
+          "output": 18,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 7087
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      }
+    ],
+    "cost_usd": 0.00300851,
+    "session_outcome": "succeeded",
+    "tests_run": 23,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "sgf-parsing",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/sgf-parsing-baseline",
+    "prompt_sha256": "d24cb5e2bcb7221c25cb336bf59c36b4449a5592897a52d115987efc2be02f74",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 90.395,
+    "session_id": "ses_e94d69463ffe8qQeWOoo62D9xH",
+    "errors": [],
+    "steps": 7,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2ab377001yRLftt1pBaHZof",
+        "cost": 0.024041,
+        "tokens": {
+          "input": 3,
+          "output": 51,
+          "reasoning": 0,
+          "cache": {
+            "read": 10211,
+            "write": 900
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2a78d5001P1R2kr0BggG2an",
+        "cost": 0.064084,
+        "tokens": {
+          "input": 3,
+          "output": 874,
+          "reasoning": 0,
+          "cache": {
+            "read": 9329,
+            "write": 882
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2a41f0001nUH9lJLg3udbuO",
+        "cost": 0.0636395,
+        "tokens": {
+          "input": 3,
+          "output": 854,
+          "reasoning": 0,
+          "cache": {
+            "read": 8322,
+            "write": 1007
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b29fce4001MOT9h1QVzmtx5j",
+        "cost": 0.065073,
+        "tokens": {
+          "input": 3,
+          "output": 740,
+          "reasoning": 244,
+          "cache": {
+            "read": 7668,
+            "write": 654
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b29b874001oVTi5qd8Utal3L",
+        "cost": 0.039964,
+        "tokens": {
+          "input": 3,
+          "output": 64,
+          "reasoning": 516,
+          "cache": {
+            "read": 7384,
+            "write": 284
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b29aa8b001EsKyAvZfq1s9jU",
+        "cost": 0.0091885,
+        "tokens": {
+          "input": 3,
+          "output": 21,
+          "reasoning": 0,
+          "cache": {
+            "read": 7321,
+            "write": 63
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b297249001qkI4pMb0jju3f6",
+        "cost": 0.0925925,
+        "tokens": {
+          "input": 3,
+          "output": 21,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 7321
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.3585825,
+    "session_outcome": "succeeded",
+    "tests_run": 23,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "react",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/react-auto",
+    "prompt_sha256": "a9c95cc65c387e55095b1f0079d5dcd82ce5bce81dfacd9c83d5770d538ac28c",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 68.423,
+    "session_id": "ses_e94d59dffffeeq5itxyobpEwZw",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2b580f001sdPaVPnoCq2OhX",
+        "cost": 0.0151315,
+        "tokens": {
+          "input": 3,
+          "output": 41,
+          "reasoning": 0,
+          "cache": {
+            "read": 7814,
+            "write": 419
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2b4132001Qh9MxML6KR6csr",
+        "cost": 0.0332805,
+        "tokens": {
+          "input": 3,
+          "output": 405,
+          "reasoning": 0,
+          "cache": {
+            "read": 7363,
+            "write": 451
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2b25ee001kky144gnhLkF3G",
+        "cost": 0.039399,
+        "tokens": {
+          "input": 3,
+          "output": 406,
+          "reasoning": 17,
+          "cache": {
+            "read": 6419,
+            "write": 944
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2ae5ce001sbUfGEJ4EcSdr7",
+        "cost": 0.054236,
+        "tokens": {
+          "input": 3,
+          "output": 698,
+          "reasoning": 226,
+          "cache": {
+            "read": 6281,
+            "write": 138
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2ad887001ZwFDTWuM7fLTeX",
+        "cost": 0.007855,
+        "tokens": {
+          "input": 3,
+          "output": 18,
+          "reasoning": 0,
+          "cache": {
+            "read": 6225,
+            "write": 56
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2a6dae001hZPqhlFZeGA0nc",
+        "cost": 0.0786925,
+        "tokens": {
+          "input": 3,
+          "output": 17,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6225
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      }
+    ],
+    "cost_usd": 0.2285945,
+    "session_outcome": "succeeded",
+    "tests_run": 14,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "react",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/react-baseline",
+    "prompt_sha256": "a9c95cc65c387e55095b1f0079d5dcd82ce5bce81dfacd9c83d5770d538ac28c",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 54.783,
+    "session_id": "ses_e94d53307ffeQBcC5WaC6jfL5z",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2b8438001MuHjNMFsmWbosg",
+        "cost": 0.0184805,
+        "tokens": {
+          "input": 3,
+          "output": 37,
+          "reasoning": 0,
+          "cache": {
+            "read": 8463,
+            "write": 651
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2b6e7c001DpYU61iqYP39u2",
+        "cost": 0.048064,
+        "tokens": {
+          "input": 3,
+          "output": 618,
+          "reasoning": 0,
+          "cache": {
+            "read": 7709,
+            "write": 754
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2b491e001gqkJrg7hGpm6ep",
+        "cost": 0.058161,
+        "tokens": {
+          "input": 3,
+          "output": 619,
+          "reasoning": 107,
+          "cache": {
+            "read": 6481,
+            "write": 1228
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2aeb9f001yp0169gVYHHu6m",
+        "cost": 0.068843,
+        "tokens": {
+          "input": 3,
+          "output": 692,
+          "reasoning": 516,
+          "cache": {
+            "read": 6313,
+            "write": 168
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ae28c001ybgAZF4HkcKIVz",
+        "cost": 0.0089705,
+        "tokens": {
+          "input": 3,
+          "output": 33,
+          "reasoning": 0,
+          "cache": {
+            "read": 6228,
+            "write": 85
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ad218001ajnTKyIoxkP8TY",
+        "cost": 0.07943,
+        "tokens": {
+          "input": 3,
+          "output": 31,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6228
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.281949,
+    "session_outcome": "succeeded",
+    "tests_run": 14,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "zebra-puzzle",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/zebra-puzzle-auto",
+    "prompt_sha256": "e30a686c634ddb58a9b8acc09cfd085a971c962a1e79b5f6f3a4a1692dae6db1",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 37.454,
+    "session_id": "ses_e94d459cfffeVeZOE0Nm6IMN9t",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2c22ab0015v0HYS0gjLu2Zh",
+        "cost": 0.000111115,
+        "tokens": {
+          "input": 3,
+          "output": 48,
+          "reasoning": 0,
+          "cache": {
+            "read": 7644,
+            "write": 83
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2c1754001Diui6DF6nijNKT",
+        "cost": 0.00012224,
+        "tokens": {
+          "input": 3,
+          "output": 60,
+          "reasoning": 8,
+          "cache": {
+            "read": 7544,
+            "write": 100
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2c0d0e001DSHQHsAaKJGgM3",
+        "cost": 0.00024468,
+        "tokens": {
+          "input": 3,
+          "output": 54,
+          "reasoning": 18,
+          "cache": {
+            "read": 6388,
+            "write": 1156
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2bd3a6001tKQcfGEywRVpXf",
+        "cost": 0.0006394599999999999,
+        "tokens": {
+          "input": 3,
+          "output": 673,
+          "reasoning": 461,
+          "cache": {
+            "read": 6316,
+            "write": 72
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2bcd49001LQfzuKkcdYVUqB",
+        "cost": 9.121e-05,
+        "tokens": {
+          "input": 3,
+          "output": 21,
+          "reasoning": 0,
+          "cache": {
+            "read": 6166,
+            "write": 150
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2bb3fe001EanNXQZovgrFLr",
+        "cost": 0.0007800499999999999,
+        "tokens": {
+          "input": 3,
+          "output": 18,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6166
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      }
+    ],
+    "cost_usd": 0.0019887549999999996,
+    "session_outcome": "succeeded",
+    "tests_run": 2,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "zebra-puzzle",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/zebra-puzzle-baseline",
+    "prompt_sha256": "e30a686c634ddb58a9b8acc09cfd085a971c962a1e79b5f6f3a4a1692dae6db1",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 41.974,
+    "session_id": "ses_e94d48f91ffePSp2vHssslCGgz",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2c082e001qvUcmbbNh7w1bU",
+        "cost": 0.0119965,
+        "tokens": {
+          "input": 3,
+          "output": 49,
+          "reasoning": 0,
+          "cache": {
+            "read": 7704,
+            "write": 145
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2bfe0f001LJ0XdIddtONaB2",
+        "cost": 0.015486,
+        "tokens": {
+          "input": 3,
+          "output": 121,
+          "reasoning": 0,
+          "cache": {
+            "read": 7556,
+            "write": 148
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2bf35c001ybtIciRsFw4xhX",
+        "cost": 0.0245455,
+        "tokens": {
+          "input": 3,
+          "output": 120,
+          "reasoning": 0,
+          "cache": {
+            "read": 6603,
+            "write": 953
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ba8fa001EXe3o7F8hHoS5U",
+        "cost": 0.0544365,
+        "tokens": {
+          "input": 3,
+          "output": 559,
+          "reasoning": 372,
+          "cache": {
+            "read": 6494,
+            "write": 109
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ba0a2001OCza5S1jgXj3xn",
+        "cost": 0.009555,
+        "tokens": {
+          "input": 3,
+          "output": 39,
+          "reasoning": 0,
+          "cache": {
+            "read": 6400,
+            "write": 94
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2b7599001cv4ZyyaCQO22rA",
+        "cost": 0.08173,
+        "tokens": {
+          "input": 3,
+          "output": 34,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6400
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.1977495,
+    "session_outcome": "succeeded",
+    "tests_run": 2,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "zipper",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/zipper-auto",
+    "prompt_sha256": "59f67b2e3a32ead5c9a979e024eb66f5b066ab19d52a9071c2fe9cce6bf469d8",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 47.771,
+    "session_id": "ses_e94d3e7b1ffec0Wsyd85UwUUoW",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2cc710001ZM4sAaRKJRwMHQ",
+        "cost": 0.0149235,
+        "tokens": {
+          "input": 3,
+          "output": 34,
+          "reasoning": 0,
+          "cache": {
+            "read": 7956,
+            "write": 419
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2cb46d001m0DJJrPqtQ32ES",
+        "cost": 0.0331425,
+        "tokens": {
+          "input": 3,
+          "output": 404,
+          "reasoning": 0,
+          "cache": {
+            "read": 7525,
+            "write": 431
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2c9e140013Q28bl21hHlfJf",
+        "cost": 0.036583,
+        "tokens": {
+          "input": 3,
+          "output": 403,
+          "reasoning": 0,
+          "cache": {
+            "read": 6753,
+            "write": 772
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2c7034001l9FZz2kScSLSf7",
+        "cost": 0.0469475,
+        "tokens": {
+          "input": 3,
+          "output": 627,
+          "reasoning": 125,
+          "cache": {
+            "read": 6530,
+            "write": 223
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2c6726001nRG125lfh2reCg",
+        "cost": 0.009372,
+        "tokens": {
+          "input": 3,
+          "output": 36,
+          "reasoning": 0,
+          "cache": {
+            "read": 6442,
+            "write": 88
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2c24cd001VMH2yh6a3vGQCQ",
+        "cost": 0.082155,
+        "tokens": {
+          "input": 3,
+          "output": 32,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6442
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      }
+    ],
+    "cost_usd": 0.2231235,
+    "session_outcome": "succeeded",
+    "tests_run": 14,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "zipper",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/zipper-baseline",
+    "prompt_sha256": "59f67b2e3a32ead5c9a979e024eb66f5b066ab19d52a9071c2fe9cce6bf469d8",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 50.568,
+    "session_id": "ses_e94d3c47cffeuJOjtO7RUXaoK4",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2cf56e001NAJkFy1D3PAzC9",
+        "cost": 0.01851,
+        "tokens": {
+          "input": 3,
+          "output": 39,
+          "reasoning": 0,
+          "cache": {
+            "read": 8555,
+            "write": 638
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2cdaa6001Dt6lfKbqhktQx8",
+        "cost": 0.0472085,
+        "tokens": {
+          "input": 3,
+          "output": 605,
+          "reasoning": 9,
+          "cache": {
+            "read": 7866,
+            "write": 689
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2cb8bc00198neEpnZ35xr0c",
+        "cost": 0.053665,
+        "tokens": {
+          "input": 3,
+          "output": 604,
+          "reasoning": 57,
+          "cache": {
+            "read": 6760,
+            "write": 1106
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2c6889001K0KiIgVLoCUtKn",
+        "cost": 0.0636775,
+        "tokens": {
+          "input": 3,
+          "output": 627,
+          "reasoning": 459,
+          "cache": {
+            "read": 6535,
+            "write": 225
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2c5f1b001rF3cb374jph2CC",
+        "cost": 0.00945,
+        "tokens": {
+          "input": 3,
+          "output": 37,
+          "reasoning": 0,
+          "cache": {
+            "read": 6445,
+            "write": 90
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2c40b4001XKeRLQy6oyEX71",
+        "cost": 0.0822425,
+        "tokens": {
+          "input": 3,
+          "output": 33,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6445
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.2747535,
+    "session_outcome": "succeeded",
+    "tests_run": 14,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "list-ops",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/list-ops-auto",
+    "prompt_sha256": "8461b8df8f1110ef2d403d8b86de6552a246dcebb4c08bda55a8ddc9e751b534",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 26.959,
+    "session_id": "ses_e94d2fbd3ffeomfsXi12sZP0lQ",
+    "errors": [],
+    "steps": 5,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2d6138001qBx4xHxZ6vuUGW",
+        "cost": 0.015718,
+        "tokens": {
+          "input": 3,
+          "output": 40,
+          "reasoning": 0,
+          "cache": {
+            "read": 7613,
+            "write": 486
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d4964001NhzJmY61NeFYtL",
+        "cost": 0.0369815,
+        "tokens": {
+          "input": 3,
+          "output": 472,
+          "reasoning": 0,
+          "cache": {
+            "read": 7114,
+            "write": 499
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d3282001QpgA0IZkapLrYI",
+        "cost": 0.036743,
+        "tokens": {
+          "input": 3,
+          "output": 471,
+          "reasoning": 0,
+          "cache": {
+            "read": 6588,
+            "write": 526
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d1d190010lDocs2O0VL2M4",
+        "cost": 0.0340415,
+        "tokens": {
+          "input": 3,
+          "output": 462,
+          "reasoning": 43,
+          "cache": {
+            "read": 6399,
+            "write": 189
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d10bd001BCkq4idDXLSJ4d",
+        "cost": 0.0809675,
+        "tokens": {
+          "input": 3,
+          "output": 19,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6399
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      }
+    ],
+    "cost_usd": 0.2044515,
+    "session_outcome": "succeeded",
+    "tests_run": 24,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "list-ops",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/list-ops-baseline",
+    "prompt_sha256": "8461b8df8f1110ef2d403d8b86de6552a246dcebb4c08bda55a8ddc9e751b534",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 34.295,
+    "session_id": "ses_e94d32ac6ffez8yWVPSF7doHYI",
+    "errors": [],
+    "steps": 5,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2d4cd70013WHzhds2EJWpip",
+        "cost": 0.0170745,
+        "tokens": {
+          "input": 3,
+          "output": 42,
+          "reasoning": 0,
+          "cache": {
+            "read": 7932,
+            "write": 561
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2d353c001UQY4XjpR9hrubI",
+        "cost": 0.041913,
+        "tokens": {
+          "input": 3,
+          "output": 547,
+          "reasoning": 0,
+          "cache": {
+            "read": 7358,
+            "write": 574
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2d19f5001c4OrbzXHxe4pQz",
+        "cost": 0.0431175,
+        "tokens": {
+          "input": 3,
+          "output": 546,
+          "reasoning": 0,
+          "cache": {
+            "read": 6625,
+            "write": 733
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2cede500172Ie5WVnT6kwIF",
+        "cost": 0.0448195,
+        "tokens": {
+          "input": 3,
+          "output": 507,
+          "reasoning": 205,
+          "cache": {
+            "read": 6402,
+            "write": 223
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2cdbac001kVNwl9c4NoGAxj",
+        "cost": 0.081855,
+        "tokens": {
+          "input": 3,
+          "output": 36,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6402
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.2287795,
+    "session_outcome": "succeeded",
+    "tests_run": 24,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "paasio",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/paasio-auto",
+    "prompt_sha256": "af28373fdb27095b8a54b4964f624f4296d595f6b60fd1ccb04af442909008d1",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 40.655,
+    "session_id": "ses_e94d2a1b0ffepeG3NDnoPTpEF3",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2df08c001oypGZ9xBvlh8Ky",
+        "cost": 0.0177295,
+        "tokens": {
+          "input": 3,
+          "output": 39,
+          "reasoning": 0,
+          "cache": {
+            "read": 8387,
+            "write": 589
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2dd8e2001R6jud3a6d1v00g",
+        "cost": 0.04427,
+        "tokens": {
+          "input": 3,
+          "output": 574,
+          "reasoning": 0,
+          "cache": {
+            "read": 7765,
+            "write": 622
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2dba99001GumlOT9EwW9aNN",
+        "cost": 0.049064,
+        "tokens": {
+          "input": 3,
+          "output": 575,
+          "reasoning": 19,
+          "cache": {
+            "read": 6759,
+            "write": 1006
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d8af1001kjyiQdFFXQRUJB",
+        "cost": 0.061927,
+        "tokens": {
+          "input": 3,
+          "output": 851,
+          "reasoning": 134,
+          "cache": {
+            "read": 6247,
+            "write": 512
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d8071001W0d45H6KaCGuY5",
+        "cost": 0.0079285,
+        "tokens": {
+          "input": 3,
+          "output": 19,
+          "reasoning": 0,
+          "cache": {
+            "read": 6186,
+            "write": 61
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b2d6adb001QEjEWPEzX5JYQ0",
+        "cost": 0.078405,
+        "tokens": {
+          "input": 3,
+          "output": 21,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6186
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      }
+    ],
+    "cost_usd": 0.259324,
+    "session_outcome": "succeeded",
+    "tests_run": 25,
+    "grading_exit_code": 1,
+    "passed": false,
+    "grading_summary": "===========================================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/paasio-auto/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/paasio-auto/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/paasio-auto/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.051s\n\nFAILED (failures=15)\n"
+  },
+  {
+    "task": "paasio",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/paasio-baseline",
+    "prompt_sha256": "af28373fdb27095b8a54b4964f624f4296d595f6b60fd1ccb04af442909008d1",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 53.403,
+    "session_id": "ses_e94d28f1fffeNIxtCK23Gzx8pb",
+    "errors": [],
+    "steps": 7,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2e339d001GWLmSSn3ry6412",
+        "cost": 0.024423,
+        "tokens": {
+          "input": 3,
+          "output": 45,
+          "reasoning": 0,
+          "cache": {
+            "read": 9443,
+            "write": 1016
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2e16f10013xBuonqojx557n",
+        "cost": 0.072541,
+        "tokens": {
+          "input": 3,
+          "output": 1001,
+          "reasoning": 0,
+          "cache": {
+            "read": 8311,
+            "write": 1132
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2dee80001MVAmgIdWg06cBI",
+        "cost": 0.075823,
+        "tokens": {
+          "input": 3,
+          "output": 1002,
+          "reasoning": 102,
+          "cache": {
+            "read": 7243,
+            "write": 1068
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2dac710011xJhKMkwLrdl5A",
+        "cost": 0.064407,
+        "tokens": {
+          "input": 3,
+          "output": 833,
+          "reasoning": 214,
+          "cache": {
+            "read": 6827,
+            "write": 416
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2d8be2001nsWeD1MA8n10SY",
+        "cost": 0.029359,
+        "tokens": {
+          "input": 3,
+          "output": 69,
+          "reasoning": 255,
+          "cache": {
+            "read": 6279,
+            "write": 548
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2d82f2001R5xTs7AxFmQtif",
+        "cost": 0.009194,
+        "tokens": {
+          "input": 3,
+          "output": 37,
+          "reasoning": 0,
+          "cache": {
+            "read": 6189,
+            "write": 90
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2d760f001MTbU4PCcGAnOWD",
+        "cost": 0.0790425,
+        "tokens": {
+          "input": 3,
+          "output": 33,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6189
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.3547895,
+    "session_outcome": "succeeded",
+    "tests_run": 25,
+    "grading_exit_code": 1,
+    "passed": false,
+    "grading_summary": "===============================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/paasio-baseline/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/paasio-baseline/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/paasio-baseline/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.052s\n\nFAILED (failures=15)\n"
+  },
+  {
+    "task": "bottle-song",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/bottle-song-auto",
+    "prompt_sha256": "91b8ba00956643b10795af7e9ff03ea6004c8ace6ce50883db580bf0eae28350",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 24.702,
+    "session_id": "ses_e94d1bb1affepidcE3A3NVdJwN",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2e9c2d001O3SFwgPHFRkJhN",
+        "cost": 0.00012648,
+        "tokens": {
+          "input": 3,
+          "output": 40,
+          "reasoning": 0,
+          "cache": {
+            "read": 7418,
+            "write": 256
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e92150016kE29iI3U1m8AE",
+        "cost": 0.00023933499999999997,
+        "tokens": {
+          "input": 3,
+          "output": 235,
+          "reasoning": 8,
+          "cache": {
+            "read": 7041,
+            "write": 377
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e81e4001aQUNFVfFzfMQ7t",
+        "cost": 0.000310875,
+        "tokens": {
+          "input": 3,
+          "output": 234,
+          "reasoning": 115,
+          "cache": {
+            "read": 6470,
+            "write": 571
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e6ce90017Hkc2eWWgwCnWN",
+        "cost": 0.000346555,
+        "tokens": {
+          "input": 3,
+          "output": 385,
+          "reasoning": 165,
+          "cache": {
+            "read": 6413,
+            "write": 57
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e67b70010AQvFM6yMUOZ3O",
+        "cost": 9.214e-05,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 0,
+          "cache": {
+            "read": 6259,
+            "write": 154
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e519e001wk17Dugw97501L",
+        "cost": 0.0007971749999999999,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 9,
+          "cache": {
+            "read": 0,
+            "write": 6259
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      }
+    ],
+    "cost_usd": 0.0019125599999999998,
+    "session_outcome": "succeeded",
+    "tests_run": 7,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "bottle-song",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/bottle-song-baseline",
+    "prompt_sha256": "91b8ba00956643b10795af7e9ff03ea6004c8ace6ce50883db580bf0eae28350",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 24.752,
+    "session_id": "ses_e94d1ff5cffe4vo9j4ZJuBSA5e",
+    "errors": [],
+    "steps": 5,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2e56b2001wR1ypvl0VkDVeq",
+        "cost": 0.013996,
+        "tokens": {
+          "input": 3,
+          "output": 47,
+          "reasoning": 0,
+          "cache": {
+            "read": 7341,
+            "write": 342
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2e41dc001SDYAVSzQLLkrJT",
+        "cost": 0.0278535,
+        "tokens": {
+          "input": 3,
+          "output": 328,
+          "reasoning": 0,
+          "cache": {
+            "read": 6986,
+            "write": 355
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2e30fc001YaTEJ7z6Ny3rFl",
+        "cost": 0.0279775,
+        "tokens": {
+          "input": 3,
+          "output": 327,
+          "reasoning": 0,
+          "cache": {
+            "read": 6585,
+            "write": 401
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2e197b00168Ak8OVcELKENl",
+        "cost": 0.026673,
+        "tokens": {
+          "input": 3,
+          "output": 325,
+          "reasoning": 55,
+          "cache": {
+            "read": 6493,
+            "write": 92
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2e05c0001NllB20AFYsnraS",
+        "cost": 0.0830425,
+        "tokens": {
+          "input": 3,
+          "output": 37,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6493
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.1795425,
+    "session_outcome": "succeeded",
+    "tests_run": 7,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "grade-school",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/grade-school-auto",
+    "prompt_sha256": "ae7c96aa173fa3a67f5f720edf9d39fa504b2aaa3ac8235530c85e3bc1dce200",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 27.667,
+    "session_id": "ses_e94d19b7fffesrG36FkYUmM5T0",
+    "errors": [],
+    "steps": 7,
+    "models": [
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2ec7f90013HPu1r486vMXxN",
+        "cost": 0.00012560500000000001,
+        "tokens": {
+          "input": 3,
+          "output": 39,
+          "reasoning": 0,
+          "cache": {
+            "read": 8118,
+            "write": 197
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2ebe76001N47ZvcBQlpSaMG",
+        "cost": 0.000200965,
+        "tokens": {
+          "input": 3,
+          "output": 176,
+          "reasoning": 8,
+          "cache": {
+            "read": 7879,
+            "write": 239
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2eb0980011GH4z9T5gNbdn1",
+        "cost": 0.000270265,
+        "tokens": {
+          "input": 3,
+          "output": 175,
+          "reasoning": 36,
+          "cache": {
+            "read": 7134,
+            "write": 745
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e9567001qZSqAjTCJAyxZi",
+        "cost": 0.00050816,
+        "tokens": {
+          "input": 3,
+          "output": 304,
+          "reasoning": 420,
+          "cache": {
+            "read": 6486,
+            "write": 648
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e88c8001Mzg3nT3xypEcG1",
+        "cost": 0.000159765,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 140,
+          "cache": {
+            "read": 6359,
+            "write": 127
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e83460012C6DHjO71f1WCF",
+        "cost": 9.11e-05,
+        "tokens": {
+          "input": 3,
+          "output": 19,
+          "reasoning": 0,
+          "cache": {
+            "read": 6205,
+            "write": 154
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2e73180017GS5J7g1cEe1CB",
+        "cost": 0.000790425,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 9,
+          "cache": {
+            "read": 0,
+            "write": 6205
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      }
+    ],
+    "cost_usd": 0.002146285,
+    "session_outcome": "succeeded",
+    "tests_run": 20,
+    "grading_exit_code": 1,
+    "passed": false,
+    "grading_summary": "\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Aimee'] != [True]\n\nFirst differing element 0:\n'Aimee'\nTrue\n\n- ['Aimee']\n+ [True]\n\n======================================================================\nFAIL: test_adding_multiple_students_in_the_same_grade_in_the_roster (grade_school_test.GradeSchoolTest.test_adding_multiple_students_in_the_same_grade_in_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/grade-school-auto/grade_school_test.py\", line 38, in test_adding_multiple_students_in_the_same_grade_in_the_roster\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Blair', 'James', 'Paul'] != [True, True, True]\n\nFirst differing element 0:\n'Blair'\nTrue\n\n- ['Blair', 'James', 'Paul']\n+ [True, True, True]\n\n======================================================================\nFAIL: test_adding_students_in_multiple_grades (grade_school_test.GradeSchoolTest.test_adding_students_in_multiple_grades)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/grade-school-auto/grade_school_test.py\", line 73, in test_adding_students_in_multiple_grades\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Chelsea', 'Logan'] != [True, True]\n\nFirst differing element 0:\n'Chelsea'\nTrue\n\n- ['Chelsea', 'Logan']\n+ [True, True]\n\n----------------------------------------------------------------------\nRan 20 tests in 0.003s\n\nFAILED (failures=3, errors=7)\n"
+  },
+  {
+    "task": "grade-school",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/grade-school-baseline",
+    "prompt_sha256": "ae7c96aa173fa3a67f5f720edf9d39fa504b2aaa3ac8235530c85e3bc1dce200",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 30.726,
+    "session_id": "ses_e94d15744ffe4oD9uyfbjU5C2g",
+    "errors": [],
+    "steps": 5,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2f0cdc001TZlW4y7IIYSB90",
+        "cost": 0.014987,
+        "tokens": {
+          "input": 3,
+          "output": 46,
+          "reasoning": 0,
+          "cache": {
+            "read": 7432,
+            "write": 418
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ef4ea001qeW0S52cau1r5J",
+        "cost": 0.0326185,
+        "tokens": {
+          "input": 3,
+          "output": 404,
+          "reasoning": 0,
+          "cache": {
+            "read": 7001,
+            "write": 431
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2edab60012cOQiguu5EISXd",
+        "cost": 0.0317695,
+        "tokens": {
+          "input": 3,
+          "output": 403,
+          "reasoning": 0,
+          "cache": {
+            "read": 6602,
+            "write": 399
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ec249001a9zn7aQR0gPZUP",
+        "cost": 0.0274065,
+        "tokens": {
+          "input": 3,
+          "output": 317,
+          "reasoning": 61,
+          "cache": {
+            "read": 6439,
+            "write": 163
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2eaddb0018tE5GHvR0qlMoL",
+        "cost": 0.0823675,
+        "tokens": {
+          "input": 3,
+          "output": 37,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6439
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.189149,
+    "session_outcome": "succeeded",
+    "tests_run": 20,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "go-counting",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/go-counting-auto",
+    "prompt_sha256": "66e27bbbbc811083f2cd1faae531f55a97353f676e20cd7cba45c2090fb9311b",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 29.571,
+    "session_id": "ses_e94d0dc26ffeHslag0bOSaxdRw",
+    "errors": [],
+    "steps": 7,
+    "models": [
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2f8866001LR6ak152XYxfyw",
+        "cost": 0.00013318,
+        "tokens": {
+          "input": 3,
+          "output": 45,
+          "reasoning": 0,
+          "cache": {
+            "read": 8113,
+            "write": 234
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2f7ab9001cUDi9AvJOmViiC",
+        "cost": 0.000217,
+        "tokens": {
+          "input": 3,
+          "output": 196,
+          "reasoning": 25,
+          "cache": {
+            "read": 7895,
+            "write": 218
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2f6e410019dMHIRbrRiIbqA",
+        "cost": 0.00019658,
+        "tokens": {
+          "input": 3,
+          "output": 171,
+          "reasoning": 8,
+          "cache": {
+            "read": 7653,
+            "write": 242
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2f600e0014IhK3QKjd9qH5Q",
+        "cost": 0.00027203499999999995,
+        "tokens": {
+          "input": 3,
+          "output": 170,
+          "reasoning": 44,
+          "cache": {
+            "read": 6886,
+            "write": 767
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2f450c001fUpFLqRRnFWbpK",
+        "cost": 0.00048214,
+        "tokens": {
+          "input": 3,
+          "output": 554,
+          "reasoning": 191,
+          "cache": {
+            "read": 6534,
+            "write": 352
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2f3f4f001vzNoP0C5LwppF5",
+        "cost": 9.335e-05,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 0,
+          "cache": {
+            "read": 6380,
+            "write": 154
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2f305f001mGZLPOBK47nK0d",
+        "cost": 0.0008123,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 9,
+          "cache": {
+            "read": 0,
+            "write": 6380
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      }
+    ],
+    "cost_usd": 0.002206585,
+    "session_outcome": "succeeded",
+    "tests_run": 1,
+    "grading_exit_code": 1,
+    "passed": false,
+    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/go-counting-auto/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-pilot-20261024/grading/go-counting-auto/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+  },
+  {
+    "task": "go-counting",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/go-counting-baseline",
+    "prompt_sha256": "66e27bbbbc811083f2cd1faae531f55a97353f676e20cd7cba45c2090fb9311b",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 49.288,
+    "session_id": "ses_e94d12be9ffeY2b5hRnAto2VMH",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b2f61ee001glgs4F4z9l0bbk",
+        "cost": 0.019978,
+        "tokens": {
+          "input": 3,
+          "output": 45,
+          "reasoning": 0,
+          "cache": {
+            "read": 8623,
+            "write": 726
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2f48ab001seWw6EMAEQOtDO",
+        "cost": 0.05269,
+        "tokens": {
+          "input": 3,
+          "output": 711,
+          "reasoning": 0,
+          "cache": {
+            "read": 7885,
+            "write": 738
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2f2a8a00143bE6pme5FafUe",
+        "cost": 0.052546,
+        "tokens": {
+          "input": 3,
+          "output": 710,
+          "reasoning": 0,
+          "cache": {
+            "read": 7091,
+            "write": 794
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2efc88001LtOk9VlS0yShgC",
+        "cost": 0.05016,
+        "tokens": {
+          "input": 3,
+          "output": 575,
+          "reasoning": 197,
+          "cache": {
+            "read": 6705,
+            "write": 386
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2eee99001v0JmtRhjw2XOHA",
+        "cost": 0.0096315,
+        "tokens": {
+          "input": 3,
+          "output": 37,
+          "reasoning": 0,
+          "cache": {
+            "read": 6614,
+            "write": 91
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ed94b0016xOK8sYYcAShUq",
+        "cost": 0.084355,
+        "tokens": {
+          "input": 3,
+          "output": 33,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6614
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.2693605,
+    "session_outcome": "succeeded",
+    "tests_run": 1,
+    "grading_exit_code": 1,
+    "passed": false,
+    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-pilot-20261024/grading/go-counting-baseline/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-pilot-20261024/grading/go-counting-baseline/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+  },
+  {
+    "task": "scale-generator",
+    "condition": "auto",
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/scale-generator-auto",
+    "prompt_sha256": "8305acaa1466a1c4b6b69939df54df15bc379618dff3846081ec148239960510",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 31.887,
+    "session_id": "ses_e94d0684affemVjcrK6seNFJ1l",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      },
+      {
+        "id": "gpt-6-luna",
+        "providerID": "openai",
+        "variant": "low"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b3004fd001IGUan2gNQhPgF5",
+        "cost": 0.000186515,
+        "tokens": {
+          "input": 3,
+          "output": 69,
+          "reasoning": 54,
+          "cache": {
+            "read": 8334,
+            "write": 331
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2ff92f001v6HL17etXjGQSO",
+        "cost": 0.00016709,
+        "tokens": {
+          "input": 3,
+          "output": 93,
+          "reasoning": 21,
+          "cache": {
+            "read": 8104,
+            "write": 230
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2fe6ef001yIO9h6mAEGdweA",
+        "cost": 0.00020570499999999998,
+        "tokens": {
+          "input": 3,
+          "output": 183,
+          "reasoning": 8,
+          "cache": {
+            "read": 7853,
+            "write": 251
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2fdb84001qAPbl7kwEtaQ1g",
+        "cost": 0.00030153499999999996,
+        "tokens": {
+          "input": 3,
+          "output": 182,
+          "reasoning": 41,
+          "cache": {
+            "read": 6886,
+            "write": 967
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2faf2d001VERMCv95AOPr0k",
+        "cost": 0.0005529700000000001,
+        "tokens": {
+          "input": 3,
+          "output": 527,
+          "reasoning": 419,
+          "cache": {
+            "read": 6792,
+            "write": 94
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      },
+      {
+        "message_id": "msg_16b2fa4c1001PIaI7Wl3wU8Wx5",
+        "cost": 0.0008588,
+        "tokens": {
+          "input": 3,
+          "output": 19,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6792
+          }
+        },
+        "model": {
+          "id": "gpt-6-luna",
+          "providerID": "openai",
+          "variant": "low"
+        }
+      }
+    ],
+    "cost_usd": 0.002272615,
+    "session_outcome": "succeeded",
+    "tests_run": 17,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  },
+  {
+    "task": "scale-generator",
+    "condition": "baseline",
+    "requested_model": "openai/gpt-6-astra#high",
+    "directory": "/tmp/gradcode-routing-pilot-20261024/scale-generator-baseline",
+    "prompt_sha256": "8305acaa1466a1c4b6b69939df54df15bc379618dff3846081ec148239960510",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 32.654,
+    "session_id": "ses_e94d0641dffec6Kq4JE1b2vz78",
+    "errors": [],
+    "steps": 6,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "high"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b3007ba0019oFAMkMzwBYFhv",
+        "cost": 0.0175135,
+        "tokens": {
+          "input": 3,
+          "output": 39,
+          "reasoning": 0,
+          "cache": {
+            "read": 8396,
+            "write": 571
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2ff1c9001DHhWq13FvX9r3u",
+        "cost": 0.042992,
+        "tokens": {
+          "input": 3,
+          "output": 557,
+          "reasoning": 0,
+          "cache": {
+            "read": 7812,
+            "write": 584
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2fda230015DebeeY9BIyZ56",
+        "cost": 0.0429445,
+        "tokens": {
+          "input": 3,
+          "output": 556,
+          "reasoning": 0,
+          "cache": {
+            "read": 7177,
+            "write": 635
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2fb84f001My6vuQR6LRyB7u",
+        "cost": 0.038988,
+        "tokens": {
+          "input": 3,
+          "output": 405,
+          "reasoning": 209,
+          "cache": {
+            "read": 7083,
+            "write": 94
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2fb086001C3R2zIlzYpTPau",
+        "cost": 0.0087185,
+        "tokens": {
+          "input": 3,
+          "output": 19,
+          "reasoning": 0,
+          "cache": {
+            "read": 7026,
+            "write": 57
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      },
+      {
+        "message_id": "msg_16b2fa1ad0014aBdw8RazV0PgM",
+        "cost": 0.088705,
+        "tokens": {
+          "input": 3,
+          "output": 17,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 7026
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "high"
+        }
+      }
+    ],
+    "cost_usd": 0.2398615,
+    "session_outcome": "succeeded",
+    "tests_run": 17,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK"
+  }
+]

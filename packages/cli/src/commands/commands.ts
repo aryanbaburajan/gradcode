@@ -35,13 +35,13 @@ const PermissionParams = {
   ),
 }
 
-const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME : "opencode", {
-  description: "OpenCode command line interface",
+const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME : "gradcode", {
+  description: "Gradcode command line interface",
   params: {
     ...ServerParams,
     ...PermissionParams,
     directory: Argument.String("directory").pipe(
-      Argument.withDescription("Directory to start OpenCode in"),
+      Argument.withDescription("Directory to start Gradcode in"),
       Argument.optional,
     ),
     continue: Flag.Boolean("continue").pipe(
@@ -58,7 +58,7 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
   },
   commands: [
     Spec.make("upgrade", {
-      description: "Upgrade OpenCode to the latest or a specific version",
+      description: "Upgrade Gradcode to the latest or a specific version",
       aliases: ["update"],
       params: {
         target: Argument.String("target").pipe(
@@ -73,7 +73,7 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
       },
     }),
     Spec.make("uninstall", {
-      description: "Uninstall OpenCode, keeping session data, configuration, and state",
+      description: "Uninstall Gradcode, keeping session data, configuration, and state",
       params: {
         dryRun: Flag.Boolean("dry-run").pipe(
           Flag.withDescription("Show what would be removed without removing"),
@@ -154,6 +154,15 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
         }),
       ],
     }),
+    Spec.make("accounts", {
+      description: "Inspect and manage provider accounts",
+      params: {
+        ...ServerParams,
+        action: Argument.Literals("action", ["list", "inspect", "rename", "enable", "disable", "priority", "select", "unselect", "logout", "remove"]),
+        id: Argument.String("id").pipe(Argument.optional),
+        value: Argument.String("value").pipe(Argument.optional),
+      },
+    }),
     Spec.make("auth", {
       description: "manage integrations and credentials",
       commands: [
@@ -197,8 +206,9 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
           },
         }),
         Spec.make("export", {
-          description: "print stored credentials, including secrets, as JSON",
+          description: "print secret-free credential metadata as JSON",
           params: {
+            includeSecrets: Flag.Boolean("include-secrets").pipe(Flag.withDefault(false)),
             ...ServerParams,
             target: Argument.String("target").pipe(
               Argument.withDescription("Integration ID or name (exports every integration when omitted)"),
@@ -315,6 +325,25 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
         }),
       ],
     }),
+    Spec.make("routing", {
+      description: "Manage automatic routing backends",
+      commands: [
+        Spec.make("reset", {
+          description: "Reset routing setup, keeping Laya installed",
+          params: {
+            ...ServerParams,
+            backend: Argument.Literals("backend", ["jev", "laya", "all"]).pipe(Argument.withDefault("all")),
+          },
+        }),
+      ],
+    }),
+    Spec.make("route", {
+      description: "Preview model routing without inference",
+      params: {
+        ...ServerParams,
+        request: Argument.String("request"),
+      },
+    }),
     Spec.make("models", {
       description: "List all available models",
       params: ServerParams,
@@ -387,7 +416,7 @@ const Root = Spec.make(typeof OPENCODE_CLI_NAME === "string" ? OPENCODE_CLI_NAME
       },
     }),
     Spec.make("run", {
-      description: "Run OpenCode with a message",
+      description: "Run Gradcode with a message",
       params: {
         ...ServerParams,
         message: Argument.String("message").pipe(

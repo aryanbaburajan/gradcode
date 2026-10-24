@@ -1,7 +1,8 @@
 /** @jsxImportSource @opentui/solid */
 import type { Plugin } from "@opencode/plugin/tui"
 import { BoxRenderable, MouseButton } from "@opentui/core"
-import { Portal, useTerminalDimensions } from "@opentui/solid"
+import { Portal } from "@opentui/solid"
+import { useTerminalDimensions } from "../../context/dimensions"
 import { createSignal, onCleanup } from "solid-js"
 
 export function DiffFileMenu(props: {

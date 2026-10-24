@@ -5,6 +5,7 @@
   "type": "module",
   "license": "MIT",
   "bin": {
+    "gradcode": "./bin/gradcode.cjs",
     "opencode": "./bin/opencode.cjs",
     "opencode2": "./bin/opencode2.cjs"
   },
@@ -30,6 +31,7 @@
     "@clack/prompts": "1.0.0-alpha.1",
     "@effect/platform-node": "catalog:",
     "@opencode/client": "workspace:*",
+    "@opencode/core": "workspace:*",
     "@opencode/plugin": "workspace:*",
     "@opencode-ai/pty": "0.3.1",
     "@opencode/schema": "workspace:*",

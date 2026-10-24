@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "executions": 68,
+    "passed": 57,
+    "success_rate": 0.8382352941176471,
+    "estimated_cost_usd": null,
+    "cost_per_passing_execution_usd": null,
+    "mean_duration_seconds": 63.620955882352945,
+    "unknown_cost_executions": 2,
+    "timeouts": 1
+  },
+  "auto": {
+    "executions": 67,
+    "passed": 37,
+    "success_rate": 0.5522388059701493,
+    "estimated_cost_usd": null,
+    "cost_per_passing_execution_usd": null,
+    "mean_duration_seconds": 57.062985074626866,
+    "unknown_cost_executions": 2,
+    "timeouts": 2
+  },
+  "complete": false
+}

@@ -11,10 +11,10 @@ import { SessionSchema } from "../schema.js"
 
 export class ModelNotSelectedError extends Schema.TaggedError<ModelNotSelectedError>()(
   "SessionRunnerModel.ModelNotSelectedError",
-  { sessionID: SessionSchema.ID },
+  { sessionID: SessionSchema.ID, reason: Schema.optional(Schema.String) },
 ) {
   override get message() {
-    return `No model is available for session ${this.sessionID}`
+    return this.reason ?? `No model is available for session ${this.sessionID}`
   }
 }
 
@@ -76,7 +76,7 @@ const layer = Layer.effect(
     return Service.of({
       resolve: Effect.fn("SessionRunnerModel.resolve")(function* (session, available) {
         // Location plugins populate and filter the catalog asynchronously during layer startup.
-        if (!session.model) {
+        if (!session.model || (session.model.providerID === "auto" && session.model.id === "auto")) {
           const agent = (yield* agents.select(session.agent)).info?.model
           const preferred =
             agent &&

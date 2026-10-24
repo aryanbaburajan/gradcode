@@ -1,13 +1,7 @@
 {
   "$schema": "https://opencode.ai/theme.json",
   "base": {
-    "categorical": [
-      "blue",
-      "purple",
-      "green",
-      "orange",
-      "red"
-    ],
+    "categorical": ["brand", "purple", "green", "orange", "red"],
     "text": {
       "base": "$hue.neutral.100",
       "muted": "$hue.neutral.200",
@@ -230,9 +224,20 @@
         "800": "#f6fff6",
         "900": "#fbfffb"
       },
-      "accent": "$hue.blue",
-      "interactive": "$hue.blue",
-      "neutral": "$hue.gray"
+      "accent": "$hue.brand",
+      "interactive": "$hue.brand",
+      "neutral": "$hue.gray",
+      "brand": {
+        "100": "#30070e",
+        "200": "#781323",
+        "300": "#a91a30",
+        "400": "#c91635",
+        "500": "#e6a3af",
+        "600": "#f4c4ce",
+        "700": "#fbe0e6",
+        "800": "#fff0f3",
+        "900": "#fff8fa"
+      }
     },
     "text": {
       "feedback": {
@@ -383,9 +388,20 @@
         "800": "#131a13",
         "900": "#090d09"
       },
-      "accent": "$hue.blue",
-      "interactive": "$hue.blue",
-      "neutral": "$hue.gray"
+      "accent": "$hue.brand",
+      "interactive": "$hue.brand",
+      "neutral": "$hue.gray",
+      "brand": {
+        "100": "#fff0f3",
+        "200": "#ffc3ce",
+        "300": "#ff8198",
+        "400": "#ff304f",
+        "500": "#bd1732",
+        "600": "#7b1022",
+        "700": "#4c0c18",
+        "800": "#2e0810",
+        "900": "#1c050a"
+      }
     }
   }
 }

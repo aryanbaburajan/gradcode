@@ -4,6 +4,7 @@ import { Commands } from "../commands"
 import { Runtime } from "../../framework/runtime"
 import { Service, type Endpoint } from "@opencode/client/effect/service"
 import { ServerConnection } from "../../services/server-connection"
+import { noTimeoutFetch } from "@opencode/util/no-timeout-fetch"
 
 const methods = new Set(["delete", "get", "head", "options", "patch", "post", "put"])
 
@@ -36,7 +37,7 @@ export default Runtime.handler(
     if (body !== undefined && !headers.has("content-type")) headers.set("content-type", "application/json")
 
     const response = yield* Effect.tryPromise(() =>
-      fetch(new URL(request.path, endpoint.url), {
+      noTimeoutFetch(new URL(request.path, endpoint.url), {
         method: request.method,
         headers,
         body,

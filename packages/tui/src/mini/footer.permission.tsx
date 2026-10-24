@@ -12,7 +12,8 @@
 // tool snapshots.
 /** @jsxImportSource @opentui/solid */
 import { TextAttributes, measureEditText, type ScrollBoxRenderable, type TextareaRenderable } from "@opentui/core"
-import { useKeyboard, useRenderer, useTerminalDimensions } from "@opentui/solid"
+import { useKeyboard, useRenderer } from "@opentui/solid"
+import { useTerminalDimensions } from "../context/dimensions"
 import { For, Match, Show, Switch, createEffect, createMemo, createSignal } from "solid-js"
 import {
   createPermissionBodyState,
@@ -111,7 +112,7 @@ export function RejectField(props: {
       minHeight={1}
       maxHeight={3}
       wrapMode="word"
-      placeholder="Tell OpenCode what to do differently"
+      placeholder="Tell Gradcode what to do differently"
       placeholderColor={props.theme.muted}
       textColor={props.theme.formfieldText}
       focusedTextColor={props.theme.formfieldFocusedText}
@@ -323,7 +324,7 @@ export function RunPermissionBody(props: {
           {title()}
         </text>
         <Show when={!compact() && stage() === "reject"}>
-          <text fg={props.theme.muted}>Tell OpenCode what to do differently</text>
+          <text fg={props.theme.muted}>Tell Gradcode what to do differently</text>
         </Show>
       </box>
 

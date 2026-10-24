@@ -358,6 +358,7 @@ function resourceMcpLayer(
             status: unusedIntegration,
           },
           oauth: {
+            logout: () => Effect.die("unused"),
             connect: unusedIntegration,
             status: unusedIntegration,
             complete: unusedIntegration,
