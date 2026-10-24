@@ -4,8 +4,6 @@ Started: 2026-10-24T00:54:52.262677+00:00. Completed executions: **136/136**.
 
 All **34 Python tasks** in the pinned Aider Polyglot dataset, **2 fresh attempts per condition**. This is an adapted Gradcode evaluation, not an official Aider leaderboard score. The earlier 10-task pilot is excluded from these totals.
 
-For the newer capped history analysis, see [fixed-token cost estimates with model-switch cache misses](ROUTING-BENCHMARK-CAPPED.md): **$16.71 per $100 all-Astra (83.29% lower estimated token cost)**. That analysis does not replay requests or measure answer quality; its results are separate from the execution results below.
-
 ## Results
 
 | Condition | Executions | Passing all original tests | Estimated model cost | Cost per passing execution | Mean inference time |

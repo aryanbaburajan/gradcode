@@ -59,23 +59,11 @@ The fork adds Gradcode branding, a red terminal theme, Auto setup and selection 
 
 The routing and account-management changes are integrated into OpenCode's existing execution loop. The inherited coding tools, provider infrastructure, session engine, and web UI come from OpenCode.
 
-## Benchmark results
+## Estimated token cost
 
-### Capped history cost estimate
+**$16.71 per $100 all-Astra — 83.29% lower estimated token cost**, modelling cache misses on the first call after each model switch. The capped analysis covers **898 historical calls** and **177 classified turns**.
 
-**$16.71 per $100 all-Astra: 83.29% lower estimated token cost**, modelling cache misses on the first call after each model switch. This capped analysis covers **898 historical calls** and **177 classified turns**. It holds recorded token counts fixed when repricing models; these are **fixed-token estimates, not measured savings from replaying requests**. Answer quality was not evaluated.
-
-Read the [method and limitations](docs/fork/ROUTING-BENCHMARK-CAPPED.md) and [statistic JSON](docs/fork/expanded-results/capped-stat.json).
-
-### Separate coding-task evaluation
-
-In an adapted Aider Polyglot evaluation of **34 Python tasks**, with two attempts per condition, Auto–Laya used **71.9% less estimated model cost** than fixed GPT-6-Astra/high on **65 paired attempts with complete usage records** (130 runs).
-
-Across **all 136 runs**, task success was **55.9% for Auto–Laya (38/68)** and **83.8% for Astra/high (57/68)**. This is a measured cost–quality trade-off, not an equivalent-quality result. The benchmark used a specific six-profile OpenAI pool; it does not establish performance for every provider or the default candidate pool.
-
-Five calls lacked usage records. Full-run billed savings are unknown. Costs are catalog-based estimates and exclude local CPU, tools, setup, and pilot runs.
-
-Read the [full methodology and results](docs/fork/ROUTING-BENCHMARK-EXPANDED.md), [machine-readable statistics](docs/fork/expanded-results/landing-stat.json), and [raw execution records](docs/fork/expanded-results/results.json).
+These are **fixed-token estimates, not measured savings from replaying requests**. Recorded input, output, and reasoning token counts are held fixed when repricing models. Actual token use and costs may differ; answer quality was not evaluated. Estimates exclude tool fees, local compute, and unrecorded inference.
 
 ## Getting started
 
