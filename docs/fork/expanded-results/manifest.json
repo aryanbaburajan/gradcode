@@ -158,5 +158,9 @@
   "reference_validation": "All 34 upstream reference solutions passed original tests before inference.",
   "harness_sha256": "100102caa17fe0228097981699b04609afaed4fa95fafbb285c98135135320c6",
   "pilot_harness_sha256": "4861c333a8020619aef8854779588c6664fd8c487212e634e01a94f4527e1582",
-  "resumed_utc": "2026-10-24T00:58:43.136420+00:00"
+  "resumed_utc": "2026-10-24T00:58:43.136420+00:00",
+  "completed_utc": "2026-10-24T01:32:53.379569+00:00",
+  "validated_utc": "2026-10-24T01:37:05.045060+00:00",
+  "analysis_harness_sha256": "20a000e21a1af340ace3dd73e7d2133df97c71aa276d3fce048fba5d9a7582b3",
+  "cost_missingness_handling": "All attempts retained for test-pass quality; secondary cost analysis excludes whole task/repetition pairs unless both sides have complete usage. Introduced after the first transport interruption, before run completion."
 }

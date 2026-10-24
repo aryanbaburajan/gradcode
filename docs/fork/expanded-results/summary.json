@@ -7,17 +7,62 @@
     "cost_per_passing_execution_usd": null,
     "mean_duration_seconds": 63.620955882352945,
     "unknown_cost_executions": 2,
-    "timeouts": 1
+    "timeouts": 1,
+    "recorded_step_cost_usd": 18.1764815,
+    "unmetered_steps": 3
   },
   "auto": {
-    "executions": 67,
-    "passed": 37,
-    "success_rate": 0.5522388059701493,
+    "executions": 68,
+    "passed": 38,
+    "success_rate": 0.5588235294117647,
     "estimated_cost_usd": null,
     "cost_per_passing_execution_usd": null,
-    "mean_duration_seconds": 57.062985074626866,
+    "mean_duration_seconds": 58.560529411764705,
     "unknown_cost_executions": 2,
-    "timeouts": 2
+    "timeouts": 2,
+    "recorded_step_cost_usd": 5.099610825,
+    "unmetered_steps": 2
   },
-  "complete": false
+  "complete": true,
+  "success_rate_difference_pp": -27.941176470588236,
+  "success_difference_95pct_task_bootstrap_interval_pp": [
+    -42.64705882352941,
+    -14.705882352941176
+  ],
+  "complete_usage_paired_subset": {
+    "paired_attempts": 65,
+    "total_paired_attempts": 68,
+    "unique_tasks": 34,
+    "excluded_pairs": [
+      {
+        "task": "transpose",
+        "repetition": 1,
+        "missing_cost_conditions": [
+          "baseline"
+        ]
+      },
+      {
+        "task": "poker",
+        "repetition": 2,
+        "missing_cost_conditions": [
+          "auto"
+        ]
+      },
+      {
+        "task": "phone-number",
+        "repetition": 2,
+        "missing_cost_conditions": [
+          "baseline",
+          "auto"
+        ]
+      }
+    ],
+    "baseline_estimated_cost_usd": 17.5103855,
+    "auto_estimated_cost_usd": 4.920491875,
+    "cost_savings_percent": 71.89957996641479,
+    "cost_savings_95pct_task_bootstrap_interval": [
+      58.38074314031434,
+      84.83381999475363
+    ]
+  }
 }

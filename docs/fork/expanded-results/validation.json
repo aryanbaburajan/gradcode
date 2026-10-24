@@ -1,0 +1,27 @@
+{
+  "unique_tasks": 34,
+  "unique_sessions": 136,
+  "executions": 136,
+  "metered_messages_recalculated": 831,
+  "unmetered_messages": 5,
+  "timeouts": 3,
+  "checks": [
+    "unique planned trials",
+    "matched prompts",
+    "stable configured model selections",
+    "saved grading logs agree",
+    "unchanged original tests",
+    "byte-identical generated solutions graded",
+    "timeouts interrupted within budget",
+    "every metered cost recalculated against frozen catalog",
+    "unknown costs not assigned zero"
+  ],
+  "validated_utc": "2026-10-24T01:37:05.045060+00:00",
+  "artifact_sha256": {
+    "results.json": "2e46885647075d9e67a00e7842cbeeb0093b263dbd972f3a559e583fec79830d",
+    "models.json": "626b98a49fe25034898b58a265350901b20e293506b92ce7a95d7c276cc448ca",
+    "manifest.json": "cb679a5eb395d4b618e525cc8b7b2a2963360cf578f330c0e967f81301dcc3d0",
+    "summary.json": "38bfa23f4d7ac6da2d7964474888e0b96f843701844dfd53f6c640e81d6edb51",
+    "landing-stat.json": "1dced5d8701b37634630dea788ec85ccd2a005388a07d058f7a90c457fcbdb84"
+  }
+}

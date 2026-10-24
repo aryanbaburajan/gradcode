@@ -159,7 +159,9 @@
     "tests_run": 23,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_revalidated_after_directory_fix": true,
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/sgf-parsing-auto"
   },
   {
     "task": "sgf-parsing",
@@ -346,7 +348,8 @@
     "tests_run": 23,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/sgf-parsing-baseline"
   },
   {
     "task": "sgf-parsing",
@@ -508,7 +511,8 @@
     "tests_run": 23,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/sgf-parsing-auto-r2"
   },
   {
     "task": "sgf-parsing",
@@ -670,7 +674,8 @@
     "tests_run": 23,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/sgf-parsing-baseline-r2"
   },
   {
     "task": "react",
@@ -832,7 +837,9 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_revalidated_after_directory_fix": true,
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/react-auto"
   },
   {
     "task": "react",
@@ -1019,7 +1026,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/react-baseline"
   },
   {
     "task": "react",
@@ -1181,7 +1189,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/react-auto-r2"
   },
   {
     "task": "react",
@@ -1343,7 +1352,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/react-baseline-r2"
   },
   {
     "task": "zebra-puzzle",
@@ -1507,7 +1517,8 @@
     "tests_run": 2,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zebra-puzzle-auto"
   },
   {
     "task": "zebra-puzzle",
@@ -1671,7 +1682,8 @@
     "tests_run": 2,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zebra-puzzle-baseline"
   },
   {
     "task": "zebra-puzzle",
@@ -1856,7 +1868,8 @@
     "tests_run": 2,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zebra-puzzle-auto-r2"
   },
   {
     "task": "zebra-puzzle",
@@ -2018,7 +2031,8 @@
     "tests_run": 2,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zebra-puzzle-baseline-r2"
   },
   {
     "task": "zipper",
@@ -2182,7 +2196,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zipper-auto"
   },
   {
     "task": "zipper",
@@ -2346,7 +2361,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zipper-baseline"
   },
   {
     "task": "zipper",
@@ -2508,7 +2524,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zipper-auto-r2"
   },
   {
     "task": "zipper",
@@ -2670,7 +2687,8 @@
     "tests_run": 14,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/zipper-baseline-r2"
   },
   {
     "task": "list-ops",
@@ -2834,7 +2852,8 @@
     "tests_run": 24,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/list-ops-auto"
   },
   {
     "task": "list-ops",
@@ -2975,7 +2994,8 @@
     "tests_run": 24,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/list-ops-baseline"
   },
   {
     "task": "list-ops",
@@ -3114,7 +3134,8 @@
     "tests_run": 24,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/list-ops-auto-r2"
   },
   {
     "task": "list-ops",
@@ -3253,7 +3274,8 @@
     "tests_run": 24,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/list-ops-baseline-r2"
   },
   {
     "task": "paasio",
@@ -3417,7 +3439,8 @@
     "tests_run": 25,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "===================================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.360s\n\nFAILED (failures=7)\n"
+    "grading_summary": "===================================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.360s\n\nFAILED (failures=7)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto"
   },
   {
     "task": "paasio",
@@ -3581,7 +3604,8 @@
     "tests_run": 25,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "======================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.116s\n\nFAILED (failures=15)\n"
+    "grading_summary": "======================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.116s\n\nFAILED (failures=15)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline"
   },
   {
     "task": "paasio",
@@ -3743,7 +3767,8 @@
     "tests_run": 25,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "==========================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.367s\n\nFAILED (failures=7)\n"
+    "grading_summary": "==========================================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.367s\n\nFAILED (failures=7)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/paasio-auto-r2"
   },
   {
     "task": "paasio",
@@ -3905,7 +3930,8 @@
     "tests_run": 25,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "=============================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.052s\n\nFAILED (failures=15)\n"
+    "grading_summary": "=============================\nFAIL: test_meteredsocket_context_manager (paasio_test.PaasioTest.test_meteredsocket_context_manager)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2/paasio_test.py\", line 17, in test_meteredsocket_context_manager\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_raise (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_raise)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2/paasio_test.py\", line 34, in test_meteredsocket_context_manager_exception_raise\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_meteredsocket_context_manager_exception_suppress (paasio_test.PaasioTest.test_meteredsocket_context_manager_exception_suppress)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2/paasio_test.py\", line 50, in test_meteredsocket_context_manager_exception_suppress\n    self.assertFalse(mock.__enter__.called)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 25 tests in 0.052s\n\nFAILED (failures=15)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/paasio-baseline-r2"
   },
   {
     "task": "bottle-song",
@@ -4069,7 +4095,8 @@
     "tests_run": 7,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bottle-song-auto"
   },
   {
     "task": "bottle-song",
@@ -4210,7 +4237,8 @@
     "tests_run": 7,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bottle-song-baseline"
   },
   {
     "task": "bottle-song",
@@ -4395,7 +4423,8 @@
     "tests_run": 7,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bottle-song-auto-r2"
   },
   {
     "task": "bottle-song",
@@ -4557,7 +4586,8 @@
     "tests_run": 7,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bottle-song-baseline-r2"
   },
   {
     "task": "grade-school",
@@ -4744,7 +4774,8 @@
     "tests_run": 20,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "elf.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Aimee'] != [True]\n\nFirst differing element 0:\n'Aimee'\nTrue\n\n- ['Aimee']\n+ [True]\n\n======================================================================\nFAIL: test_adding_multiple_students_in_the_same_grade_in_the_roster (grade_school_test.GradeSchoolTest.test_adding_multiple_students_in_the_same_grade_in_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto/grade_school_test.py\", line 38, in test_adding_multiple_students_in_the_same_grade_in_the_roster\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Blair', 'James', 'Paul'] != [True, True, True]\n\nFirst differing element 0:\n'Blair'\nTrue\n\n- ['Blair', 'James', 'Paul']\n+ [True, True, True]\n\n======================================================================\nFAIL: test_adding_students_in_multiple_grades (grade_school_test.GradeSchoolTest.test_adding_students_in_multiple_grades)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto/grade_school_test.py\", line 73, in test_adding_students_in_multiple_grades\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Chelsea', 'Logan'] != [True, True]\n\nFirst differing element 0:\n'Chelsea'\nTrue\n\n- ['Chelsea', 'Logan']\n+ [True, True]\n\n----------------------------------------------------------------------\nRan 20 tests in 0.005s\n\nFAILED (failures=3, errors=7)\n"
+    "grading_summary": "elf.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Aimee'] != [True]\n\nFirst differing element 0:\n'Aimee'\nTrue\n\n- ['Aimee']\n+ [True]\n\n======================================================================\nFAIL: test_adding_multiple_students_in_the_same_grade_in_the_roster (grade_school_test.GradeSchoolTest.test_adding_multiple_students_in_the_same_grade_in_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto/grade_school_test.py\", line 38, in test_adding_multiple_students_in_the_same_grade_in_the_roster\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Blair', 'James', 'Paul'] != [True, True, True]\n\nFirst differing element 0:\n'Blair'\nTrue\n\n- ['Blair', 'James', 'Paul']\n+ [True, True, True]\n\n======================================================================\nFAIL: test_adding_students_in_multiple_grades (grade_school_test.GradeSchoolTest.test_adding_students_in_multiple_grades)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto/grade_school_test.py\", line 73, in test_adding_students_in_multiple_grades\n    self.assertEqual(school.added(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['Chelsea', 'Logan'] != [True, True]\n\nFirst differing element 0:\n'Chelsea'\nTrue\n\n- ['Chelsea', 'Logan']\n+ [True, True]\n\n----------------------------------------------------------------------\nRan 20 tests in 0.005s\n\nFAILED (failures=3, errors=7)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto"
   },
   {
     "task": "grade-school",
@@ -4931,7 +4962,8 @@
     "tests_run": 20,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grade-school-baseline"
   },
   {
     "task": "grade-school",
@@ -5093,7 +5125,8 @@
     "tests_run": 20,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "\n\n+ ['Anna', 'Peter', 'Jim']\n\n======================================================================\nFAIL: test_students_are_sorted_by_name_in_the_roster (grade_school_test.GradeSchoolTest.test_students_are_sorted_by_name_in_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto-r2/grade_school_test.py\", line 118, in test_students_are_sorted_by_name_in_the_roster\n    self.assertEqual(school.roster(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(2, 'Alex'), (2, 'Peter'), (2, 'Zoe')] != ['Alex', 'Peter', 'Zoe']\n\nFirst differing element 0:\n(2, 'Alex')\n'Alex'\n\n- [(2, 'Alex'), (2, 'Peter'), (2, 'Zoe')]\n?  ----      - ----        - ----      -\n\n+ ['Alex', 'Peter', 'Zoe']\n\n======================================================================\nFAIL: test_students_in_multiple_grades_are_added_to_the_roster (grade_school_test.GradeSchoolTest.test_students_in_multiple_grades_are_added_to_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto-r2/grade_school_test.py\", line 81, in test_students_in_multiple_grades_are_added_to_the_roster\n    self.assertEqual(school.roster(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(3, 'Chelsea'), (7, 'Logan')] != ['Chelsea', 'Logan']\n\nFirst differing element 0:\n(3, 'Chelsea')\n'Chelsea'\n\n- [(3, 'Chelsea'), (7, 'Logan')]\n?  ----         - ----        -\n\n+ ['Chelsea', 'Logan']\n\n----------------------------------------------------------------------\nRan 20 tests in 0.009s\n\nFAILED (failures=13)\n"
+    "grading_summary": "\n\n+ ['Anna', 'Peter', 'Jim']\n\n======================================================================\nFAIL: test_students_are_sorted_by_name_in_the_roster (grade_school_test.GradeSchoolTest.test_students_are_sorted_by_name_in_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto-r2/grade_school_test.py\", line 118, in test_students_are_sorted_by_name_in_the_roster\n    self.assertEqual(school.roster(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(2, 'Alex'), (2, 'Peter'), (2, 'Zoe')] != ['Alex', 'Peter', 'Zoe']\n\nFirst differing element 0:\n(2, 'Alex')\n'Alex'\n\n- [(2, 'Alex'), (2, 'Peter'), (2, 'Zoe')]\n?  ----      - ----        - ----      -\n\n+ ['Alex', 'Peter', 'Zoe']\n\n======================================================================\nFAIL: test_students_in_multiple_grades_are_added_to_the_roster (grade_school_test.GradeSchoolTest.test_students_in_multiple_grades_are_added_to_the_roster)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto-r2/grade_school_test.py\", line 81, in test_students_in_multiple_grades_are_added_to_the_roster\n    self.assertEqual(school.roster(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(3, 'Chelsea'), (7, 'Logan')] != ['Chelsea', 'Logan']\n\nFirst differing element 0:\n(3, 'Chelsea')\n'Chelsea'\n\n- [(3, 'Chelsea'), (7, 'Logan')]\n?  ----         - ----        -\n\n+ ['Chelsea', 'Logan']\n\n----------------------------------------------------------------------\nRan 20 tests in 0.009s\n\nFAILED (failures=13)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grade-school-auto-r2"
   },
   {
     "task": "grade-school",
@@ -5232,7 +5265,8 @@
     "tests_run": 20,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grade-school-baseline-r2"
   },
   {
     "task": "go-counting",
@@ -5373,7 +5407,8 @@
     "tests_run": 1,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto"
   },
   {
     "task": "go-counting",
@@ -5537,7 +5572,8 @@
     "tests_run": 1,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline"
   },
   {
     "task": "go-counting",
@@ -5699,7 +5735,8 @@
     "tests_run": 1,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto-r2/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto-r2/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto-r2/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto-r2/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/go-counting-auto-r2"
   },
   {
     "task": "go-counting",
@@ -5861,7 +5898,8 @@
     "tests_run": 1,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline-r2/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline-r2/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+    "grading_summary": "go_counting_test (unittest.loader._FailedTest.go_counting_test) ... ERROR\n\n======================================================================\nERROR: go_counting_test (unittest.loader._FailedTest.go_counting_test)\n----------------------------------------------------------------------\nImportError: Failed to import test module: go_counting_test\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 396, in _find_test_path\n    module = self._get_module_from_name(name)\n  File \"/usr/lib/python3.13/unittest/loader.py\", line 339, in _get_module_from_name\n    __import__(name)\n    ~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline-r2/go_counting_test.py\", line 7, in <module>\n    from go_counting import (\n    ...<4 lines>...\n    )\nImportError: cannot import name 'WHITE' from 'go_counting' (/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline-r2/go_counting.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/go-counting-baseline-r2"
   },
   {
     "task": "scale-generator",
@@ -6000,7 +6038,8 @@
     "tests_run": 17,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-auto"
   },
   {
     "task": "scale-generator",
@@ -6185,7 +6224,8 @@
     "tests_run": 17,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-baseline"
   },
   {
     "task": "scale-generator",
@@ -6370,7 +6410,8 @@
     "tests_run": 17,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "===============================================\nFAIL: test_harmonic_minor (scale_generator_test.ScaleGeneratorTest.test_harmonic_minor)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-auto-r2/scale_generator_test.py\", line 66, in test_harmonic_minor\n    self.assertEqual(Scale(\"d\").interval(\"MmMMmAm\"), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['D', 'E', 'F', 'G', 'A', 'A#', 'C#', 'D'] != ['D', 'E', 'F', 'G', 'A', 'Bb', 'Db', 'D']\n\nFirst differing element 5:\n'A#'\n'Bb'\n\n- ['D', 'E', 'F', 'G', 'A', 'A#', 'C#', 'D']\n?                            ^^    ^^\n\n+ ['D', 'E', 'F', 'G', 'A', 'Bb', 'Db', 'D']\n?                            ^^    ^^\n\n\n======================================================================\nFAIL: test_locrian_mode (scale_generator_test.ScaleGeneratorTest.test_locrian_mode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-auto-r2/scale_generator_test.py\", line 62, in test_locrian_mode\n    self.assertEqual(Scale(\"g\").interval(\"mMMmMMM\"), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['G', 'G#', 'A#', 'C', 'C#', 'D#', 'F', 'G'] != ['G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']\n\nFirst differing element 1:\n'G#'\n'Ab'\n\n- ['G', 'G#', 'A#', 'C', 'C#', 'D#', 'F', 'G']\n?        ^^    ^^         ^^    ^^\n\n+ ['G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']\n?        ^^    ^^         ^^    ^^\n\n\n----------------------------------------------------------------------\nRan 17 tests in 0.004s\n\nFAILED (failures=2)\n"
+    "grading_summary": "===============================================\nFAIL: test_harmonic_minor (scale_generator_test.ScaleGeneratorTest.test_harmonic_minor)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-auto-r2/scale_generator_test.py\", line 66, in test_harmonic_minor\n    self.assertEqual(Scale(\"d\").interval(\"MmMMmAm\"), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['D', 'E', 'F', 'G', 'A', 'A#', 'C#', 'D'] != ['D', 'E', 'F', 'G', 'A', 'Bb', 'Db', 'D']\n\nFirst differing element 5:\n'A#'\n'Bb'\n\n- ['D', 'E', 'F', 'G', 'A', 'A#', 'C#', 'D']\n?                            ^^    ^^\n\n+ ['D', 'E', 'F', 'G', 'A', 'Bb', 'Db', 'D']\n?                            ^^    ^^\n\n\n======================================================================\nFAIL: test_locrian_mode (scale_generator_test.ScaleGeneratorTest.test_locrian_mode)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-auto-r2/scale_generator_test.py\", line 62, in test_locrian_mode\n    self.assertEqual(Scale(\"g\").interval(\"mMMmMMM\"), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['G', 'G#', 'A#', 'C', 'C#', 'D#', 'F', 'G'] != ['G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']\n\nFirst differing element 1:\n'G#'\n'Ab'\n\n- ['G', 'G#', 'A#', 'C', 'C#', 'D#', 'F', 'G']\n?        ^^    ^^         ^^    ^^\n\n+ ['G', 'Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']\n?        ^^    ^^         ^^    ^^\n\n\n----------------------------------------------------------------------\nRan 17 tests in 0.004s\n\nFAILED (failures=2)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-auto-r2"
   },
   {
     "task": "scale-generator",
@@ -6555,7 +6596,8 @@
     "tests_run": 17,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/scale-generator-baseline-r2"
   },
   {
     "task": "simple-linked-list",
@@ -6717,7 +6759,8 @@
     "tests_run": 20,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "--------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto/simple_linked_list_test.py\", line 59, in test_pop_from_singleton_list_removes_head\n    self.assertEqual(err.exception.args[0], \"The list is empty.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'The linked list is empty.' != 'The list is empty.'\n- The linked list is empty.\n?    -------\n+ The list is empty.\n\n\n======================================================================\nFAIL: test_push_and_pop (simple_linked_list_test.SimpleLinkedListTest.test_push_and_pop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto/simple_linked_list_test.py\", line 73, in test_push_and_pop\n    self.assertEqual(sut.pop(), 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n======================================================================\nFAIL: test_reverse_non_empty_list (simple_linked_list_test.SimpleLinkedListTest.test_reverse_non_empty_list)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto/simple_linked_list_test.py\", line 114, in test_reverse_non_empty_list\n    self.assertEqual(list(sut.reversed()), [1, 2, 3])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [3, 2, 1] != [1, 2, 3]\n\nFirst differing element 0:\n3\n1\n\n- [3, 2, 1]\n?  ^     ^\n\n+ [1, 2, 3]\n?  ^     ^\n\n\n----------------------------------------------------------------------\nRan 20 tests in 0.006s\n\nFAILED (failures=9)\n"
+    "grading_summary": "--------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto/simple_linked_list_test.py\", line 59, in test_pop_from_singleton_list_removes_head\n    self.assertEqual(err.exception.args[0], \"The list is empty.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'The linked list is empty.' != 'The list is empty.'\n- The linked list is empty.\n?    -------\n+ The list is empty.\n\n\n======================================================================\nFAIL: test_push_and_pop (simple_linked_list_test.SimpleLinkedListTest.test_push_and_pop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto/simple_linked_list_test.py\", line 73, in test_push_and_pop\n    self.assertEqual(sut.pop(), 2)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n======================================================================\nFAIL: test_reverse_non_empty_list (simple_linked_list_test.SimpleLinkedListTest.test_reverse_non_empty_list)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto/simple_linked_list_test.py\", line 114, in test_reverse_non_empty_list\n    self.assertEqual(list(sut.reversed()), [1, 2, 3])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [3, 2, 1] != [1, 2, 3]\n\nFirst differing element 0:\n3\n1\n\n- [3, 2, 1]\n?  ^     ^\n\n+ [1, 2, 3]\n?  ^     ^\n\n\n----------------------------------------------------------------------\nRan 20 tests in 0.006s\n\nFAILED (failures=9)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto"
   },
   {
     "task": "simple-linked-list",
@@ -6856,7 +6899,8 @@
     "tests_run": 20,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-baseline"
   },
   {
     "task": "simple-linked-list",
@@ -6972,7 +7016,8 @@
     "tests_run": 20,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Cannot get the head of an empty linked list.' != 'The list is empty.'\n- Cannot get the head of an empty linked list.\n+ The list is empty.\n\n\n======================================================================\nFAIL: test_error_on_empty_list_pop (simple_linked_list_test.SimpleLinkedListTest.test_error_on_empty_list_pop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto-r2/simple_linked_list_test.py\", line 66, in test_error_on_empty_list_pop\n    self.assertEqual(err.exception.args[0], \"The list is empty.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Cannot pop from an empty linked list.' != 'The list is empty.'\n- Cannot pop from an empty linked list.\n+ The list is empty.\n\n\n======================================================================\nFAIL: test_pop_from_singleton_list_removes_head (simple_linked_list_test.SimpleLinkedListTest.test_pop_from_singleton_list_removes_head)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto-r2/simple_linked_list_test.py\", line 59, in test_pop_from_singleton_list_removes_head\n    self.assertEqual(err.exception.args[0], \"The list is empty.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Cannot get the head of an empty linked list.' != 'The list is empty.'\n- Cannot get the head of an empty linked list.\n+ The list is empty.\n\n\n----------------------------------------------------------------------\nRan 20 tests in 0.003s\n\nFAILED (failures=3)\n"
+    "grading_summary": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Cannot get the head of an empty linked list.' != 'The list is empty.'\n- Cannot get the head of an empty linked list.\n+ The list is empty.\n\n\n======================================================================\nFAIL: test_error_on_empty_list_pop (simple_linked_list_test.SimpleLinkedListTest.test_error_on_empty_list_pop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto-r2/simple_linked_list_test.py\", line 66, in test_error_on_empty_list_pop\n    self.assertEqual(err.exception.args[0], \"The list is empty.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Cannot pop from an empty linked list.' != 'The list is empty.'\n- Cannot pop from an empty linked list.\n+ The list is empty.\n\n\n======================================================================\nFAIL: test_pop_from_singleton_list_removes_head (simple_linked_list_test.SimpleLinkedListTest.test_pop_from_singleton_list_removes_head)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto-r2/simple_linked_list_test.py\", line 59, in test_pop_from_singleton_list_removes_head\n    self.assertEqual(err.exception.args[0], \"The list is empty.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Cannot get the head of an empty linked list.' != 'The list is empty.'\n- Cannot get the head of an empty linked list.\n+ The list is empty.\n\n\n----------------------------------------------------------------------\nRan 20 tests in 0.003s\n\nFAILED (failures=3)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-auto-r2"
   },
   {
     "task": "simple-linked-list",
@@ -7134,7 +7179,8 @@
     "tests_run": 20,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/simple-linked-list-baseline-r2"
   },
   {
     "task": "beer-song",
@@ -7342,7 +7388,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/beer-song-auto"
   },
   {
     "task": "beer-song",
@@ -7481,7 +7528,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/beer-song-baseline"
   },
   {
     "task": "beer-song",
@@ -7643,7 +7691,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/beer-song-auto-r2"
   },
   {
     "task": "beer-song",
@@ -7782,7 +7831,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/beer-song-baseline-r2"
   },
   {
     "task": "two-bucket",
@@ -7944,7 +7994,8 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-auto"
   },
   {
     "task": "two-bucket",
@@ -8106,7 +8157,8 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-baseline"
   },
   {
     "task": "two-bucket",
@@ -8268,7 +8320,8 @@
     "tests_run": 9,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'moves': 14, 'goal_bucket': 'one', 'other_bucket': 11} != (14, 'one', 11)\n\n======================================================================\nFAIL: test_measure_using_bucket_one_of_size_7_and_bucket_two_of_size_11_start_with_bucket_two (two_bucket_test.TwoBucketTest.test_measure_using_bucket_one_of_size_7_and_bucket_two_of_size_11_start_with_bucket_two)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-auto-r2/two_bucket_test.py\", line 31, in test_measure_using_bucket_one_of_size_7_and_bucket_two_of_size_11_start_with_bucket_two\n    self.assertEqual(measure(7, 11, 2, \"two\"), (18, \"two\", 7))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'moves': 18, 'goal_bucket': 'two', 'other_bucket': 7} != (18, 'two', 7)\n\n======================================================================\nFAIL: test_with_the_same_buckets_but_a_different_goal_then_it_is_possible (two_bucket_test.TwoBucketTest.test_with_the_same_buckets_but_a_different_goal_then_it_is_possible)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-auto-r2/two_bucket_test.py\", line 48, in test_with_the_same_buckets_but_a_different_goal_then_it_is_possible\n    self.assertEqual(measure(6, 15, 9, \"one\"), (10, \"two\", 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'moves': 10, 'goal_bucket': 'two', 'other_bucket': 0} != (10, 'two', 0)\n\n----------------------------------------------------------------------\nRan 9 tests in 0.004s\n\nFAILED (failures=7)\n"
+    "grading_summary": "~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'moves': 14, 'goal_bucket': 'one', 'other_bucket': 11} != (14, 'one', 11)\n\n======================================================================\nFAIL: test_measure_using_bucket_one_of_size_7_and_bucket_two_of_size_11_start_with_bucket_two (two_bucket_test.TwoBucketTest.test_measure_using_bucket_one_of_size_7_and_bucket_two_of_size_11_start_with_bucket_two)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-auto-r2/two_bucket_test.py\", line 31, in test_measure_using_bucket_one_of_size_7_and_bucket_two_of_size_11_start_with_bucket_two\n    self.assertEqual(measure(7, 11, 2, \"two\"), (18, \"two\", 7))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'moves': 18, 'goal_bucket': 'two', 'other_bucket': 7} != (18, 'two', 7)\n\n======================================================================\nFAIL: test_with_the_same_buckets_but_a_different_goal_then_it_is_possible (two_bucket_test.TwoBucketTest.test_with_the_same_buckets_but_a_different_goal_then_it_is_possible)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-auto-r2/two_bucket_test.py\", line 48, in test_with_the_same_buckets_but_a_different_goal_then_it_is_possible\n    self.assertEqual(measure(6, 15, 9, \"one\"), (10, \"two\", 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'moves': 10, 'goal_bucket': 'two', 'other_bucket': 0} != (10, 'two', 0)\n\n----------------------------------------------------------------------\nRan 9 tests in 0.004s\n\nFAILED (failures=7)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-auto-r2"
   },
   {
     "task": "two-bucket",
@@ -8476,7 +8529,8 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/two-bucket-baseline-r2"
   },
   {
     "task": "hangman",
@@ -8661,7 +8715,8 @@
     "tests_run": 7,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman_test.py\", line 94, in test_winning_on_last_guess_still_counts_as_a_win\n    game.guess('a')\n    ~~~~~~~~~~^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman.py\", line 21, in guess\n    raise ValueError(\"The game has already ended.\")\nValueError: The game has already ended.\n\n======================================================================\nFAIL: test_after_10_failures_the_game_is_over (hangman_test.HangmanTests.test_after_10_failures_the_game_is_over)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman_test.py\", line 26, in test_after_10_failures_the_game_is_over\n    self.assertEqual(game.get_status(), hangman.STATUS_LOSE)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ongoing' != 'lose'\n- ongoing\n+ lose\n\n\n======================================================================\nFAIL: test_feeding_a_correct_letter_twice_counts_as_a_failure (hangman_test.HangmanTests.test_feeding_a_correct_letter_twice_counts_as_a_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman_test.py\", line 55, in test_feeding_a_correct_letter_twice_counts_as_a_failure\n    self.assertEqual(game.remaining_guesses, 8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 9 != 8\n\n----------------------------------------------------------------------\nRan 7 tests in 0.003s\n\nFAILED (failures=2, errors=1)\n"
+    "grading_summary": "------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman_test.py\", line 94, in test_winning_on_last_guess_still_counts_as_a_win\n    game.guess('a')\n    ~~~~~~~~~~^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman.py\", line 21, in guess\n    raise ValueError(\"The game has already ended.\")\nValueError: The game has already ended.\n\n======================================================================\nFAIL: test_after_10_failures_the_game_is_over (hangman_test.HangmanTests.test_after_10_failures_the_game_is_over)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman_test.py\", line 26, in test_after_10_failures_the_game_is_over\n    self.assertEqual(game.get_status(), hangman.STATUS_LOSE)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ongoing' != 'lose'\n- ongoing\n+ lose\n\n\n======================================================================\nFAIL: test_feeding_a_correct_letter_twice_counts_as_a_failure (hangman_test.HangmanTests.test_feeding_a_correct_letter_twice_counts_as_a_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto/hangman_test.py\", line 55, in test_feeding_a_correct_letter_twice_counts_as_a_failure\n    self.assertEqual(game.remaining_guesses, 8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 9 != 8\n\n----------------------------------------------------------------------\nRan 7 tests in 0.003s\n\nFAILED (failures=2, errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto"
   },
   {
     "task": "hangman",
@@ -8823,7 +8878,8 @@
     "tests_run": 7,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/hangman-baseline"
   },
   {
     "task": "hangman",
@@ -9008,7 +9064,8 @@
     "tests_run": 7,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman_test.py\", line 94, in test_winning_on_last_guess_still_counts_as_a_win\n    game.guess('a')\n    ~~~~~~~~~~^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman.py\", line 17, in guess\n    raise ValueError(\"The game has already ended.\")\nValueError: The game has already ended.\n\n======================================================================\nFAIL: test_after_10_failures_the_game_is_over (hangman_test.HangmanTests.test_after_10_failures_the_game_is_over)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman_test.py\", line 26, in test_after_10_failures_the_game_is_over\n    self.assertEqual(game.get_status(), hangman.STATUS_LOSE)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ongoing' != 'lose'\n- ongoing\n+ lose\n\n\n======================================================================\nFAIL: test_feeding_a_correct_letter_twice_counts_as_a_failure (hangman_test.HangmanTests.test_feeding_a_correct_letter_twice_counts_as_a_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman_test.py\", line 55, in test_feeding_a_correct_letter_twice_counts_as_a_failure\n    self.assertEqual(game.remaining_guesses, 8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 9 != 8\n\n----------------------------------------------------------------------\nRan 7 tests in 0.003s\n\nFAILED (failures=2, errors=1)\n"
+    "grading_summary": "------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman_test.py\", line 94, in test_winning_on_last_guess_still_counts_as_a_win\n    game.guess('a')\n    ~~~~~~~~~~^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman.py\", line 17, in guess\n    raise ValueError(\"The game has already ended.\")\nValueError: The game has already ended.\n\n======================================================================\nFAIL: test_after_10_failures_the_game_is_over (hangman_test.HangmanTests.test_after_10_failures_the_game_is_over)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman_test.py\", line 26, in test_after_10_failures_the_game_is_over\n    self.assertEqual(game.get_status(), hangman.STATUS_LOSE)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ongoing' != 'lose'\n- ongoing\n+ lose\n\n\n======================================================================\nFAIL: test_feeding_a_correct_letter_twice_counts_as_a_failure (hangman_test.HangmanTests.test_feeding_a_correct_letter_twice_counts_as_a_failure)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2/hangman_test.py\", line 55, in test_feeding_a_correct_letter_twice_counts_as_a_failure\n    self.assertEqual(game.remaining_guesses, 8)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 9 != 8\n\n----------------------------------------------------------------------\nRan 7 tests in 0.003s\n\nFAILED (failures=2, errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/hangman-auto-r2"
   },
   {
     "task": "hangman",
@@ -9170,7 +9227,8 @@
     "tests_run": 7,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/hangman-baseline-r2"
   },
   {
     "task": "tree-building",
@@ -9309,7 +9367,8 @@
     "tests_run": 13,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "d IDs must be consecutive integers starting at 0\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_non_continuous (tree_building_test.TreeBuildingTest.test_non_continuous)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto/tree_building_test.py\", line 138, in test_non_continuous\n    self.assertEqual(err.exception.args[0], \"Record id is invalid or out of order.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Record IDs must be consecutive integers starting at 0' != 'Record id is invalid or out of order.'\n- Record IDs must be consecutive integers starting at 0\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Root record must have parent ID 0' != \"Node parent_id should be smaller than it's record_id.\"\n- Root record must have parent ID 0\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=6)\n"
+    "grading_summary": "d IDs must be consecutive integers starting at 0\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_non_continuous (tree_building_test.TreeBuildingTest.test_non_continuous)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto/tree_building_test.py\", line 138, in test_non_continuous\n    self.assertEqual(err.exception.args[0], \"Record id is invalid or out of order.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Record IDs must be consecutive integers starting at 0' != 'Record id is invalid or out of order.'\n- Record IDs must be consecutive integers starting at 0\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Root record must have parent ID 0' != \"Node parent_id should be smaller than it's record_id.\"\n- Root record must have parent ID 0\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=6)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto"
   },
   {
     "task": "tree-building",
@@ -9494,7 +9553,8 @@
     "tests_run": 13,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "=========\nFAIL: test_higher_id_parent_of_lower_id (tree_building_test.TreeBuildingTest.test_higher_id_parent_of_lower_id)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline/tree_building_test.py\", line 182, in test_higher_id_parent_of_lower_id\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Node parent_id should be smaller than its record_id.' != \"Node parent_id should be smaller than it's record_id.\"\n- Node parent_id should be smaller than its record_id.\n+ Node parent_id should be smaller than it's record_id.\n?                                         +\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Root node cannot have a parent.' != \"Node parent_id should be smaller than it's record_id.\"\n- Root node cannot have a parent.\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=4)\n"
+    "grading_summary": "=========\nFAIL: test_higher_id_parent_of_lower_id (tree_building_test.TreeBuildingTest.test_higher_id_parent_of_lower_id)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline/tree_building_test.py\", line 182, in test_higher_id_parent_of_lower_id\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Node parent_id should be smaller than its record_id.' != \"Node parent_id should be smaller than it's record_id.\"\n- Node parent_id should be smaller than its record_id.\n+ Node parent_id should be smaller than it's record_id.\n?                                         +\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Root node cannot have a parent.' != \"Node parent_id should be smaller than it's record_id.\"\n- Root node cannot have a parent.\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=4)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline"
   },
   {
     "task": "tree-building",
@@ -9656,7 +9716,8 @@
     "tests_run": 13,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": " from 0 to len(records) - 1.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_non_continuous (tree_building_test.TreeBuildingTest.test_non_continuous)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto-r2/tree_building_test.py\", line 138, in test_non_continuous\n    self.assertEqual(err.exception.args[0], \"Record id is invalid or out of order.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Record IDs must be integers from 0 to len(records) - 1.' != 'Record id is invalid or out of order.'\n- Record IDs must be integers from 0 to len(records) - 1.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto-r2/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'The root record must have parent ID 0.' != \"Node parent_id should be smaller than it's record_id.\"\n- The root record must have parent ID 0.\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=6)\n"
+    "grading_summary": " from 0 to len(records) - 1.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_non_continuous (tree_building_test.TreeBuildingTest.test_non_continuous)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto-r2/tree_building_test.py\", line 138, in test_non_continuous\n    self.assertEqual(err.exception.args[0], \"Record id is invalid or out of order.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Record IDs must be integers from 0 to len(records) - 1.' != 'Record id is invalid or out of order.'\n- Record IDs must be integers from 0 to len(records) - 1.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto-r2/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'The root record must have parent ID 0.' != \"Node parent_id should be smaller than it's record_id.\"\n- The root record must have parent ID 0.\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=6)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/tree-building-auto-r2"
   },
   {
     "task": "tree-building",
@@ -9818,7 +9879,8 @@
     "tests_run": 13,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "e continuous integers starting at 0.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_non_continuous (tree_building_test.TreeBuildingTest.test_non_continuous)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline-r2/tree_building_test.py\", line 138, in test_non_continuous\n    self.assertEqual(err.exception.args[0], \"Record id is invalid or out of order.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Record IDs must be continuous integers starting at 0.' != 'Record id is invalid or out of order.'\n- Record IDs must be continuous integers starting at 0.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline-r2/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Root node must have parent ID 0.' != \"Node parent_id should be smaller than it's record_id.\"\n- Root node must have parent ID 0.\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=6)\n"
+    "grading_summary": "e continuous integers starting at 0.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_non_continuous (tree_building_test.TreeBuildingTest.test_non_continuous)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline-r2/tree_building_test.py\", line 138, in test_non_continuous\n    self.assertEqual(err.exception.args[0], \"Record id is invalid or out of order.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Record IDs must be continuous integers starting at 0.' != 'Record id is invalid or out of order.'\n- Record IDs must be continuous integers starting at 0.\n+ Record id is invalid or out of order.\n\n\n======================================================================\nFAIL: test_root_node_has_parent (tree_building_test.TreeBuildingTest.test_root_node_has_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline-r2/tree_building_test.py\", line 114, in test_root_node_has_parent\n    self.assertEqual(err.exception.args[0], \"Node parent_id should be smaller than it's record_id.\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Root node must have parent ID 0.' != \"Node parent_id should be smaller than it's record_id.\"\n- Root node must have parent ID 0.\n+ Node parent_id should be smaller than it's record_id.\n\n\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nFAILED (failures=6)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/tree-building-baseline-r2"
   },
   {
     "task": "wordy",
@@ -9980,7 +10042,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/wordy-auto"
   },
   {
     "task": "wordy",
@@ -10142,7 +10205,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/wordy-baseline"
   },
   {
     "task": "wordy",
@@ -10304,7 +10368,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/wordy-auto-r2"
   },
   {
     "task": "wordy",
@@ -10466,7 +10531,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/wordy-baseline-r2"
   },
   {
     "task": "book-store",
@@ -10674,7 +10740,8 @@
     "tests_run": 20,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "han_group_of_five_plus_group_of_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto/book_store_test.py\", line 43, in test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto/book_store_test.py\", line 47, in test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_of_the_same_book (book_store_test.BookStoreTest.test_two_of_the_same_book)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto/book_store_test.py\", line 19, in test_two_of_the_same_book\n    self.assertEqual(total(basket), 1600)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 16.0 != 1600\n\n----------------------------------------------------------------------\nRan 20 tests in 0.166s\n\nFAILED (failures=19)\n"
+    "grading_summary": "han_group_of_five_plus_group_of_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto/book_store_test.py\", line 43, in test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto/book_store_test.py\", line 47, in test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_of_the_same_book (book_store_test.BookStoreTest.test_two_of_the_same_book)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto/book_store_test.py\", line 19, in test_two_of_the_same_book\n    self.assertEqual(total(basket), 1600)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 16.0 != 1600\n\n----------------------------------------------------------------------\nRan 20 tests in 0.166s\n\nFAILED (failures=19)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto"
   },
   {
     "task": "book-store",
@@ -10836,7 +10903,8 @@
     "tests_run": 20,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/book-store-baseline"
   },
   {
     "task": "book-store",
@@ -10998,7 +11066,8 @@
     "tests_run": 20,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "_of_five_plus_group_of_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2/book_store_test.py\", line 43, in test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2/book_store_test.py\", line 47, in test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_of_the_same_book (book_store_test.BookStoreTest.test_two_of_the_same_book)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2/book_store_test.py\", line 19, in test_two_of_the_same_book\n    self.assertEqual(total(basket), 1600)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 16.0 != 1600\n\n----------------------------------------------------------------------\nRan 20 tests in 0.042s\n\nFAILED (failures=19)\n"
+    "grading_summary": "_of_five_plus_group_of_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2/book_store_test.py\", line 43, in test_two_groups_of_four_is_cheaper_than_group_of_five_plus_group_of_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three (book_store_test.BookStoreTest.test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2/book_store_test.py\", line 47, in test_two_groups_of_four_is_cheaper_than_groups_of_five_and_three\n    self.assertEqual(total(basket), 5120)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 51.2 != 5120\n\n======================================================================\nFAIL: test_two_of_the_same_book (book_store_test.BookStoreTest.test_two_of_the_same_book)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2/book_store_test.py\", line 19, in test_two_of_the_same_book\n    self.assertEqual(total(basket), 1600)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 16.0 != 1600\n\n----------------------------------------------------------------------\nRan 20 tests in 0.042s\n\nFAILED (failures=19)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/book-store-auto-r2"
   },
   {
     "task": "book-store",
@@ -11160,7 +11229,8 @@
     "tests_run": 20,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/book-store-baseline-r2"
   },
   {
     "task": "connect",
@@ -11368,7 +11438,8 @@
     "tests_run": 10,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_nobody_wins_crossing_adjacent_angles (connect_test.ConnectTest.test_nobody_wins_crossing_adjacent_angles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto/connect_test.py\", line 64, in test_nobody_wins_crossing_adjacent_angles\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_o_wins_crossing_from_top_to_bottom (connect_test.ConnectTest.test_o_wins_crossing_from_top_to_bottom)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto/connect_test.py\", line 86, in test_o_wins_crossing_from_top_to_bottom\n    self.assertEqual(winner, \"O\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nAssertionError: 'X' != 'O'\n- X\n+ O\n\n\n======================================================================\nFAIL: test_only_edges_does_not_make_a_winner (connect_test.ConnectTest.test_only_edges_does_not_make_a_winner)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto/connect_test.py\", line 42, in test_only_edges_does_not_make_a_winner\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n----------------------------------------------------------------------\nRan 10 tests in 0.003s\n\nFAILED (failures=4)\n"
+    "grading_summary": "self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_nobody_wins_crossing_adjacent_angles (connect_test.ConnectTest.test_nobody_wins_crossing_adjacent_angles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto/connect_test.py\", line 64, in test_nobody_wins_crossing_adjacent_angles\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_o_wins_crossing_from_top_to_bottom (connect_test.ConnectTest.test_o_wins_crossing_from_top_to_bottom)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto/connect_test.py\", line 86, in test_o_wins_crossing_from_top_to_bottom\n    self.assertEqual(winner, \"O\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nAssertionError: 'X' != 'O'\n- X\n+ O\n\n\n======================================================================\nFAIL: test_only_edges_does_not_make_a_winner (connect_test.ConnectTest.test_only_edges_does_not_make_a_winner)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto/connect_test.py\", line 42, in test_only_edges_does_not_make_a_winner\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n----------------------------------------------------------------------\nRan 10 tests in 0.003s\n\nFAILED (failures=4)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/connect-auto"
   },
   {
     "task": "connect",
@@ -11530,7 +11601,8 @@
     "tests_run": 10,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/connect-baseline"
   },
   {
     "task": "connect",
@@ -11692,7 +11764,8 @@
     "tests_run": 10,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "rtEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_nobody_wins_crossing_adjacent_angles (connect_test.ConnectTest.test_nobody_wins_crossing_adjacent_angles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2/connect_test.py\", line 64, in test_nobody_wins_crossing_adjacent_angles\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_o_wins_crossing_from_top_to_bottom (connect_test.ConnectTest.test_o_wins_crossing_from_top_to_bottom)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2/connect_test.py\", line 86, in test_o_wins_crossing_from_top_to_bottom\n    self.assertEqual(winner, \"O\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nAssertionError: 'X' != 'O'\n- X\n+ O\n\n\n======================================================================\nFAIL: test_only_edges_does_not_make_a_winner (connect_test.ConnectTest.test_only_edges_does_not_make_a_winner)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2/connect_test.py\", line 42, in test_only_edges_does_not_make_a_winner\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n----------------------------------------------------------------------\nRan 10 tests in 0.003s\n\nFAILED (failures=4)\n"
+    "grading_summary": "rtEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_nobody_wins_crossing_adjacent_angles (connect_test.ConnectTest.test_nobody_wins_crossing_adjacent_angles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2/connect_test.py\", line 64, in test_nobody_wins_crossing_adjacent_angles\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n======================================================================\nFAIL: test_o_wins_crossing_from_top_to_bottom (connect_test.ConnectTest.test_o_wins_crossing_from_top_to_bottom)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2/connect_test.py\", line 86, in test_o_wins_crossing_from_top_to_bottom\n    self.assertEqual(winner, \"O\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nAssertionError: 'X' != 'O'\n- X\n+ O\n\n\n======================================================================\nFAIL: test_only_edges_does_not_make_a_winner (connect_test.ConnectTest.test_only_edges_does_not_make_a_winner)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2/connect_test.py\", line 42, in test_only_edges_does_not_make_a_winner\n    self.assertEqual(winner, \"\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 'X' != ''\n- X\n\n\n----------------------------------------------------------------------\nRan 10 tests in 0.003s\n\nFAILED (failures=4)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/connect-auto-r2"
   },
   {
     "task": "connect",
@@ -11854,7 +11927,8 @@
     "tests_run": 10,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/connect-baseline-r2"
   },
   {
     "task": "robot-name",
@@ -12016,7 +12090,8 @@
     "tests_run": 4,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/robot-name-auto"
   },
   {
     "task": "robot-name",
@@ -12201,7 +12276,8 @@
     "tests_run": 4,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/robot-name-baseline"
   },
   {
     "task": "robot-name",
@@ -12363,7 +12439,8 @@
     "tests_run": 4,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/robot-name-auto-r2"
   },
   {
     "task": "robot-name",
@@ -12525,7 +12602,8 @@
     "tests_run": 4,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/robot-name-baseline-r2"
   },
   {
     "task": "pov",
@@ -12710,7 +12788,8 @@
     "tests_run": 15,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": " contain node nonexistent' != 'Tree could not be reoriented'\n- Tree does not contain node nonexistent\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_large_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_large_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto/pov_test.py\", line 98, in test_errors_if_target_does_not_exist_in_a_large_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree does not contain node nonexistent' != 'Tree could not be reoriented'\n- Tree does not contain node nonexistent\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_singleton_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_singleton_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto/pov_test.py\", line 84, in test_errors_if_target_does_not_exist_in_a_singleton_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree does not contain node nonexistent' != 'Tree could not be reoriented'\n- Tree does not contain node nonexistent\n+ Tree could not be reoriented\n\n\n----------------------------------------------------------------------\nRan 15 tests in 0.004s\n\nFAILED (failures=4)\n"
+    "grading_summary": " contain node nonexistent' != 'Tree could not be reoriented'\n- Tree does not contain node nonexistent\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_large_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_large_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto/pov_test.py\", line 98, in test_errors_if_target_does_not_exist_in_a_large_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree does not contain node nonexistent' != 'Tree could not be reoriented'\n- Tree does not contain node nonexistent\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_singleton_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_singleton_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto/pov_test.py\", line 84, in test_errors_if_target_does_not_exist_in_a_singleton_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree does not contain node nonexistent' != 'Tree could not be reoriented'\n- Tree does not contain node nonexistent\n+ Tree could not be reoriented\n\n\n----------------------------------------------------------------------\nRan 15 tests in 0.004s\n\nFAILED (failures=4)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pov-auto"
   },
   {
     "task": "pov",
@@ -12872,7 +12951,8 @@
     "tests_run": 15,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pov-baseline"
   },
   {
     "task": "pov",
@@ -13034,7 +13114,8 @@
     "tests_run": 15,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "ented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'No path found.' != 'Tree could not be reoriented'\n- No path found.\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_large_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_large_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto-r2/pov_test.py\", line 98, in test_errors_if_target_does_not_exist_in_a_large_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree must be a tree.' != 'Tree could not be reoriented'\n- Tree must be a tree.\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_singleton_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_singleton_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto-r2/pov_test.py\", line 84, in test_errors_if_target_does_not_exist_in_a_singleton_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree must be a tree.' != 'Tree could not be reoriented'\n- Tree must be a tree.\n+ Tree could not be reoriented\n\n\n----------------------------------------------------------------------\nRan 15 tests in 0.002s\n\nFAILED (failures=4)\n"
+    "grading_summary": "ented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'No path found.' != 'Tree could not be reoriented'\n- No path found.\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_large_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_large_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto-r2/pov_test.py\", line 98, in test_errors_if_target_does_not_exist_in_a_large_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree must be a tree.' != 'Tree could not be reoriented'\n- Tree must be a tree.\n+ Tree could not be reoriented\n\n\n======================================================================\nFAIL: test_errors_if_target_does_not_exist_in_a_singleton_tree (pov_test.PovTest.test_errors_if_target_does_not_exist_in_a_singleton_tree)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/pov-auto-r2/pov_test.py\", line 84, in test_errors_if_target_does_not_exist_in_a_singleton_tree\n    self.assertEqual(err.exception.args[0], \"Tree could not be reoriented\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Tree must be a tree.' != 'Tree could not be reoriented'\n- Tree must be a tree.\n+ Tree could not be reoriented\n\n\n----------------------------------------------------------------------\nRan 15 tests in 0.002s\n\nFAILED (failures=4)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pov-auto-r2"
   },
   {
     "task": "pov",
@@ -13196,7 +13277,8 @@
     "tests_run": 15,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pov-baseline-r2"
   },
   {
     "task": "dominoes",
@@ -13358,7 +13440,8 @@
     "tests_run": 13,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "=========================================================\nFAIL: test_separate_three_domino_loops (dominoes_test.DominoesTest.test_separate_three_domino_loops)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 86, in test_separate_three_domino_loops\n    self.refute_correct_chain(input_dominoes, output_chain)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 132, in refute_correct_chain\n    self.assertIsNone(output_chain, msg)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not None : There should be no valid chain for [(1, 2), (2, 3), (3, 1), (4, 5), (5, 6), (6, 4)]\n\n======================================================================\nFAIL: test_singleton_that_can_t_be_chained (dominoes_test.DominoesTest.test_singleton_that_can_t_be_chained)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 26, in test_singleton_that_can_t_be_chained\n    self.refute_correct_chain(input_dominoes, output_chain)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 132, in refute_correct_chain\n    self.assertIsNone(output_chain, msg)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not None : There should be no valid chain for [(1, 2)]\n\n----------------------------------------------------------------------\nRan 13 tests in 0.008s\n\nFAILED (failures=6, errors=7)\n"
+    "grading_summary": "=========================================================\nFAIL: test_separate_three_domino_loops (dominoes_test.DominoesTest.test_separate_three_domino_loops)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 86, in test_separate_three_domino_loops\n    self.refute_correct_chain(input_dominoes, output_chain)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 132, in refute_correct_chain\n    self.assertIsNone(output_chain, msg)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not None : There should be no valid chain for [(1, 2), (2, 3), (3, 1), (4, 5), (5, 6), (6, 4)]\n\n======================================================================\nFAIL: test_singleton_that_can_t_be_chained (dominoes_test.DominoesTest.test_singleton_that_can_t_be_chained)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 26, in test_singleton_that_can_t_be_chained\n    self.refute_correct_chain(input_dominoes, output_chain)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto/dominoes_test.py\", line 132, in refute_correct_chain\n    self.assertIsNone(output_chain, msg)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not None : There should be no valid chain for [(1, 2)]\n\n----------------------------------------------------------------------\nRan 13 tests in 0.008s\n\nFAILED (failures=6, errors=7)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto"
   },
   {
     "task": "dominoes",
@@ -13520,7 +13603,8 @@
     "tests_run": 13,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dominoes-baseline"
   },
   {
     "task": "dominoes",
@@ -13705,7 +13789,8 @@
     "tests_run": 13,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dominoes-auto-r2"
   },
   {
     "task": "dominoes",
@@ -13867,7 +13952,8 @@
     "tests_run": 13,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dominoes-baseline-r2"
   },
   {
     "task": "pig-latin",
@@ -14029,7 +14115,8 @@
     "tests_run": 22,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pig-latin-auto"
   },
   {
     "task": "pig-latin",
@@ -14191,7 +14278,8 @@
     "tests_run": 22,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pig-latin-baseline"
   },
   {
     "task": "pig-latin",
@@ -14353,7 +14441,8 @@
     "tests_run": 22,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pig-latin-auto-r2"
   },
   {
     "task": "pig-latin",
@@ -14515,7 +14604,8 @@
     "tests_run": 22,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/pig-latin-baseline-r2"
   },
   {
     "task": "proverb",
@@ -14677,7 +14767,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/proverb-auto"
   },
   {
     "task": "proverb",
@@ -14839,7 +14930,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/proverb-baseline"
   },
   {
     "task": "proverb",
@@ -14978,7 +15070,8 @@
     "tests_run": 8,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "put_data, qualifier=None), [])\n                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: proverb() missing 1 required positional argument: 'items'\n\n======================================================================\nFAIL: test_an_optional_qualifier_can_be_added (proverb_test.ProverbTest.test_an_optional_qualifier_can_be_added)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/proverb-auto-r2/proverb_test.py\", line 79, in test_an_optional_qualifier_can_be_added\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        proverb(*input_data, qualifier=\"horseshoe\"),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        [\"And all for the want of a horseshoe nail.\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: 'For want of a n the a was lost.\\nFor wan[93 chars]e n.' != ['And all for the want of a horseshoe nail.']\n\n======================================================================\nFAIL: test_one_piece (proverb_test.ProverbTest.test_one_piece)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/proverb-auto-r2/proverb_test.py\", line 23, in test_one_piece\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        proverb(*input_data, qualifier=None), [\"And all for the want of a nail.\"]\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: 'For want of a n the a was lost.\\nFor wan[83 chars]a n.' != ['And all for the want of a nail.']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.004s\n\nFAILED (failures=2, errors=6)\n"
+    "grading_summary": "put_data, qualifier=None), [])\n                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: proverb() missing 1 required positional argument: 'items'\n\n======================================================================\nFAIL: test_an_optional_qualifier_can_be_added (proverb_test.ProverbTest.test_an_optional_qualifier_can_be_added)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/proverb-auto-r2/proverb_test.py\", line 79, in test_an_optional_qualifier_can_be_added\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        proverb(*input_data, qualifier=\"horseshoe\"),\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        [\"And all for the want of a horseshoe nail.\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: 'For want of a n the a was lost.\\nFor wan[93 chars]e n.' != ['And all for the want of a horseshoe nail.']\n\n======================================================================\nFAIL: test_one_piece (proverb_test.ProverbTest.test_one_piece)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/proverb-auto-r2/proverb_test.py\", line 23, in test_one_piece\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        proverb(*input_data, qualifier=None), [\"And all for the want of a nail.\"]\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: 'For want of a n the a was lost.\\nFor wan[83 chars]a n.' != ['And all for the want of a nail.']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.004s\n\nFAILED (failures=2, errors=6)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/proverb-auto-r2"
   },
   {
     "task": "proverb",
@@ -15163,7 +15256,8 @@
     "tests_run": 8,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/proverb-baseline-r2"
   },
   {
     "task": "dot-dsl",
@@ -15325,7 +15419,8 @@
     "tests_run": 12,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "Test.test_malformed_EDGE)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.004s\n\nFAILED (failures=3)\n"
+    "grading_summary": "Test.test_malformed_EDGE)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.004s\n\nFAILED (failures=3)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto"
   },
   {
     "task": "dot-dsl",
@@ -15487,7 +15582,8 @@
     "tests_run": 12,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "GE)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.004s\n\nFAILED (failures=3, errors=1)\n"
+    "grading_summary": "GE)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.004s\n\nFAILED (failures=3, errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline"
   },
   {
     "task": "dot-dsl",
@@ -15649,7 +15745,8 @@
     "tests_run": 12,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "_malformed_EDGE)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.001s\n\nFAILED (failures=3)\n"
+    "grading_summary": "_malformed_EDGE)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.001s\n\nFAILED (failures=3)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-auto-r2"
   },
   {
     "task": "dot-dsl",
@@ -15811,7 +15908,8 @@
     "tests_run": 12,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "-----------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.003s\n\nFAILED (failures=3, errors=1)\n"
+    "grading_summary": "-----------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2/dot_dsl_test.py\", line 115, in test_malformed_EDGE\n    self.assertEqual(err.exception.args[0], \"Edge is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EDGE malformed' != 'Edge is malformed'\n- EDGE malformed\n+ Edge is malformed\n\n\n======================================================================\nFAIL: test_malformed_attr (dot_dsl_test.DotDslTest.test_malformed_attr)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2/dot_dsl_test.py\", line 101, in test_malformed_attr\n    self.assertEqual(err.exception.args[0], \"Attribute is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ATTR malformed' != 'Attribute is malformed'\n- ATTR malformed\n+ Attribute is malformed\n\n\n======================================================================\nFAIL: test_malformed_node (dot_dsl_test.DotDslTest.test_malformed_node)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2/dot_dsl_test.py\", line 108, in test_malformed_node\n    self.assertEqual(err.exception.args[0], \"Node is malformed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NODE malformed' != 'Node is malformed'\n- NODE malformed\n+ Node is malformed\n\n\n----------------------------------------------------------------------\nRan 12 tests in 0.003s\n\nFAILED (failures=3, errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/dot-dsl-baseline-r2"
   },
   {
     "task": "bowling",
@@ -16065,7 +16163,8 @@
     "tests_run": 31,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bowling-auto"
   },
   {
     "task": "bowling",
@@ -16227,7 +16326,8 @@
     "tests_run": 31,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bowling-baseline"
   },
   {
     "task": "bowling",
@@ -16458,7 +16558,8 @@
     "tests_run": 31,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bowling-auto-r2"
   },
   {
     "task": "bowling",
@@ -16620,7 +16721,8 @@
     "tests_run": 31,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/bowling-baseline-r2"
   },
   {
     "task": "transpose",
@@ -16782,7 +16884,8 @@
     "tests_run": 12,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/transpose-auto"
   },
   {
     "task": "transpose",
@@ -16983,7 +17086,8 @@
     "tests_run": 12,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/transpose-baseline"
   },
   {
     "task": "transpose",
@@ -17145,7 +17249,8 @@
     "tests_run": 12,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/transpose-auto-r2"
   },
   {
     "task": "transpose",
@@ -17307,7 +17412,8 @@
     "tests_run": 12,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/transpose-baseline-r2"
   },
   {
     "task": "affine-cipher",
@@ -17492,7 +17598,8 @@
     "tests_run": 16,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/affine-cipher-auto"
   },
   {
     "task": "affine-cipher",
@@ -17631,7 +17738,8 @@
     "tests_run": 16,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/affine-cipher-baseline"
   },
   {
     "task": "affine-cipher",
@@ -17839,7 +17947,8 @@
     "tests_run": 16,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/affine-cipher-auto-r2"
   },
   {
     "task": "affine-cipher",
@@ -17978,7 +18087,8 @@
     "tests_run": 16,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/affine-cipher-baseline-r2"
   },
   {
     "task": "grep",
@@ -18140,7 +18250,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grep-auto"
   },
   {
     "task": "grep",
@@ -18302,7 +18413,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grep-baseline"
   },
   {
     "task": "grep",
@@ -18441,7 +18553,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grep-auto-r2"
   },
   {
     "task": "grep",
@@ -18603,7 +18716,8 @@
     "tests_run": 25,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/grep-baseline-r2"
   },
   {
     "task": "food-chain",
@@ -18765,7 +18879,8 @@
     "tests_run": 10,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "~~~~~~~^\n        recite(8, 8),\n        ^^^^^^^^^^^^^\n        [\"I know an old lady who swallowed a horse.\", \"She's dead, of course!\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a horse.\\nShe's dead, of course!\" != ['I know an old lady who swallowed a horse.', \"She's dead, of course!\"]\n\n======================================================================\nFAIL: test_multiple_verses (food_chain_test.FoodChainTest.test_multiple_verses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto/food_chain_test.py\", line 110, in test_multiple_verses\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(1, 3),\n        ^^^^^^^^^^^^^\n    ...<14 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a fly.\\[530 chars]die.\" != ['I know an old lady who swallowed a fly.[556 chars]ie.\"]\n\n======================================================================\nFAIL: test_spider (food_chain_test.FoodChainTest.test_spider)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto/food_chain_test.py\", line 23, in test_spider\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(2, 2),\n        ^^^^^^^^^^^^^\n    ...<5 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a spide[152 chars]die.\" != ['I know an old lady who swallowed a spid[160 chars]ie.\"]\n\n----------------------------------------------------------------------\nRan 10 tests in 0.006s\n\nFAILED (failures=10)\n"
+    "grading_summary": "~~~~~~~^\n        recite(8, 8),\n        ^^^^^^^^^^^^^\n        [\"I know an old lady who swallowed a horse.\", \"She's dead, of course!\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a horse.\\nShe's dead, of course!\" != ['I know an old lady who swallowed a horse.', \"She's dead, of course!\"]\n\n======================================================================\nFAIL: test_multiple_verses (food_chain_test.FoodChainTest.test_multiple_verses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto/food_chain_test.py\", line 110, in test_multiple_verses\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(1, 3),\n        ^^^^^^^^^^^^^\n    ...<14 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a fly.\\[530 chars]die.\" != ['I know an old lady who swallowed a fly.[556 chars]ie.\"]\n\n======================================================================\nFAIL: test_spider (food_chain_test.FoodChainTest.test_spider)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto/food_chain_test.py\", line 23, in test_spider\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(2, 2),\n        ^^^^^^^^^^^^^\n    ...<5 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a spide[152 chars]die.\" != ['I know an old lady who swallowed a spid[160 chars]ie.\"]\n\n----------------------------------------------------------------------\nRan 10 tests in 0.006s\n\nFAILED (failures=10)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto"
   },
   {
     "task": "food-chain",
@@ -18927,7 +19042,8 @@
     "tests_run": 10,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/food-chain-baseline"
   },
   {
     "task": "food-chain",
@@ -19181,7 +19297,8 @@
     "tests_run": 10,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "~^\n        recite(8, 8),\n        ^^^^^^^^^^^^^\n        [\"I know an old lady who swallowed a horse.\", \"She's dead, of course!\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a horse.\\nShe's dead, of course!\" != ['I know an old lady who swallowed a horse.', \"She's dead, of course!\"]\n\n======================================================================\nFAIL: test_multiple_verses (food_chain_test.FoodChainTest.test_multiple_verses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto-r2/food_chain_test.py\", line 110, in test_multiple_verses\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(1, 3),\n        ^^^^^^^^^^^^^\n    ...<14 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a fly.\\[530 chars]die.\" != ['I know an old lady who swallowed a fly.[556 chars]ie.\"]\n\n======================================================================\nFAIL: test_spider (food_chain_test.FoodChainTest.test_spider)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto-r2/food_chain_test.py\", line 23, in test_spider\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(2, 2),\n        ^^^^^^^^^^^^^\n    ...<5 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a spide[152 chars]die.\" != ['I know an old lady who swallowed a spid[160 chars]ie.\"]\n\n----------------------------------------------------------------------\nRan 10 tests in 0.007s\n\nFAILED (failures=10)\n"
+    "grading_summary": "~^\n        recite(8, 8),\n        ^^^^^^^^^^^^^\n        [\"I know an old lady who swallowed a horse.\", \"She's dead, of course!\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a horse.\\nShe's dead, of course!\" != ['I know an old lady who swallowed a horse.', \"She's dead, of course!\"]\n\n======================================================================\nFAIL: test_multiple_verses (food_chain_test.FoodChainTest.test_multiple_verses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto-r2/food_chain_test.py\", line 110, in test_multiple_verses\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(1, 3),\n        ^^^^^^^^^^^^^\n    ...<14 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a fly.\\[530 chars]die.\" != ['I know an old lady who swallowed a fly.[556 chars]ie.\"]\n\n======================================================================\nFAIL: test_spider (food_chain_test.FoodChainTest.test_spider)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto-r2/food_chain_test.py\", line 23, in test_spider\n    self.assertEqual(\n    ~~~~~~~~~~~~~~~~^\n        recite(2, 2),\n        ^^^^^^^^^^^^^\n    ...<5 lines>...\n        ],\n        ^^\n    )\n    ^\nAssertionError: \"I know an old lady who swallowed a spide[152 chars]die.\" != ['I know an old lady who swallowed a spid[160 chars]ie.\"]\n\n----------------------------------------------------------------------\nRan 10 tests in 0.007s\n\nFAILED (failures=10)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/food-chain-auto-r2"
   },
   {
     "task": "food-chain",
@@ -19343,7 +19460,8 @@
     "tests_run": 10,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/food-chain-baseline-r2"
   },
   {
     "task": "forth",
@@ -19528,7 +19646,8 @@
     "tests_run": 54,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "  with self.assertRaises(ValueError) as err:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_user_defined_words_cannot_redefine_non_negative_numbers (forth_test.ForthTest.test_user_defined_words_cannot_redefine_non_negative_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto/forth_test.py\", line 233, in test_user_defined_words_cannot_redefine_non_negative_numbers\n    self.assertEqual(str(err.exception.args[0]), \"illegal operation\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'a number cannot be used as a word name' != 'illegal operation'\n- a number cannot be used as a word name\n+ illegal operation\n\n\n======================================================================\nFAIL: test_user_defined_words_errors_if_executing_a_non_existent_word (forth_test.ForthTest.test_user_defined_words_errors_if_executing_a_non_existent_word)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto/forth_test.py\", line 245, in test_user_defined_words_errors_if_executing_a_non_existent_word\n    self.assertEqual(str(err.exception.args[0]), \"undefined operation\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'undefined operation: foo' != 'undefined operation'\n- undefined operation: foo\n?                    -----\n+ undefined operation\n\n\n----------------------------------------------------------------------\nRan 54 tests in 0.003s\n\nFAILED (failures=3, errors=4)\n"
+    "grading_summary": "  with self.assertRaises(ValueError) as err:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_user_defined_words_cannot_redefine_non_negative_numbers (forth_test.ForthTest.test_user_defined_words_cannot_redefine_non_negative_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto/forth_test.py\", line 233, in test_user_defined_words_cannot_redefine_non_negative_numbers\n    self.assertEqual(str(err.exception.args[0]), \"illegal operation\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'a number cannot be used as a word name' != 'illegal operation'\n- a number cannot be used as a word name\n+ illegal operation\n\n\n======================================================================\nFAIL: test_user_defined_words_errors_if_executing_a_non_existent_word (forth_test.ForthTest.test_user_defined_words_errors_if_executing_a_non_existent_word)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto/forth_test.py\", line 245, in test_user_defined_words_errors_if_executing_a_non_existent_word\n    self.assertEqual(str(err.exception.args[0]), \"undefined operation\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'undefined operation: foo' != 'undefined operation'\n- undefined operation: foo\n?                    -----\n+ undefined operation\n\n\n----------------------------------------------------------------------\nRan 54 tests in 0.003s\n\nFAILED (failures=3, errors=4)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/forth-auto"
   },
   {
     "task": "forth",
@@ -19690,7 +19809,8 @@
     "tests_run": 54,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "ight_order (forth_test.ForthTest.test_user_defined_words_execute_in_the_right_order) ... ok\n\n======================================================================\nERROR: test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack (forth_test.ForthTest.test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth_test.py\", line 18, in test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack\n    self.assertEqual(evaluate([\"-1 -2 -3 -4 -5\"]), [-1, -2, -3, -4, -5])\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth.py\", line 40, in evaluate\n    for instruction in resolve(token):\n                       ~~~~~~~^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth.py\", line 18, in resolve\n    raise ValueError(\"undefined operation\")\nValueError: undefined operation\n\n======================================================================\nFAIL: test_user_defined_words_cannot_redefine_negative_numbers (forth_test.ForthTest.test_user_defined_words_cannot_redefine_negative_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth_test.py\", line 236, in test_user_defined_words_cannot_redefine_negative_numbers\n    with self.assertRaises(ValueError) as err:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 54 tests in 0.004s\n\nFAILED (failures=1, errors=1)\n"
+    "grading_summary": "ight_order (forth_test.ForthTest.test_user_defined_words_execute_in_the_right_order) ... ok\n\n======================================================================\nERROR: test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack (forth_test.ForthTest.test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth_test.py\", line 18, in test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack\n    self.assertEqual(evaluate([\"-1 -2 -3 -4 -5\"]), [-1, -2, -3, -4, -5])\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth.py\", line 40, in evaluate\n    for instruction in resolve(token):\n                       ~~~~~~~^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth.py\", line 18, in resolve\n    raise ValueError(\"undefined operation\")\nValueError: undefined operation\n\n======================================================================\nFAIL: test_user_defined_words_cannot_redefine_negative_numbers (forth_test.ForthTest.test_user_defined_words_cannot_redefine_negative_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline/forth_test.py\", line 236, in test_user_defined_words_cannot_redefine_negative_numbers\n    with self.assertRaises(ValueError) as err:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 54 tests in 0.004s\n\nFAILED (failures=1, errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline"
   },
   {
     "task": "forth",
@@ -19875,7 +19995,8 @@
     "tests_run": 54,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "input_data.split()\n             ^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'split'\n\n======================================================================\nERROR: test_user_defined_words_errors_if_executing_a_non_existent_word (forth_test.ForthTest.test_user_defined_words_errors_if_executing_a_non_existent_word)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth_test.py\", line 243, in test_user_defined_words_errors_if_executing_a_non_existent_word\n    evaluate([\"foo\"])\n    ~~~~~~~~^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth.py\", line 52, in evaluate\n    tokens = input_data.split()\n             ^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'split'\n\n======================================================================\nERROR: test_user_defined_words_execute_in_the_right_order (forth_test.ForthTest.test_user_defined_words_execute_in_the_right_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth_test.py\", line 208, in test_user_defined_words_execute_in_the_right_order\n    self.assertEqual(evaluate([\": countup 1 2 3 ;\", \"countup\"]), [1, 2, 3])\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth.py\", line 52, in evaluate\n    tokens = input_data.split()\n             ^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'split'\n\n----------------------------------------------------------------------\nRan 54 tests in 0.022s\n\nFAILED (errors=54)\n"
+    "grading_summary": "input_data.split()\n             ^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'split'\n\n======================================================================\nERROR: test_user_defined_words_errors_if_executing_a_non_existent_word (forth_test.ForthTest.test_user_defined_words_errors_if_executing_a_non_existent_word)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth_test.py\", line 243, in test_user_defined_words_errors_if_executing_a_non_existent_word\n    evaluate([\"foo\"])\n    ~~~~~~~~^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth.py\", line 52, in evaluate\n    tokens = input_data.split()\n             ^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'split'\n\n======================================================================\nERROR: test_user_defined_words_execute_in_the_right_order (forth_test.ForthTest.test_user_defined_words_execute_in_the_right_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth_test.py\", line 208, in test_user_defined_words_execute_in_the_right_order\n    self.assertEqual(evaluate([\": countup 1 2 3 ;\", \"countup\"]), [1, 2, 3])\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2/forth.py\", line 52, in evaluate\n    tokens = input_data.split()\n             ^^^^^^^^^^^^^^^^\nAttributeError: 'list' object has no attribute 'split'\n\n----------------------------------------------------------------------\nRan 54 tests in 0.022s\n\nFAILED (errors=54)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/forth-auto-r2"
   },
   {
     "task": "forth",
@@ -20037,7 +20158,8 @@
     "tests_run": 54,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "st.test_user_defined_words_execute_in_the_right_order) ... ok\n\n======================================================================\nERROR: test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack (forth_test.ForthTest.test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth_test.py\", line 18, in test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack\n    self.assertEqual(evaluate([\"-1 -2 -3 -4 -5\"]), [-1, -2, -3, -4, -5])\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth.py\", line 89, in evaluate\n    _execute((_resolve(token, words),), stack)\n              ~~~~~~~~^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth.py\", line 15, in _resolve\n    raise ValueError(\"undefined operation\") from None\nValueError: undefined operation\n\n======================================================================\nFAIL: test_user_defined_words_cannot_redefine_negative_numbers (forth_test.ForthTest.test_user_defined_words_cannot_redefine_negative_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth_test.py\", line 236, in test_user_defined_words_cannot_redefine_negative_numbers\n    with self.assertRaises(ValueError) as err:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 54 tests in 0.005s\n\nFAILED (failures=1, errors=1)\n"
+    "grading_summary": "st.test_user_defined_words_execute_in_the_right_order) ... ok\n\n======================================================================\nERROR: test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack (forth_test.ForthTest.test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth_test.py\", line 18, in test_parsing_and_numbers_pushes_negative_numbers_onto_the_stack\n    self.assertEqual(evaluate([\"-1 -2 -3 -4 -5\"]), [-1, -2, -3, -4, -5])\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth.py\", line 89, in evaluate\n    _execute((_resolve(token, words),), stack)\n              ~~~~~~~~^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth.py\", line 15, in _resolve\n    raise ValueError(\"undefined operation\") from None\nValueError: undefined operation\n\n======================================================================\nFAIL: test_user_defined_words_cannot_redefine_negative_numbers (forth_test.ForthTest.test_user_defined_words_cannot_redefine_negative_numbers)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2/forth_test.py\", line 236, in test_user_defined_words_cannot_redefine_negative_numbers\n    with self.assertRaises(ValueError) as err:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 54 tests in 0.005s\n\nFAILED (failures=1, errors=1)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/forth-baseline-r2"
   },
   {
     "task": "poker",
@@ -20222,7 +20344,8 @@
     "tests_run": 37,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/poker-auto"
   },
   {
     "task": "poker",
@@ -20384,7 +20507,8 @@
     "tests_run": 37,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/poker-baseline"
   },
   {
     "task": "poker",
@@ -20515,7 +20639,8 @@
     "tests_run": 37,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in best_hands\n    best_value = max(_hand_value(hand) for hand in hands)\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in <genexpr>\n    best_value = max(_hand_value(hand) for hand in hands)\n                     ~~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 18, in _hand_value\n    ranks = [_RANKS[card[:-1]] for card in cards]\n             ~~~~~~^^^^^^^^^^^\nKeyError: '10'\n\n======================================================================\nERROR: test_straight_flush_beats_four_of_a_kind (poker_test.PokerTest.test_straight_flush_beats_four_of_a_kind)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker_test.py\", line 195, in test_straight_flush_beats_four_of_a_kind\n    best_hands([\"4S 5H 5S 5D 5C\", \"7S 8S 9S 6S 10S\"]), [\"7S 8S 9S 6S 10S\"]\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in best_hands\n    best_value = max(_hand_value(hand) for hand in hands)\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in <genexpr>\n    best_value = max(_hand_value(hand) for hand in hands)\n                     ~~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 18, in _hand_value\n    ranks = [_RANKS[card[:-1]] for card in cards]\n             ~~~~~~^^^^^^^^^^^\nKeyError: '10'\n\n----------------------------------------------------------------------\nRan 37 tests in 0.008s\n\nFAILED (errors=6)\n"
+    "grading_summary": "\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in best_hands\n    best_value = max(_hand_value(hand) for hand in hands)\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in <genexpr>\n    best_value = max(_hand_value(hand) for hand in hands)\n                     ~~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 18, in _hand_value\n    ranks = [_RANKS[card[:-1]] for card in cards]\n             ~~~~~~^^^^^^^^^^^\nKeyError: '10'\n\n======================================================================\nERROR: test_straight_flush_beats_four_of_a_kind (poker_test.PokerTest.test_straight_flush_beats_four_of_a_kind)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker_test.py\", line 195, in test_straight_flush_beats_four_of_a_kind\n    best_hands([\"4S 5H 5S 5D 5C\", \"7S 8S 9S 6S 10S\"]), [\"7S 8S 9S 6S 10S\"]\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in best_hands\n    best_value = max(_hand_value(hand) for hand in hands)\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 62, in <genexpr>\n    best_value = max(_hand_value(hand) for hand in hands)\n                     ~~~~~~~~~~~^^^^^^\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2/poker.py\", line 18, in _hand_value\n    ranks = [_RANKS[card[:-1]] for card in cards]\n             ~~~~~~^^^^^^^^^^^\nKeyError: '10'\n\n----------------------------------------------------------------------\nRan 37 tests in 0.008s\n\nFAILED (errors=6)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/poker-auto-r2"
   },
   {
     "task": "poker",
@@ -20677,7 +20802,8 @@
     "tests_run": 37,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/poker-baseline-r2"
   },
   {
     "task": "phone-number",
@@ -20839,7 +20965,8 @@
     "tests_run": 21,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/phone-number-auto"
   },
   {
     "task": "phone-number",
@@ -21047,7 +21174,8 @@
     "tests_run": 21,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/phone-number-baseline"
   },
   {
     "task": "phone-number",
@@ -21155,7 +21283,8 @@
     "tests_run": 21,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "number_test.PhoneNumberTest.test_pretty_print_with_full_us_phone_number) ... FAIL\ntest_valid_when_11_digits_and_starting_with_1 (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1) ... ok\ntest_valid_when_11_digits_and_starting_with_1_even_with_punctuation (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1_even_with_punctuation) ... ok\n\n======================================================================\nFAIL: test_pretty_print (phone_number_test.PhoneNumberTest.test_pretty_print)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-auto-r2/phone_number_test.py\", line 118, in test_pretty_print\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n======================================================================\nFAIL: test_pretty_print_with_full_us_phone_number (phone_number_test.PhoneNumberTest.test_pretty_print_with_full_us_phone_number)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-auto-r2/phone_number_test.py\", line 122, in test_pretty_print_with_full_us_phone_number\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n----------------------------------------------------------------------\nRan 21 tests in 0.003s\n\nFAILED (failures=2)\n"
+    "grading_summary": "number_test.PhoneNumberTest.test_pretty_print_with_full_us_phone_number) ... FAIL\ntest_valid_when_11_digits_and_starting_with_1 (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1) ... ok\ntest_valid_when_11_digits_and_starting_with_1_even_with_punctuation (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1_even_with_punctuation) ... ok\n\n======================================================================\nFAIL: test_pretty_print (phone_number_test.PhoneNumberTest.test_pretty_print)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-auto-r2/phone_number_test.py\", line 118, in test_pretty_print\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n======================================================================\nFAIL: test_pretty_print_with_full_us_phone_number (phone_number_test.PhoneNumberTest.test_pretty_print_with_full_us_phone_number)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-auto-r2/phone_number_test.py\", line 122, in test_pretty_print_with_full_us_phone_number\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n----------------------------------------------------------------------\nRan 21 tests in 0.003s\n\nFAILED (failures=2)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/phone-number-auto-r2"
   },
   {
     "task": "phone-number",
@@ -21286,7 +21415,8 @@
     "tests_run": 21,
     "grading_exit_code": 1,
     "passed": false,
-    "grading_summary": "est.PhoneNumberTest.test_pretty_print_with_full_us_phone_number) ... FAIL\ntest_valid_when_11_digits_and_starting_with_1 (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1) ... ok\ntest_valid_when_11_digits_and_starting_with_1_even_with_punctuation (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1_even_with_punctuation) ... ok\n\n======================================================================\nFAIL: test_pretty_print (phone_number_test.PhoneNumberTest.test_pretty_print)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-baseline-r2/phone_number_test.py\", line 118, in test_pretty_print\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n======================================================================\nFAIL: test_pretty_print_with_full_us_phone_number (phone_number_test.PhoneNumberTest.test_pretty_print_with_full_us_phone_number)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-baseline-r2/phone_number_test.py\", line 122, in test_pretty_print_with_full_us_phone_number\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n----------------------------------------------------------------------\nRan 21 tests in 0.003s\n\nFAILED (failures=2)\n"
+    "grading_summary": "est.PhoneNumberTest.test_pretty_print_with_full_us_phone_number) ... FAIL\ntest_valid_when_11_digits_and_starting_with_1 (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1) ... ok\ntest_valid_when_11_digits_and_starting_with_1_even_with_punctuation (phone_number_test.PhoneNumberTest.test_valid_when_11_digits_and_starting_with_1_even_with_punctuation) ... ok\n\n======================================================================\nFAIL: test_pretty_print (phone_number_test.PhoneNumberTest.test_pretty_print)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-baseline-r2/phone_number_test.py\", line 118, in test_pretty_print\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n======================================================================\nFAIL: test_pretty_print_with_full_us_phone_number (phone_number_test.PhoneNumberTest.test_pretty_print_with_full_us_phone_number)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/gradcode-routing-expanded-20261024/grading/phone-number-baseline-r2/phone_number_test.py\", line 122, in test_pretty_print_with_full_us_phone_number\n    self.assertEqual(number.pretty(), \"(223)-456-7890\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '(223) 456-7890' != '(223)-456-7890'\n- (223) 456-7890\n?      ^\n+ (223)-456-7890\n?      ^\n\n\n----------------------------------------------------------------------\nRan 21 tests in 0.003s\n\nFAILED (failures=2)\n",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/phone-number-baseline-r2"
   },
   {
     "task": "variable-length-quantity",
@@ -21425,7 +21555,8 @@
     "tests_run": 26,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/variable-length-quantity-auto"
   },
   {
     "task": "variable-length-quantity",
@@ -21564,7 +21695,148 @@
     "tests_run": 26,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/variable-length-quantity-baseline"
+  },
+  {
+    "task": "variable-length-quantity",
+    "condition": "auto",
+    "repetition": 2,
+    "requested_model": "auto/auto",
+    "directory": "/tmp/gradcode-routing-expanded-20261024/variable-length-quantity-auto-r2",
+    "prompt_sha256": "4cf4a16115dd02e78365e23ff4fdb5b448fb4f6f12bf7906d3b44256aae1ec51",
+    "timeout": false,
+    "exit_code": 0,
+    "duration_seconds": 158.896,
+    "session_id": "ses_e94785a34ffeUVLhBva9N879yd",
+    "errors": [],
+    "steps": 5,
+    "models": [
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      },
+      {
+        "id": "gpt-6-astra",
+        "providerID": "openai",
+        "variant": "medium"
+      }
+    ],
+    "usage": [
+      {
+        "message_id": "msg_16b89f4ec001rkSdB4Gvrc01YT",
+        "cost": 0.0167915,
+        "tokens": {
+          "input": 3,
+          "output": 45,
+          "reasoning": 0,
+          "cache": {
+            "read": 7849,
+            "write": 533
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b89c0f3001pRE213W7BYCWvI",
+        "cost": 0.039493,
+        "tokens": {
+          "input": 3,
+          "output": 509,
+          "reasoning": 0,
+          "cache": {
+            "read": 7313,
+            "write": 536
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b8993ee001WFj6uVa5JzX3fK",
+        "cost": 0.0388035,
+        "tokens": {
+          "input": 3,
+          "output": 508,
+          "reasoning": 0,
+          "cache": {
+            "read": 6786,
+            "write": 527
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b8891dd001BEWgrRWxrv17Md",
+        "cost": 0.0328825,
+        "tokens": {
+          "input": 3,
+          "output": 367,
+          "reasoning": 138,
+          "cache": {
+            "read": 6715,
+            "write": 71
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      },
+      {
+        "message_id": "msg_16b87be23001qQEUnM37Cxdyf6",
+        "cost": 0.0849675,
+        "tokens": {
+          "input": 3,
+          "output": 20,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 6715
+          }
+        },
+        "model": {
+          "id": "gpt-6-astra",
+          "providerID": "openai",
+          "variant": "medium"
+        }
+      }
+    ],
+    "cost_usd": 0.21293800000000002,
+    "session_outcome": "succeeded",
+    "tests_run": 26,
+    "grading_exit_code": 0,
+    "passed": true,
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/variable-length-quantity-auto-r2"
   },
   {
     "task": "variable-length-quantity",
@@ -21703,7 +21975,8 @@
     "tests_run": 26,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/variable-length-quantity-baseline-r2"
   },
   {
     "task": "rest-api",
@@ -21865,7 +22138,8 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/rest-api-auto"
   },
   {
     "task": "rest-api",
@@ -22027,7 +22301,8 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/rest-api-baseline"
   },
   {
     "task": "rest-api",
@@ -22189,7 +22464,8 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/rest-api-auto-r2"
   },
   {
     "task": "rest-api",
@@ -22351,6 +22627,7 @@
     "tests_run": 9,
     "grading_exit_code": 0,
     "passed": true,
-    "grading_summary": "OK"
+    "grading_summary": "OK",
+    "grading_directory": "/tmp/gradcode-routing-expanded-20261024/grading/rest-api-baseline-r2"
   }
 ]

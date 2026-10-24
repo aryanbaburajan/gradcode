@@ -1,6 +1,6 @@
 # Expanded Auto–Laya versus GPT-6-Astra evaluation
 
-Started: 2026-10-24T00:54:52.262677+00:00. Completed executions: **135/136**.
+Started: 2026-10-24T00:54:52.262677+00:00. Completed executions: **136/136**.
 
 All **34 Python tasks** in the pinned Aider Polyglot dataset, **2 fresh attempts per condition**. This is an adapted Gradcode evaluation, not an official Aider leaderboard score. The earlier 10-task pilot is excluded from these totals.
 
@@ -8,8 +8,36 @@ All **34 Python tasks** in the pinned Aider Polyglot dataset, **2 fresh attempts
 
 | Condition | Executions | Passing all original tests | Estimated model cost | Cost per passing execution | Mean inference time |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Astra/high | 68 | 57/68 (83.8%) | Incomplete | N/A | 63.6s |
-| Auto–Laya | 67 | 37/67 (55.2%) | Incomplete | N/A | 57.1s |
+| Astra/high | 68 | 57/68 (83.8%) | Incomplete ($18.176482 recorded; 3 unmetered steps) | N/A | 63.6s |
+| Auto–Laya | 68 | 38/68 (55.9%) | Incomplete ($5.099611 recorded; 2 unmetered steps) | N/A | 58.6s |
+
+Inference timeouts: Auto **2**, Astra **1**. All attempts, including timeouts, remain in the task-success denominator.
+
+**A total-cost savings percentage for all attempts is unavailable because some calls have no usage record. Missing costs have not been assigned zero.**
+
+Auto minus baseline success rate across every attempt: **-27.94 percentage points** (95% paired task-bootstrap interval: **-42.65 to -14.71 points**).
+
+## Secondary cost comparison: complete-usage paired subset
+
+This analysis retains a task/repetition pair only when both conditions have complete cost records, regardless of whether either solution passed. It does not replace the all-attempt quality comparison. This missing-data handling was added after the first observed transport interruption and before the full run finished.
+
+Coverage: **65/68 paired attempts**, covering **34 unique tasks**.
+
+Auto: **$4.920492**; Astra/high: **$17.510386**. Estimated savings within this subset: **71.90%** (95% paired task-bootstrap interval: **58.38% to 84.83%**).
+
+Excluded cost pairs (still included in quality results):
+
+- `transpose`, repetition 1: incomplete cost in baseline.
+- `poker`, repetition 2: incomplete cost in auto.
+- `phone-number`, repetition 2: incomplete cost in baseline, auto.
+
+## Scoped landing-page wording
+
+> Auto–Laya used 71.9% less estimated model cost than fixed GPT-6-Astra/high on 65 paired Python coding attempts with complete usage records (130 runs). Across all 136 runs, task success was 55.9% for Auto versus 83.8% for Astra.
+
+Keep the success-rate comparison and cost-coverage footnote adjacent to the savings figure. Do not describe this subset estimate as total billed savings or claim equivalent quality. Local router compute is excluded. Link this full methodology and the raw results.
+
+Uncertainty uses 10,000 paired task-cluster bootstrap samples (seed 20261024); both repetitions remain inside their task cluster. These intervals do not establish performance on unseen task distributions or invoice accuracy.
 
 ## Per-task outcomes
 
@@ -47,24 +75,25 @@ All **34 Python tasks** in the pinned Aider Polyglot dataset, **2 fresh attempts
 | forth | 0/2 | 0/2 | $0.682498 | $0.005079 | gpt-6-luna#low |
 | poker | 2/2 | 1/2 | $0.598077 | Incomplete | gpt-6-luna#low |
 | phone-number | 1/2 | 1/2 | Incomplete | Incomplete | gpt-6-luna#low |
-| variable-length-quantity | 2/2 | 1/1 | $0.505024 | $0.211967 | gpt-6-astra#medium |
+| variable-length-quantity | 2/2 | 2/2 | $0.505024 | $0.424905 | gpt-6-astra#medium |
 | rest-api | 2/2 | 2/2 | $0.655794 | $0.542939 | gpt-6-astra#medium |
 
 ## Observed Auto selections
 
-- `gpt-6-astra#medium`: 21 executions.
+- `gpt-6-astra#medium`: 22 executions.
 - `gpt-6-luna#low`: 46 executions.
 
 ## Fixed method
 
 - Full Python split; no tasks excluded because of outcomes. Two fresh attempts per task and condition. The earlier exploratory pilot is retained separately and is not pooled into these statistics.
-- Same six Auto choices and descriptions as the pilot: Luna/low, Luna/high, Sol/medium, Sol/high, Astra/medium, Astra/high. Fixed baseline: Astra/high. No outcome-based profile tuning.
+- Same six Auto choices and descriptions as the pilot: Luna/low, Luna/high, Sol/medium, Sol/high, Astra/medium, Astra/high. Fixed baseline: Astra/high. No outcome-based profile tuning. This is a benchmark-specific OpenAI pool, not the default automatically generated pool. App settings are unchanged.
 - Identical paired task prompts, stubs, tools, and agent instructions; fresh sessions and working directories. 12 execution steps and 300 seconds per attempt; original tests get 30 seconds. No grading feedback or benchmark retries.
 - Up to 4 concurrent executions. Task order is SHA-256-sorted using the original pilot seed. Condition submission order alternates by task and repetition. Repetitions share a provider account and may benefit from ordinary provider caching.
 - Local Laya is warm on CPU with a 5-second classification deadline; its latency is included in end-to-end time. The Jev endpoint is disabled using a closed loopback port. There is no deterministic fallback or hosted router call.
 - The 34 upstream reference solutions were checked against the original tests before this expanded run; all passed. Agent workspaces contain only solution stubs, prompt, agent instructions, and routing config. Original tests and examples are withheld; final solutions are copied to separate grading directories. This is directory/instruction isolation, not a security sandbox.
 - Dataset revision and frozen config are in `expanded-results/manifest.json`; all per-execution model selections, token/cache usage, costs, terminal status, and grading results are in `expanded-results/results.json`. The model catalog snapshot is `expanded-results/models.json`.
 - Monetary figures use persisted Gradcode catalog-based cost estimates for every recorded assistant step, including failed attempts. They are not provider-invoice measurements. Local CPU, tools, setup, and preflight/pilot spending are excluded. Unknown cost stays unknown and prevents a complete savings statistic.
+- The complete-usage cost subset is conditional on metering availability. Missingness may depend on task or condition, so that subset statistic should not be extrapolated to full-run billed expenditure.
 - A grading-directory collision was corrected during the first repetition. Already generated solutions were recovered and graded without re-running inference. Recovered records identify their elapsed time as an event-timestamp span, excluding CLI startup/shutdown; latency is therefore descriptive, not a landing-page claim.
 - Repeated attempts are not independent tasks: uncertainty is clustered by task. The benchmark is public and potential training exposure is uncontrolled. It does not measure repository tasks or follow-up conversations.
 - Hidden tests make this an adaptation of the task set, not a reproduction of Aider's agent protocol. Some APIs are underspecified in the provided instructions/stubs. In the pilot, both conditions omitted Go-counting constants required by test imports and failed Paasio wrapper checks. All such failures remain counted here.

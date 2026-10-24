@@ -119,6 +119,8 @@ def write_report(records, manifest, output):
         elapsed = f"{s['mean_duration_seconds']:.1f}s" if s["mean_duration_seconds"] is not None else "N/A"
         rate = f" ({100 * s['success_rate']:.1f}%)" if s["success_rate"] is not None else ""
         lines.append(f"| {label} | {s['executions']} | {s['passed']}/{s['executions']}{rate} | {cost} | {unit} | {elapsed} |")
+    lines += ["", f"Inference timeouts: Auto **{summary['auto']['timeouts']}**, Astra **{summary['baseline']['timeouts']}**. "
+              "All attempts, including timeouts, remain in the task-success denominator."]
     if "cost_savings_percent" in summary:
         lo, hi = summary["cost_savings_95pct_task_bootstrap_interval"]
         qlo, qhi = summary["success_difference_95pct_task_bootstrap_interval_pp"]

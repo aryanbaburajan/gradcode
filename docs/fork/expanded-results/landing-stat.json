@@ -1,0 +1,27 @@
+{
+  "metric": "estimated_model_cost_reduction_in_complete_usage_paired_subset",
+  "value_percent": 71.89957996641479,
+  "baseline": "openai/gpt-6-astra#high",
+  "router": "local Laya",
+  "scope": "34 Python Aider Polyglot tasks; benchmark-specific six-profile OpenAI pool",
+  "total_executions": 136,
+  "cost_subset_executions": 130,
+  "cost_subset_paired_attempts": 65,
+  "total_paired_attempts": 68,
+  "cost_subset_unique_tasks": 34,
+  "auto_passed": 38,
+  "auto_attempts": 68,
+  "baseline_passed": 57,
+  "baseline_attempts": 68,
+  "quality_difference_pp": -27.941176470588236,
+  "supports_equivalent_quality_claim": false,
+  "full_run_total_cost_known": false,
+  "unmetered_calls": 5,
+  "timeouts": 3,
+  "cost_estimates_exclude": [
+    "unmetered calls",
+    "local CPU and tools",
+    "setup and pilot runs"
+  ],
+  "report": "docs/fork/ROUTING-BENCHMARK-EXPANDED.md"
+}
